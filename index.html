@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>#VTuberオリソン巡り</title>
+
+    <style>
+
+        /* ガーベラの花びらエフェクト */
+
+#flower-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.flower-petal {
+    position: absolute;
+    top: -60px;
+    width: 18px;
+    height: 32px;
+    transform-origin: 50% 20%;
+    opacity: 0.85;
+    will-change: transform, opacity;
+    animation:
+        petalFall linear infinite,
+        petalSway ease-in-out infinite;
+    filter: drop-shadow(0 2px 2px rgba(180, 90, 20, 0.18));
+}
+
+/* ガーベラの花びら形 */
+.flower-petal::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 50% 18%, #fff6c8 0%, transparent 42%),
+        linear-gradient(180deg, #ffe27a 0%, #f4c542 38%, #e89a2d 78%, #d46b1e 100%);
+    clip-path: ellipse(46% 50% at 50% 50%);
+    border-radius: 80% 80% 40% 40%;
+    transform: scaleX(0.55);
+}
+
+/* 中央の筋 */
+.flower-petal::after {
+    content: "";
+    position: absolute;
+    top: 18%;
+    left: 50%;
+    width: 1.5px;
+    height: 62%;
+    transform: translateX(-50%);
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.55),
+        rgba(210, 120, 30, 0.35)
+    );
+    border-radius: 2px;
+}
+
+@keyframes petalFall {
+    0% {
+        transform: translate3d(0, -40px, 0) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+        opacity: 0;
+    }
+    8% {
+        opacity: 0.85;
+    }
+    100% {
+        transform: translate3d(var(--drift), 110vh, 0) rotateX(360deg) rotateY(180deg) rotateZ(720deg);
+        opacity: 0.35;
+    }
+}
+
+@keyframes petalSway {
+    0%, 100% {
+        margin-left: 0;
+    }
+    25% {
+        margin-left: 18px;
+    }
+    50% {
+        margin-left: -8px;
+    }
+    75% {
+        margin-left: 22px;
+    }
+}
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #eef8fb;
+            color: #333;
+            font-family:
+                "Yu Gothic",
+                "Hiragino Kaku Gothic ProN",
+                sans-serif;
+        }
+
+        .magazine {
+            max-width: 1100px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 50px;
+            box-shadow: 0 10px 30px rgba(0, 80, 100, 0.12);
+        }
+
+        /* ヘッダー */
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #333;
+            padding-bottom: 25px;
+            margin-bottom: 40px;
+        }
+
+        .header-sub {
+            font-size: 14px;
+            letter-spacing: 0.2em;
+            color: #6aaebe;
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 46px;
+            letter-spacing: 0.08em;
+            font-weight: 700;
+        }
+
+        .header-description {
+            margin-top: 15px;
+            font-size: 17px;
+            color: #666;
+        }
+
+        /* PICK UP */
+
+        .pickup-label {
+            display: inline-block;
+            background: #75c5d8;
+            color: white;
+            padding: 7px 18px;
+            font-size: 24px;
+            letter-spacing: 0.15em;
+            margin-bottom: 15px;
+        }
+
+        .pickup-title {
+            font-size: 52px;
+            margin: 0 0 10px;
+            color: #0e0e0e;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .artist {
+            font-size: 24px;
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        .lead {
+            font-size: 20px;
+            line-height: 2;
+            color: #555;
+            margin: 5px 0 35px;
+            max-width: 850px;
+            padding-left: 18px;
+            border-left: 3px solid #75c5d8;
+        }
+
+        .main-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 0 30px;
+        }
+
+        /* YouTube */
+
+        .youtube {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            margin-bottom: 25px;
+        }
+
+        .youtube iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* コメント */
+
+        .comment {
+            padding: 15px 20px;
+            margin-bottom: 35px;
+            background: #f7fcfd;
+            line-height: 1.8;
+        }
+
+        .comment-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        /* 下部 */
+
+        .section-title {
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;padding: 12px 0;
+            margin-top: 40px;
+            font-size: 20px;
+            letter-spacing: 0.1em;
+        }
+
+        .placeholder {
+            padding: 50px 20px;
+            text-align: center;
+            color: #999;
+        }
+
+        /* スマホ */
+
+        @media (max-width: 700px) {
+
+            .magazine {
+                margin: 0;
+                padding: 25px 18px;
+                box-shadow: none;
+            }
+
+            .header {
+                margin-bottom: 30px;
+            }
+
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .pickup-title {
+                font-size: 24px;
+            }
+
+            .header-description {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="flower-effect"></div>
+
+    <main class="magazine">
+
+        <header class="header">
+
+            <div class="header-sub">
+                VTUBER MUSIC MAGAZINE
+            </div>
+
+            <h1>#VTuberオリソン巡り</h1>
+
+            <p class="header-description">
+                VTuberさんのオリジナルソングを、もっとたくさんの人へ…
+            </p>
+
+        </header>
+
+
+        <section>
+
+            <div class="pickup-label">
+                TODAY'S PICK UP
+            </div>
+
+            <img
+               src="image2.jpg"
+               alt="Gerbera イメージ画像"
+               class="main-image">
+
+            <h2 class="pickup-title">         
+                Gerbera
+            </h2>
+
+            <div class="artist">
+                花宮ミュウ
+            </div>
+
+            <p class="lead">
+                歌い始めから感じる爽やかな空気感。<br>
+                前を向いて進んでいくと言う決意を感じるサビ部分はとても魅力的──<br>
+                一緒に歩んでいきたいと思わせてくれる、そんな楽曲です。
+            </p>
+
+            <div class="youtube">
+
+                <iframe
+                    width="560" 
+                    height="315" 
+                    src="https://www.youtube.com/embed/8zzwksmgd7g?si=L2CTnry4GOmtZsSh" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+
+            </div>
+
+
+            <div class="comment">
+
+                <div class="comment-title">
+                    🎧 この曲の好きポイント
+                </div>
+
+                <ul>
+                 <li>Cメロの掛け合い部分</li>
+                 <li>落ちサビからラスサビへのパッと花開くような歌声</li>
+                 <li>配信での専用弾幕とエフェクトも魅力的！</li>
+                </ul>
+
+            </div>
+
+        </section>
+
+
+        <section>
+
+            <h2 class="section-title">
+                NEW SONGS
+            </h2>
+
+            <div class="placeholder">
+                今後、#VTuberオリソン巡りで紹介された楽曲を掲載します。
+            </div>
+
+        </section>
+
+        <footer style="text-align: center; padding: 20px; font-size: 12px; color: #888;">
+            <p>※当サイトはファン有志による紹介ページであり、各VTuber様および所属事務所様とは一切関係ありません。</p>
+            <p>※掲載されている動画・音源の著作権は、それぞれの権利者に帰属します。</p>
+        </footer>
+
+    </main>
+
+<script>
+
+    const flowerEffect = document.getElementById("flower-effect");
+const petalCount = 15;
+const colors = [
+    ["#fff7b0", "#ffe66a", "#ffd83d", "#f4c542"],
+    ["#fffce0", "#fff176", "#ffe24a", "#f5d031"],
+    ["#fff8c2", "#ffe97a", "#ffd95a", "#f0c43a"],
+    ["#fffde8", "#fff59a", "#ffe66e", "#f6d24a"]
+];
+
+for (let i = 0; i < petalCount; i++) {
+    const petal = document.createElement("div");
+    petal.classList.add("flower-petal");
+
+    const size = 0.55 + Math.random() * 0.9;
+    const duration = 9 + Math.random() * 10;
+    const delay = Math.random() * 12;
+    const drift = (Math.random() * 160 - 80) + "px";
+    const swayDuration = 2.4 + Math.random() * 2.2;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+
+    petal.style.left = Math.random() * 100 + "%";
+    petal.style.width = 16 * size + "px";
+    petal.style.height = 30 * size + "px";
+    petal.style.animationDuration = duration + "s, " + swayDuration + "s";
+    petal.style.animationDelay = delay + "s, " + (delay * 0.3) + "s";
+    petal.style.setProperty("--drift", drift);
+    petal.style.opacity = 0.55 + Math.random() * 0.4;
+
+    // 個体差のある色
+    petal.style.setProperty("--c1", color[0]);
+    petal.style.setProperty("--c2", color[1]);
+    petal.style.setProperty("--c3", color[2]);
+    petal.style.setProperty("--c4", color[3]);
+
+    flowerEffect.appendChild(petal);
+}
+
+</script>
+
+</body>
+</html>
