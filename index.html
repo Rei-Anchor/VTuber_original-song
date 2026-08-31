@@ -36,6 +36,7 @@
     pointer-events: none;
     overflow: hidden;
     z-index: 1000;
+    transition: opacity 0.8s ease;
 }
 
 .flower-petal {
@@ -111,6 +112,93 @@
     }
 }
 
+/* On your side ピンクの光エフェクト */
+
+#light-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1000;
+    transition: opacity 0.8s ease;
+}
+
+.light-particle {
+    position: absolute;
+    top: -50px;
+
+    width: 18px;
+    height: 18px;
+
+    /* 中心が白く、外側に向かってピンクに発光 */
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 220, 235, 0.95) 20%,
+        rgba(255, 170, 205, 0.75) 45%,
+        rgba(255, 150, 195, 0.3) 70%,
+        rgba(255, 150, 195, 0) 100%
+    );
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 8px rgba(255, 180, 215, 0.9),
+        0 0 18px rgba(255, 160, 205, 0.6),
+        0 0 30px rgba(255, 150, 200, 0.3);
+
+    animation: lightFall linear infinite;
+}
+
+@keyframes lightFall {
+
+    0% {
+        transform:
+            translate3d(0, -50px, 0)
+            scale(0.5);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.9;
+    }
+
+    25% {
+        transform:
+            translate3d(35px, 25vh, 0)
+            scale(0.9);
+    }
+
+    50% {
+        transform:
+            translate3d(-25px, 50vh, 0)
+            scale(1.2);
+
+        opacity: 1;
+    }
+
+    75% {
+        transform:
+            translate3d(40px, 75vh, 0)
+            scale(0.8);
+    }
+
+    90% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform:
+            translate3d(-20px, 110vh, 0)
+            scale(0.5);
+
+        opacity: 0;
+    }
+}
 
         * {
             box-sizing: border-box;
@@ -254,6 +342,11 @@
             line-height: 1.8;
         }
 
+        .song-article {
+            position: relative;
+            margin-bottom: 200px;
+        }
+
         .comment-title {
             font-weight: bold;
             margin-bottom: 5px;
@@ -324,17 +417,13 @@
 
         </header>
 
+        
 
-        <section>
+        <section class="song-article" id="gerbera">
 
             <div class="pickup-label">
-                TODAY'S PICK UP
+                2026.8.30 UPDATE
             </div>
-
-            <img
-               src="image2.jpg"
-               alt="Gerbera イメージ画像"
-               class="main-image">
 
             <h2 class="pickup-title">         
                 Gerbera
@@ -397,6 +486,71 @@
 
         </section>
 
+        
+        <section class="song-article" id="on-your-side">
+
+            <div id="light-effect"></div>
+
+            <div class="pickup-label">
+                2026.8.31 UPDATE
+            </div>
+
+            <h2 class="pickup-title">
+                On your side
+            </h2>
+
+            <div class="artist">
+                夏野華火
+            </div>
+
+            <p class="lead">
+                等身大の自分を大切にできる歌。<br>
+                今を一生懸命生きる人たちに届いてほしい一曲です。
+            </p>
+
+            <div class="youtube">
+
+                <iframe
+                    width="560" 
+                    height="315" 
+                    src="https://www.youtube.com/embed/r50gPav8jno?si=anZSa5TAFJhei-hp" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+
+            </div>
+
+            <div class="source">
+             <p>
+                 出典：
+                <a href="https://www.youtube.com/@hanabinatsuno8723" target="_blank" rel="noopener noreferrer">
+                 夏野華火
+                </a>
+            </p>
+            <p>
+                 動画：
+                <a href="https://youtu.be/r50gPav8jno?si=73cL3hB_4Kt_Ystq" target="_blank" rel="noopener noreferrer">
+                 On your side
+                </a>
+            </p>
+            </div>
+
+            <div class="comment">
+
+                <div class="comment-title">
+                    🎧 この曲の好きポイント
+                </div>
+
+                <li>マイペースでいいと、思わせてくれるところ</li>
+                <li>直球ストレートで心に届く歌声</li>
+                <li>同じオリジナルソングの「ひかり」との繋がりを感じる歌詞</li>
+
+            </div>
+
+        </section>
 
         <section>
 
@@ -455,6 +609,92 @@ for (let i = 0; i < petalCount; i++) {
 
     flowerEffect.appendChild(petal);
 }
+
+</script>
+
+<script>
+
+    const lightEffect = document.getElementById("light-effect");
+
+    for (let i = 0; i < 22; i++) {
+
+        const light = document.createElement("div");
+
+        light.classList.add("light-particle");
+
+        light.style.left = Math.random() * 100 + "%";
+
+        light.style.animationDuration =
+            (10 + Math.random() * 8) + "s";
+
+        light.style.animationDelay =
+            Math.random() * 10 + "s";
+
+        const size =
+            8 + Math.random() * 20;
+
+        light.style.width = size + "px";
+        light.style.height = size + "px";
+
+        lightEffect.appendChild(light);
+    }
+
+</script>
+
+<script>
+
+    const gerberaSection = document.getElementById("gerbera");
+    const onYourSideSection = document.getElementById("on-your-side");
+
+    function changeEffect() {
+
+        const scrollPosition =
+            window.scrollY + window.innerHeight / 2;
+
+        const gerberaTop =
+            gerberaSection.offsetTop;
+
+        const gerberaBottom =
+            gerberaTop + gerberaSection.offsetHeight;
+
+        const onYourSideTop =
+            onYourSideSection.offsetTop;
+
+        const onYourSideBottom =
+            onYourSideTop + onYourSideSection.offsetHeight;
+
+
+        /* Gerbera */
+
+        if (
+            scrollPosition >= gerberaTop &&
+            scrollPosition < gerberaBottom
+        ) {
+
+            flowerEffect.style.opacity = "1";
+            lightEffect.style.opacity = "0";
+
+        }
+
+
+        /* On your side */
+
+        else if (
+            scrollPosition >= onYourSideTop &&
+            scrollPosition < onYourSideBottom
+        ) {
+
+            flowerEffect.style.opacity = "0";
+            lightEffect.style.opacity = "1";
+
+        }
+
+    }
+
+
+    window.addEventListener("scroll", changeEffect);
+
+    changeEffect();
 
 </script>
 
