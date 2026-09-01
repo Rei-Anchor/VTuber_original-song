@@ -112,6 +112,104 @@
     }
 }
 
+/* War of Song 火の粉エフェクト */
+
+#fire-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1000;
+    transition: opacity 0.8s ease;
+}
+
+.fire-particle {
+    position: absolute;
+    bottom: -40px;
+
+    width: 5px;
+    height: 16px;
+
+    /* 丸ではなく、細長く尖った火の粉 */
+    background: linear-gradient(
+        to top,
+        rgba(255, 70, 0, 0) 0%,
+        rgba(255, 90, 0, 0.9) 30%,
+        rgba(255, 190, 40, 1) 65%,
+        rgba(255, 255, 210, 1) 100%
+    );
+
+    border-radius: 70% 30% 70% 30%;
+
+    box-shadow:
+        0 0 5px rgba(255, 180, 30, 1),
+        0 0 10px rgba(255, 80, 0, 0.8);
+
+    transform-origin: center;
+
+    animation: fireRise linear infinite;
+}
+
+@keyframes fireRise {
+
+    0% {
+        transform:
+            translate3d(0, 40px, 0)
+            rotate(0deg)
+            scale(0.5);
+
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 1;
+    }
+
+    25% {
+        transform:
+            translate3d(35px, -25vh, 0)
+            rotate(35deg)
+            scale(1);
+    }
+
+    45% {
+        transform:
+            translate3d(-25px, -48vh, 0)
+            rotate(-30deg)
+            scale(0.8);
+    }
+
+    65% {
+        transform:
+            translate3d(45px, -70vh, 0)
+            rotate(45deg)
+            scale(0.65);
+
+        opacity: 0.9;
+    }
+
+    82% {
+        transform:
+            translate3d(-15px, -90vh, 0)
+            rotate(-20deg)
+            scale(0.4);
+
+        opacity: 0.6;
+    }
+
+    100% {
+        transform:
+            translate3d(30px, -115vh, 0)
+            rotate(40deg)
+            scale(0.15);
+
+        opacity: 0;
+    }
+}
+
 /* On your side ピンクの光エフェクト */
 
 #light-effect {
@@ -417,12 +515,80 @@
 
         </header>
 
+         <section class="song-article" id="war-of-song">
+
+                 <div id="fire-effect"></div>
+
+                 <div class="pickup-label">
+                      TODAY'S PICK UP
+            </div>
+
+         <h2 class="pickup-title">
+             War of Song
+         </h2>
+
+         <div class="artist">
+             稲守サクヤ
+         </div>
+
+         <p class="lead">
+            ライブ特化Vsingerの渾身の4thオリジナル。<br>
+            その名を冠するに相応しい、激アツすぎる一曲です。
+         </p>
+
+    <div class="youtube">
+
+        <iframe
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/37kpiB_E7Bw?si=q2YlbfFS8r0LW4RM" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+
+    </div>
+
+    <div class="source">
+             <p>
+                 チャンネル名：
+                <a href="https://www.youtube.com/@inamori_sakuya" target="_blank" rel="noopener noreferrer">
+                 稲守サクヤ / Sakuya Inamori
+                </a>
+            </p>
+            <p>
+                 動画：
+                <a href="https://youtu.be/37kpiB_E7Bw?si=BeTv7dEcwDasqEc4" target="_blank" rel="noopener noreferrer">
+                 War of Song
+                </a>
+            </p>
+            </div>
+
+    <div class="comment">
+
+        <div class="comment-title">
+            🎧 この曲の好きポイント
+        </div>
+
+        <ul>
+            <li>聴けば自然と身体が乗ってしまうところ</li>
+            <li>心の奥底に眠っていた激情が呼び起こされる感覚</li>
+        </ul>
+
+    </div>
+
+    
+
+</section>
+        
          <section class="song-article" id="on-your-side">
 
             <div id="light-effect"></div>
 
             <div class="pickup-label">
-                TODAY'S PICK UP
+                2026.8.31 UPDATE
             </div>
 
             <h2 class="pickup-title">
@@ -455,7 +621,7 @@
 
             <div class="source">
              <p>
-                 出典：
+                 チャンネル名：
                 <a href="https://www.youtube.com/@hanabinatsuno8723" target="_blank" rel="noopener noreferrer">
                  夏野華火
                 </a>
@@ -519,7 +685,7 @@
 
             <div class="source">
              <p>
-                 出典：
+                 チャンネル名：
                 <a href="https://www.youtube.com/@myu-tube" target="_blank" rel="noopener noreferrer">
                  Myu Ch. 花宮ミュウ
                 </a>
@@ -640,19 +806,62 @@ for (let i = 0; i < petalCount; i++) {
 
 <script>
 
-    const gerberaSection = document.getElementById("gerbera");
-    const onYourSideSection = document.getElementById("on-your-side");
+    const fireEffect = document.getElementById("fire-effect");
+
+    for (let i = 0; i < 28; i++) {
+
+        const fire = document.createElement("div");
+
+        fire.classList.add("fire-particle");
+
+        fire.style.left =
+            Math.random() * 100 + "%";
+
+        fire.style.animationDuration =
+            (4 + Math.random() * 5) + "s";
+
+        fire.style.animationDelay =
+            Math.random() * 7 + "s";
+
+        const size =
+    0.7 + Math.random() * 1.2;
+
+fire.style.width =
+    4 * size + "px";
+
+fire.style.height =
+    14 * size + "px";
+
+        fireEffect.appendChild(fire);
+    }
+
+</script>
+
+
+<script>
+
+    const warOfSongSection =
+        document.getElementById("war-of-song");
+
+    const onYourSideSection =
+        document.getElementById("on-your-side");
+
+    const gerberaSection =
+        document.getElementById("gerbera");
+
 
     function changeEffect() {
 
         const scrollPosition =
             window.scrollY + window.innerHeight / 2;
 
-        const gerberaTop =
-            gerberaSection.offsetTop;
 
-        const gerberaBottom =
-            gerberaTop + gerberaSection.offsetHeight;
+        const warTop =
+            warOfSongSection.offsetTop;
+
+        const warBottom =
+            warTop + warOfSongSection.offsetHeight;
+
 
         const onYourSideTop =
             onYourSideSection.offsetTop;
@@ -661,15 +870,23 @@ for (let i = 0; i < petalCount; i++) {
             onYourSideTop + onYourSideSection.offsetHeight;
 
 
-        /* Gerbera */
+        const gerberaTop =
+            gerberaSection.offsetTop;
+
+        const gerberaBottom =
+            gerberaTop + gerberaSection.offsetHeight;
+
+
+        /* War of Song */
 
         if (
-            scrollPosition >= gerberaTop &&
-            scrollPosition < gerberaBottom
+            scrollPosition >= warTop &&
+            scrollPosition < warBottom
         ) {
 
-            flowerEffect.style.opacity = "1";
+            fireEffect.style.opacity = "1";
             lightEffect.style.opacity = "0";
+            flowerEffect.style.opacity = "0";
 
         }
 
@@ -681,8 +898,23 @@ for (let i = 0; i < petalCount; i++) {
             scrollPosition < onYourSideBottom
         ) {
 
-            flowerEffect.style.opacity = "0";
+            fireEffect.style.opacity = "0";
             lightEffect.style.opacity = "1";
+            flowerEffect.style.opacity = "0";
+
+        }
+
+
+        /* Gerbera */
+
+        else if (
+            scrollPosition >= gerberaTop &&
+            scrollPosition < gerberaBottom
+        ) {
+
+            fireEffect.style.opacity = "0";
+            lightEffect.style.opacity = "0";
+            flowerEffect.style.opacity = "1";
 
         }
 
