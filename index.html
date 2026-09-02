@@ -112,6 +112,115 @@
     }
 }
 
+
+/* クモリオト 天気雨エフェクト */
+
+#rain-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1000;
+    transition: opacity 0.8s ease;
+}
+
+.sun-rain {
+    position: absolute;
+    top: -40px;
+
+    width: 2px;
+    height: 22px;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0),
+        rgba(210, 235, 255, 0.75),
+        rgba(255, 245, 190, 0.95)
+    );
+
+    border-radius: 50%;
+
+    filter:
+        drop-shadow(0 0 3px rgba(255, 245, 190, 0.8));
+
+    animation: sunRainFall linear infinite;
+}
+
+
+@keyframes sunRainFall {
+
+    0% {
+        transform:
+            translate3d(0, -40px, 0)
+            rotate(8deg);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.75;
+    }
+
+    70% {
+        opacity: 0.85;
+    }
+
+    100% {
+        transform:
+            translate3d(-60px, 110vh, 0)
+            rotate(8deg);
+
+        opacity: 0;
+    }
+}
+
+.rain-sparkle {
+    position: absolute;
+
+    width: 6px;
+    height: 6px;
+
+    background: rgba(255, 255, 220, 1);
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 6px rgba(255, 255, 210, 1),
+        0 0 14px rgba(255, 235, 150, 0.9),
+        0 0 24px rgba(255, 220, 120, 0.5);
+
+    animation: rainSparkle 2.8s ease-in-out infinite;
+}
+
+
+@keyframes rainSparkle {
+
+    0%,
+    100% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+
+    45% {
+        transform: scale(0.5);
+        opacity: 0.2;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 1;
+    }
+
+    55% {
+        transform: scale(0.5);
+        opacity: 0.2;
+    }
+}
+
+
 /* War of Song 火の粉エフェクト */
 
 #fire-effect {
@@ -164,47 +273,40 @@
         opacity: 0;
     }
 
-    8% {
+    10% {
         opacity: 1;
     }
 
-    25% {
+    30% {
         transform:
-            translate3d(35px, -25vh, 0)
-            rotate(35deg)
+            translate3d(10px, -30vh, 0)
+            rotate(8deg)
             scale(1);
     }
 
-    45% {
+    55% {
         transform:
-            translate3d(-25px, -48vh, 0)
-            rotate(-30deg)
-            scale(0.8);
-    }
-
-    65% {
-        transform:
-            translate3d(45px, -70vh, 0)
-            rotate(45deg)
-            scale(0.65);
+            translate3d(-6px, -58vh, 0)
+            rotate(-6deg)
+            scale(0.85);
 
         opacity: 0.9;
     }
 
-    82% {
+    80% {
         transform:
-            translate3d(-15px, -90vh, 0)
-            rotate(-20deg)
-            scale(0.4);
+            translate3d(8px, -85vh, 0)
+            rotate(5deg)
+            scale(0.6);
 
         opacity: 0.6;
     }
 
     100% {
         transform:
-            translate3d(30px, -115vh, 0)
-            rotate(40deg)
-            scale(0.15);
+            translate3d(3px, -115vh, 0)
+            rotate(0deg)
+            scale(0.25);
 
         opacity: 0;
     }
@@ -515,12 +617,78 @@
 
         </header>
 
+         <section class="song-article" id="kumorioto">
+
+    <div id="rain-effect"></div>
+
+    <div class="pickup-label">
+        TODAY'S PICK UP
+    </div>
+
+    <h2 class="pickup-title">
+        クモリオト
+    </h2>
+
+    <div class="artist">
+        曇音ルカ
+    </div>
+
+    <p class="lead">
+        静かな始まりなのに、曲が進むにつれて壮大に。<br>
+        不可思議な「ルカワールド」へと惹き込まれる一曲です。
+    </p>
+
+    <div class="youtube">
+
+        <iframe
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/l4_Cr1Fs7sU?si=sz0gBtd8cQbHiADP" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+
+    </div>
+
+    <div class="source">
+             <p>
+                 チャンネル名：
+                <a href="https://www.youtube.com/@anneruka9514" target="_blank" rel="noopener noreferrer">
+                 曇音ルカ【Anne Ruka】
+                </a>
+            </p>
+            <p>
+                 動画：
+                <a href="https://youtu.be/l4_Cr1Fs7sU?si=CiT1U3ZJuLK7b5S4" target="_blank" rel="noopener noreferrer">
+                 クモリオト／曇音ルカ
+                </a>
+            </p>
+            </div>
+
+    <div class="comment">
+
+        <div class="comment-title">
+            🎧 この曲の好きポイント
+        </div>
+
+        <ul>
+            <li>始まりを告げる「エンドロール」から「七日目の蝉」へ繋がる詩</li>
+            <li>音が重なり、壮大さを増していく音楽</li>
+        </ul>
+
+    </div>
+
+</section>
+
          <section class="song-article" id="war-of-song">
 
                  <div id="fire-effect"></div>
 
                  <div class="pickup-label">
-                      TODAY'S PICK UP
+                      2026.9.1 UPDATE
             </div>
 
          <h2 class="pickup-title">
@@ -837,8 +1005,68 @@ fire.style.height =
 
 </script>
 
+<script>
+
+    const rainEffect =
+        document.getElementById("rain-effect");
+
+
+    /* 雨粒 */
+
+    for (let i = 0; i < 38; i++) {
+
+        const rain =
+            document.createElement("div");
+
+        rain.classList.add("sun-rain");
+
+        rain.style.left =
+            Math.random() * 100 + "%";
+
+        rain.style.animationDuration =
+            (4 + Math.random() * 4) + "s";
+
+        rain.style.animationDelay =
+            Math.random() * 6 + "s";
+
+        const length =
+            12 + Math.random() * 22;
+
+        rain.style.height =
+            length + "px";
+
+        rainEffect.appendChild(rain);
+    }
+
+
+    /* 光の反射 */
+
+    for (let i = 0; i < 12; i++) {
+
+        const sparkle =
+            document.createElement("div");
+
+        sparkle.classList.add("rain-sparkle");
+
+        sparkle.style.left =
+            Math.random() * 100 + "%";
+
+        sparkle.style.top =
+            Math.random() * 100 + "%";
+
+        sparkle.style.animationDelay =
+            Math.random() * 4 + "s";
+
+        rainEffect.appendChild(sparkle);
+    }
+
+</script>
+
 
 <script>
+
+    const kumoriotoSection =
+        document.getElementById("kumorioto");
 
     const warOfSongSection =
         document.getElementById("war-of-song");
@@ -854,6 +1082,13 @@ fire.style.height =
 
         const scrollPosition =
             window.scrollY + window.innerHeight / 2;
+
+
+        const kumoriotoTop =
+            kumoriotoSection.offsetTop;
+
+        const kumoriotoBottom =
+            kumoriotoTop + kumoriotoSection.offsetHeight;
 
 
         const warTop =
@@ -877,16 +1112,34 @@ fire.style.height =
             gerberaTop + gerberaSection.offsetHeight;
 
 
-        /* War of Song */
+        /* まず全部消す */
+
+        rainEffect.style.opacity = "0";
+        fireEffect.style.opacity = "0";
+        lightEffect.style.opacity = "0";
+        flowerEffect.style.opacity = "0";
+
+
+        /* クモリオト */
 
         if (
+            scrollPosition >= kumoriotoTop &&
+            scrollPosition < kumoriotoBottom
+        ) {
+
+            rainEffect.style.opacity = "1";
+
+        }
+
+
+        /* War of Song */
+
+        else if (
             scrollPosition >= warTop &&
             scrollPosition < warBottom
         ) {
 
             fireEffect.style.opacity = "1";
-            lightEffect.style.opacity = "0";
-            flowerEffect.style.opacity = "0";
 
         }
 
@@ -898,9 +1151,7 @@ fire.style.height =
             scrollPosition < onYourSideBottom
         ) {
 
-            fireEffect.style.opacity = "0";
             lightEffect.style.opacity = "1";
-            flowerEffect.style.opacity = "0";
 
         }
 
@@ -912,8 +1163,6 @@ fire.style.height =
             scrollPosition < gerberaBottom
         ) {
 
-            fireEffect.style.opacity = "0";
-            lightEffect.style.opacity = "0";
             flowerEffect.style.opacity = "1";
 
         }
@@ -921,7 +1170,10 @@ fire.style.height =
     }
 
 
-    window.addEventListener("scroll", changeEffect);
+    window.addEventListener(
+        "scroll",
+        changeEffect
+    );
 
     changeEffect();
 
