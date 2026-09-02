@@ -8,7 +8,7 @@
 
 <!-- OGP -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="#VTuberオリソン巡り Gerbera / 花宮ミュウ">
+<meta property="og:title" content="#VTuberオリソン巡り">
 <meta property="og:description" content="VTuberさんのオリジナルソングを、もっとたくさんの人へ…">
 <meta property="og:url" content="https://rei-anchor.github.io/VTuber_original-song/">
 <meta property="og:image" content="https://rei-anchor.github.io/VTuber_original-song/image.jpg">
@@ -18,12 +18,71 @@
 
 <!-- X (Twitter) -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="#VTuberオリソン巡り Gerbera / 花宮ミュウ">
+<meta name="twitter:title" content="#VTuberオリソン巡り>
 <meta name="twitter:description" content="VTuberさんのオリジナルソングを、もっとたくさんの人へ…">
 <meta name="twitter:image" content="https://rei-anchor.github.io/VTuber_original-song/image.jpg">
 <meta name="twitter:card" content="summary_large_image">
 
     <style>
+
+        html {
+         scroll-behavior: smooth;
+        }
+
+    /* 掲載楽曲一覧 */
+
+        .song-index {
+         margin: 0 0 70px;
+         padding: 25px 0 35px;
+         border-bottom: 1px solid #ddd;
+        }
+
+        .song-index-title {
+         margin: 0 0 20px;
+         font-size: 20px;
+         letter-spacing: 0.12em;
+        }
+
+        .song-index-grid {
+         display: grid;
+         grid-template-columns: repeat(3, 1fr);
+         gap: 12px;
+        }
+
+        .song-index-item {
+         display: block;
+         padding: 14px 16px;
+
+         background: #f7fcfd;
+         border-left: 3px solid #75c5d8;
+
+         text-decoration: none;
+         color: #333;
+
+         transition:
+          transform 0.2s ease,
+          background 0.2s ease;
+        }
+
+        .song-index-item:hover {
+         background: #eef9fb;
+         transform: translateY(-2px);
+        }
+
+        .index-song {
+         display: block;
+         font-size: 16px;
+         font-weight: bold;
+        }
+
+        .index-artist {
+         display: block;
+         margin-top: 4px;
+
+         font-size: 13px;
+         color: #777;
+        }
+
 
         /* ガーベラの花びらエフェクト */
 
@@ -445,11 +504,95 @@
             font-weight: 700;
         }
 
+
         .header-description {
             margin-top: 15px;
             font-size: 17px;
             color: #666;
         }
+
+        .header-message {
+            display: block;
+
+            margin-top: 10px;
+
+            font-size: 18ppx;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+
+            color: #000000;
+        }
+
+/* メインヘッダー */
+
+            .hero-header {
+             position: relative;
+
+             min-height: 360px;
+
+             display: flex;
+             align-items: center;
+             justify-content: center;
+
+             padding: 50px 30px;
+
+             background-image: url("header.png");
+             background-size: cover;
+             background-position: center;
+
+             text-align: center;
+
+             border-bottom: none;
+             margin-bottom: 50px;
+            }
+
+
+/* ヘッダー内の文字 */
+
+            .hero-content {
+             position: relative;
+             z-index: 1;
+
+             width: 100%;
+            }
+
+
+/* 小見出し */
+
+            .hero-header .header-sub {
+             margin-bottom: 15px;
+
+             font-size: 24px;
+             letter-spacing: 0.25em;
+
+             color: #4b9fb8;
+            }
+
+
+/* メインタイトル */
+
+            .hero-header h1 {
+             margin: 0;
+
+             font-size: 60px;
+             font-weight: 700;
+             letter-spacing: 0.08em;
+
+             color: #222;
+            }
+
+
+/* キャッチコピー */
+
+            .hero-header .header-description {
+             margin-top: 20px;
+
+             font-size: 18px;
+             letter-spacing: 0.05em;
+
+             color: #555;
+            }
+
 
         /* PICK UP */
 
@@ -593,6 +736,76 @@
             .header-description {
                 font-size: 13px;
             }
+
+            .song-index-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .back-to-index {
+             right: 12px;
+             bottom: 12px;
+
+             padding: 10px 14px;
+             font-size: 12px;
+            }
+
+            .hero-header {
+             min-height: 260px;
+
+             padding: 35px 15px;
+
+             background-size: cover;
+             background-position: center;
+            }
+
+            .hero-header h1 {
+             font-size: 28px;
+            }
+
+            .hero-header .header-sub {
+             font-size: 10px;
+            }
+
+            .hero-header .header-description {
+             font-size: 13px;
+             line-height: 1.7;
+            }
+
+        }
+
+        /* 掲載楽曲一覧へ戻るボタン */
+
+        .back-to-index {
+         position: fixed;
+
+         right: 25px;
+         bottom: 25px;
+
+         z-index: 2000;
+
+         padding: 18px 28px;
+
+         background: rgba(255, 255, 255, 0.92);
+         color: #2a8aa3;
+
+         border: 1px solid #75c5d8;
+         border-radius: 30px;
+
+         text-decoration: none;
+         font-size: 28px;
+         font-weight: bold;
+
+         box-shadow:
+         0 4px 15px rgba(0, 80, 100, 0.15);
+
+         transition:
+         transform 0.2s ease,
+         background 0.2s ease;
+        }
+
+        .back-to-index:hover {
+         background: #eef9fb;
+         transform: translateY(-3px);
         }
     </style>
 </head>
@@ -603,19 +816,60 @@
 
     <main class="magazine">
 
-        <header class="header">
+        <header class="header hero-header">
 
-            <div class="header-sub">
-                VTUBER MUSIC MAGAZINE
-            </div>
+        <div class="hero-content">
 
-            <h1>#VTuberオリソン巡り</h1>
+        <div class="header-sub">
+            VTUBER MUSIC MAGAZINE
+        </div>
 
-            <p class="header-description">
-                VTuberさんのオリジナルソングを、もっとたくさんの人へ…
-            </p>
+        <h1>
+            #VTuberオリソン巡り
+        </h1>
 
-        </header>
+        <p class="header-description">
+            VTuberさんのオリジナルソングを、もっとたくさんの人へ…
+         <span class="header-message">
+            ～ みんなで共有する「好き」の気持ち ～
+         </span>
+        </p>
+
+    </div>
+
+</header>
+
+        <section class="song-index">
+
+         <h2 class="song-index-title">
+                掲載楽曲
+         </h2>
+
+         <div class="song-index-grid" id="song-index">
+
+         <a href="#kumorioto" class="song-index-item">
+            <span class="index-song">クモリオト</span>
+            <span class="index-artist">曇音ルカ</span>
+         </a>
+
+         <a href="#war-of-song" class="song-index-item">
+            <span class="index-song">War of Song</span>
+            <span class="index-artist">稲守サクヤ</span>
+         </a>
+
+         <a href="#on-your-side" class="song-index-item">
+            <span class="index-song">On your side</span>
+            <span class="index-artist">夏野華火</span>
+         </a>
+
+         <a href="#gerbera" class="song-index-item">
+            <span class="index-song">Gerbera</span>
+            <span class="index-artist">花宮ミュウ</span>
+         </a>
+
+         </div>
+
+        </section>
 
          <section class="song-article" id="kumorioto">
 
@@ -1178,6 +1432,10 @@ fire.style.height =
     changeEffect();
 
 </script>
+
+    <a href="#song-index" class="back-to-index">
+     ♪ 掲載楽曲へ
+    </a>
 
 </body>
 </html>
