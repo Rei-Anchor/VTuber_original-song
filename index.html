@@ -29,6 +29,75 @@
          scroll-behavior: smooth;
         }
 
+
+/* 更新曲インデックス */
+
+.update-index {
+    margin: 0 0 35px;
+    padding: 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f1fbff,
+            #ffffff
+        );
+
+    border: 1px solid #b9e3ee;
+    border-radius: 12px;
+
+    box-shadow:
+        0 5px 18px
+        rgba(70, 160, 185, 0.12);
+}
+
+
+/* タイトル部分 */
+
+.update-index-heading {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 18px;
+}
+
+
+.update-index-label {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    background: #75c5d8;
+    color: #ffffff;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    letter-spacing: 0.15em;
+}
+
+
+.update-index-title {
+    margin: 0;
+
+    font-size: 20px;
+    letter-spacing: 0.12em;
+}
+
+
+/* 更新曲は最大3列 */
+
+.update-index-grid {
+    grid-template-columns:
+        repeat(3, 1fr);
+}
+
+
+
     /* 掲載楽曲一覧 */
 
         .song-index {
@@ -171,6 +240,186 @@
     }
 }
 
+/* 泡水奏 水中の泡エフェクト */
+
+#bubble-effect {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 1000;
+
+    opacity: 0;
+
+    transition: opacity 0.8s ease;
+}
+
+.water-bubble {
+    position: absolute;
+
+    top: 105%;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(180, 235, 255, 0.75);
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(255, 255, 255, 0.9) 0%,
+            rgba(210, 245, 255, 0.35) 25%,
+            rgba(150, 220, 245, 0.12) 55%,
+            rgba(255, 255, 255, 0.02) 75%
+        );
+
+    box-shadow:
+        inset 2px 2px 5px rgba(255, 255, 255, 0.6),
+        0 0 8px rgba(150, 225, 255, 0.35);
+
+    animation:
+        bubbleRise linear infinite,
+        bubbleShine ease-in-out infinite;
+}
+
+@keyframes bubbleRise {
+
+    0% {
+        transform:
+            translate3d(0, 20px, 0)
+            scale(0.7);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.8;
+    }
+
+    35% {
+        transform:
+            translate3d(10px, -35vh, 0)
+            scale(0.9);
+    }
+
+    65% {
+        transform:
+            translate3d(-8px, -70vh, 0)
+            scale(1);
+    }
+
+    100% {
+        transform:
+            translate3d(5px, -115vh, 0)
+            scale(1.1);
+
+        opacity: 0;
+    }
+}
+
+@keyframes bubbleShine {
+
+    0%,
+    100% {
+        filter: brightness(0.9);
+    }
+
+    50% {
+        filter: brightness(1.5);
+    }
+}
+
+
+
+/* KANPAI FIZZ ネオン粒子エフェクト */
+
+#neon-effect {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 1000;
+
+    opacity: 0;
+
+    transition: opacity 0.8s ease;
+}
+
+.neon-particle {
+    position: absolute;
+
+    top: 100%;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: currentColor;
+
+    box-shadow:
+        0 0 5px currentColor,
+        0 0 12px currentColor,
+        0 0 20px currentColor;
+
+    animation:
+        neonFloat linear infinite,
+        neonGlow ease-in-out infinite;
+}
+
+@keyframes neonFloat {
+
+    0% {
+        transform:
+            translate3d(0, 30px, 0)
+            scale(0.5);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.9;
+    }
+
+    50% {
+        transform:
+            translate3d(15px, -55vh, 0)
+            scale(1);
+    }
+
+    100% {
+        transform:
+            translate3d(-10px, -115vh, 0)
+            scale(0.4);
+
+        opacity: 0;
+    }
+}
+
+@keyframes neonGlow {
+
+    0%,
+    100% {
+        filter: brightness(0.8);
+    }
+
+    50% {
+        filter: brightness(1.8);
+    }
+}
 
 /* クモリオト 天気雨エフェクト */
 
@@ -839,6 +1088,39 @@
 
 </header>
 
+
+    <section class="update-index">
+
+        <div class="update-index-heading">
+
+            <span class="update-index-label">
+                NEW
+            </span>
+
+            <h2 class="update-index-title">
+                更新曲
+            </h2>
+
+        </div>
+
+
+        <div class="song-index-grid update-index-grid">
+
+            <a href="#housuisou" class="song-index-item">
+                <span class="index-song">泡水奏</span>
+                <span class="index-artist">水那月まほ</span>
+            </a>
+
+            <a href="#kanpai-fizz" class="song-index-item">
+                <span class="index-song">KANPAI FIZZ</span>
+                <span class="index-artist">えるるん</span>
+            </a>
+
+        </div>
+
+    </section>
+
+
         <section class="song-index">
 
          <h2 class="song-index-title">
@@ -871,12 +1153,156 @@
 
         </section>
 
+
+        <section class="song-article" id="housuisou">
+
+    <div id="bubble-effect"></div>
+
+    <div class="pickup-label">
+        TODAY'S PICK UP
+    </div>
+
+    <h2 class="pickup-title">
+        泡水奏
+    </h2>
+
+    <div class="artist">
+        水那月まほ
+    </div>
+
+    <p class="lead">
+        綺麗な音色の伴奏と、<br>
+        水那月まほさんの澄んだ歌声との相性がピッタリな一曲。<br>
+        何回も聴いて、どっぷりと歌に浸りたくなります。
+    </p>
+
+    <div class="youtube">
+
+        <iframe
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/aKpk6Z_S6OY?si=iAZ_DSCKh4soyIKY" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+
+    </div>
+
+    <div class="source">
+
+        <p>
+            <a href="https://www.youtube.com/@minadukimaho" target="_blank" rel="noopener noreferrer">
+                 水那月まほ / Maho Minaduki
+                </a>
+        </p>
+
+        <p>
+            動画：
+            <a href="https://youtu.be/aKpk6Z_S6OY?si=q2qur96tHmOkjNbi"
+               target="_blank"
+               rel="noopener noreferrer">
+                泡水奏
+            </a>
+        </p>
+
+    </div>
+
+    <div class="comment">
+
+        <div class="comment-title">
+            🎧 この曲の好きポイント
+        </div>
+
+        <ul>
+            <li>前奏から歌い出しまでの流れ</li>
+            <li>2Aメロで歌声の雰囲気がグッと変わるところ</li>
+        </ul>
+
+    </div>
+
+    </section>
+
+
+    <section class="song-article" id="kanpai-fizz">
+
+    <div id="neon-effect"></div>
+
+    <div class="pickup-label">
+        TODAY'S PICK UP
+    </div>
+
+    <h2 class="pickup-title">
+        KANPAI FIZZ
+    </h2>
+
+    <div class="artist">
+        えるるん
+    </div>
+
+    <p class="lead">
+        厚みのあるJAZZテイストに、<br>
+        グルーヴ感たっぷりの歌声が重なる。<br>
+        とにかくエモくておしゃれな一曲です。
+    </p>
+
+    <div class="youtube">
+
+        <iframe
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/fR5ZTRrXMYA?si=x6eaPzBXkyzSxutA" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+
+    </div>
+
+    <div class="source">
+        <p>
+             チャンネル名：
+                <a href="https://www.youtube.com/@erurun33" target="_blank" rel="noopener noreferrer">
+                 えるるん / Erurun Channel
+                </a>
+        </p>
+
+        <p>
+            動画：
+            <a href="https://youtu.be/fR5ZTRrXMYA?si=WUONZ4aoHP9Aahz9"
+               target="_blank"
+               rel="noopener noreferrer">
+                KANPAI FIZZ
+            </a>
+        </p>
+    </div>
+
+    <div class="comment">
+
+        <div class="comment-title">
+            🎧 この曲の好きポイント
+        </div>
+
+        <ul>
+            <li>間奏の時が可愛い！</li>
+            <li>歌い出しの歌声と表情にグッとくる！</li>
+        </ul>
+
+    </div>
+
+    </section>
+
+
          <section class="song-article" id="kumorioto">
 
     <div id="rain-effect"></div>
 
     <div class="pickup-label">
-        TODAY'S PICK UP
+        2026.9.2 UPDATE
     </div>
 
     <h2 class="pickup-title">
@@ -1316,8 +1742,132 @@ fire.style.height =
 
 </script>
 
+<script>
+
+    const neonEffect =
+        document.getElementById("neon-effect");
+
+
+    const neonColors = [
+        "#56d9ff",  // 水色
+        "#8c7bff",  // 紫
+        "#ff72c6",  // ピンク
+        "#ff5f5f",  // 赤
+        "#ffd95a",  // 黄
+        "#6dff9d",  // 緑
+        "#ff9f43",  // オレンジ
+        "#ffffff"   // 白
+    ];
+
+
+    for (let i = 0; i < 50; i++) {
+
+        const particle =
+            document.createElement("div");
+
+        particle.classList.add(
+            "neon-particle"
+        );
+
+
+        particle.style.left =
+            Math.random() * 100 + "%";
+
+
+        const size =
+            2 + Math.random() * 5;
+
+        particle.style.width =
+            size + "px";
+
+        particle.style.height =
+            size + "px";
+
+
+        particle.style.color =
+            neonColors[
+                Math.floor(
+                    Math.random() *
+                    neonColors.length
+                )
+            ];
+
+
+        particle.style.animationDuration =
+            (8 + Math.random() * 8)
+            + "s, "
+            + (1.5 + Math.random() * 2)
+            + "s";
+
+
+        particle.style.animationDelay =
+            Math.random() * 8 + "s";
+
+
+        neonEffect.appendChild(
+            particle
+        );
+
+    }
+
+</script>
 
 <script>
+
+    const bubbleEffect =
+        document.getElementById("bubble-effect");
+
+
+    for (let i = 0; i < 40; i++) {
+
+        const bubble =
+            document.createElement("div");
+
+        bubble.classList.add(
+            "water-bubble"
+        );
+
+
+        bubble.style.left =
+            Math.random() * 100 + "%";
+
+
+        const size =
+            6 + Math.random() * 20;
+
+        bubble.style.width =
+            size + "px";
+
+        bubble.style.height =
+            size + "px";
+
+
+        bubble.style.animationDuration =
+            (9 + Math.random() * 10)
+            + "s, "
+            + (2 + Math.random() * 3)
+            + "s";
+
+
+        bubble.style.animationDelay =
+            Math.random() * 10 + "s";
+
+
+        bubbleEffect.appendChild(
+            bubble
+        );
+
+    }
+
+</script>
+
+<script>
+
+    const kanpaiSection =
+        document.getElementById("kanpai-fizz");
+
+    const housuisouSection =
+        document.getElementById("housuisou");
 
     const kumoriotoSection =
         document.getElementById("kumorioto");
@@ -1338,12 +1888,49 @@ fire.style.height =
             window.scrollY + window.innerHeight / 2;
 
 
+        /* まず全部非表示 */
+
+        neonEffect.style.opacity = "0";
+
+        bubbleEffect.style.opacity = "0";
+
+        rainEffect.style.opacity = "0";
+
+        fireEffect.style.opacity = "0";
+
+        lightEffect.style.opacity = "0";
+
+        flowerEffect.style.opacity = "0";
+
+
+        /* KANPAI FIZZ */
+
+        const kanpaiTop =
+            kanpaiSection.offsetTop;
+
+        const kanpaiBottom =
+            kanpaiTop + kanpaiSection.offsetHeight;
+
+
+        /* 泡水奏 */
+
+        const housuisouTop =
+            housuisouSection.offsetTop;
+
+        const housuisouBottom =
+            housuisouTop + housuisouSection.offsetHeight;
+
+
+        /* クモリオト */
+
         const kumoriotoTop =
             kumoriotoSection.offsetTop;
 
         const kumoriotoBottom =
             kumoriotoTop + kumoriotoSection.offsetHeight;
 
+
+        /* War of Song */
 
         const warTop =
             warOfSongSection.offsetTop;
@@ -1352,12 +1939,16 @@ fire.style.height =
             warTop + warOfSongSection.offsetHeight;
 
 
+        /* On your side */
+
         const onYourSideTop =
             onYourSideSection.offsetTop;
 
         const onYourSideBottom =
             onYourSideTop + onYourSideSection.offsetHeight;
 
+
+        /* Gerbera */
 
         const gerberaTop =
             gerberaSection.offsetTop;
@@ -1366,17 +1957,28 @@ fire.style.height =
             gerberaTop + gerberaSection.offsetHeight;
 
 
-        /* まず全部消す */
 
-        rainEffect.style.opacity = "0";
-        fireEffect.style.opacity = "0";
-        lightEffect.style.opacity = "0";
-        flowerEffect.style.opacity = "0";
-
-
-        /* クモリオト */
+        /* 現在位置に合わせて表示 */
 
         if (
+            scrollPosition >= kanpaiTop &&
+            scrollPosition < kanpaiBottom
+        ) {
+
+            neonEffect.style.opacity = "1";
+
+        }
+
+        else if (
+            scrollPosition >= housuisouTop &&
+            scrollPosition < housuisouBottom
+        ) {
+
+            bubbleEffect.style.opacity = "1";
+
+        }
+
+        else if (
             scrollPosition >= kumoriotoTop &&
             scrollPosition < kumoriotoBottom
         ) {
@@ -1384,9 +1986,6 @@ fire.style.height =
             rainEffect.style.opacity = "1";
 
         }
-
-
-        /* War of Song */
 
         else if (
             scrollPosition >= warTop &&
@@ -1397,9 +1996,6 @@ fire.style.height =
 
         }
 
-
-        /* On your side */
-
         else if (
             scrollPosition >= onYourSideTop &&
             scrollPosition < onYourSideBottom
@@ -1408,9 +2004,6 @@ fire.style.height =
             lightEffect.style.opacity = "1";
 
         }
-
-
-        /* Gerbera */
 
         else if (
             scrollPosition >= gerberaTop &&
@@ -1428,6 +2021,12 @@ fire.style.height =
         "scroll",
         changeEffect
     );
+
+    window.addEventListener(
+        "resize",
+        changeEffect
+    );
+
 
     changeEffect();
 
