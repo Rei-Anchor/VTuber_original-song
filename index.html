@@ -242,9 +242,10 @@
 
 /* 泡水奏 水中の泡エフェクト */
 
+/* 泡水奏 水面の光エフェクト */
+
 #bubble-effect {
     position: fixed;
-
     top: 0;
     left: 0;
 
@@ -257,81 +258,68 @@
     z-index: 1000;
 
     opacity: 0;
-
     transition: opacity 0.8s ease;
 }
 
-.water-bubble {
+
+/* 水面に反射する光 */
+
+.water-shimmer {
     position: absolute;
 
-    top: 105%;
+    width: 10px;
+    height: 10px;
 
     border-radius: 50%;
 
-    border: 1px solid rgba(180, 235, 255, 0.75);
-
     background:
-        radial-gradient(
-            circle at 30% 25%,
-            rgba(255, 255, 255, 0.9) 0%,
-            rgba(210, 245, 255, 0.35) 25%,
-            rgba(150, 220, 245, 0.12) 55%,
-            rgba(255, 255, 255, 0.02) 75%
+       radial-gradient(
+            circle,
+             rgba(255, 255, 255, 1) 0%,
+             rgba(230, 250, 255, 0.95) 20%,
+             rgba(170, 235, 255, 0.6) 45%,
+             rgba(150, 225, 255, 0) 75%
         );
 
     box-shadow:
-        inset 2px 2px 5px rgba(255, 255, 255, 0.6),
-        0 0 8px rgba(150, 225, 255, 0.35);
+            0 0 8px rgba(255, 255, 255, 0.95),
+            0 0 18px rgba(200, 245, 255, 0.8),
+            0 0 30px rgba(130, 220, 255, 0.55);
+
+    opacity: 0;
 
     animation:
-        bubbleRise linear infinite,
-        bubbleShine ease-in-out infinite;
+        waterShimmer ease-in-out infinite;
 }
 
-@keyframes bubbleRise {
 
-    0% {
-        transform:
-            translate3d(0, 20px, 0)
-            scale(0.7);
+/* 静かに光って消える */
 
-        opacity: 0;
-    }
-
-    10% {
-        opacity: 0.8;
-    }
-
-    35% {
-        transform:
-            translate3d(10px, -35vh, 0)
-            scale(0.9);
-    }
-
-    65% {
-        transform:
-            translate3d(-8px, -70vh, 0)
-            scale(1);
-    }
-
-    100% {
-        transform:
-            translate3d(5px, -115vh, 0)
-            scale(1.1);
-
-        opacity: 0;
-    }
-}
-
-@keyframes bubbleShine {
+@keyframes waterShimmer {
 
     0%,
     100% {
-        filter: brightness(0.9);
+        opacity: 0;
+        transform: scale(0.4);
     }
 
-    50% {
-        filter: brightness(1.5);
+    35% {
+        opacity: 0;
+    }
+
+    48% {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+
+    52% {
+    opacity: 1;
+    transform: scale(2);
+    }
+
+    65% {
+        opacity: 0;
+        transform: scale(0.7);
     }
 }
 
@@ -1018,6 +1006,14 @@
             .hero-header .header-description {
              font-size: 13px;
              line-height: 1.7;
+            }
+
+            .update-index {
+             padding: 18px 15px;
+            }
+
+            .update-index-grid {
+             grid-template-columns: 1fr;
             }
 
         }
@@ -1818,43 +1814,50 @@ fire.style.height =
         document.getElementById("bubble-effect");
 
 
-    for (let i = 0; i < 40; i++) {
+    /* 水面に反射する光 */
 
-        const bubble =
+    for (let i = 0; i < 18; i++) {
+
+        const shimmer =
             document.createElement("div");
 
-        bubble.classList.add(
-            "water-bubble"
+        shimmer.classList.add(
+            "water-shimmer"
         );
 
 
-        bubble.style.left =
+        /* 光る位置をランダムに */
+
+        shimmer.style.left =
+            Math.random() * 100 + "%";
+
+        shimmer.style.top =
             Math.random() * 100 + "%";
 
 
+        /* 大きさに個体差 */
+
         const size =
-            6 + Math.random() * 20;
+            5 + Math.random() * 12;
 
-        bubble.style.width =
+        shimmer.style.width =
             size + "px";
 
-        bubble.style.height =
+        shimmer.style.height =
             size + "px";
 
 
-        bubble.style.animationDuration =
-            (5 + Math.random() * 6)
-            + "s, "
-            + (2 + Math.random() * 3)
-            + "s";
+        /* 光るタイミングをずらす */
 
+        shimmer.style.animationDuration =
+            (1.8 + Math.random() * 2.2) + "s";
 
-        bubble.style.animationDelay =
-            Math.random() * 10 + "s";
+        shimmer.style.animationDelay =
+            Math.random() * 2.5 + "s";
 
 
         bubbleEffect.appendChild(
-            bubble
+            shimmer
         );
 
     }
