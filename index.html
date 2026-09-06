@@ -794,6 +794,105 @@
         slowStarFlow linear infinite;
 }
 
+/* ペルソナ
+   ガラス片エフェクト */
+
+#glass-effect {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 1000;
+
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.glass-shard {
+    position: absolute;
+
+    top: -60px;
+
+    width: 14px;
+    height: 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.95),
+            rgba(190, 225, 255, 0.45) 45%,
+            rgba(255, 255, 255, 0.15)
+        );
+
+    clip-path:
+        polygon(
+            50% 0%,
+            100% 35%,
+            72% 100%,
+            10% 78%,
+            0% 28%
+        );
+
+    box-shadow:
+        0 0 8px
+        rgba(210, 235, 255, 0.7);
+
+    animation:
+        glassFall
+        linear
+        infinite;
+}
+
+@keyframes glassFall {
+
+    0% {
+        transform:
+            translateY(-70px)
+            translateX(0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 0.85;
+    }
+
+    25% {
+        transform:
+            translateY(28vh)
+            translateX(25px)
+            rotate(110deg);
+    }
+
+    50% {
+        transform:
+            translateY(58vh)
+            translateX(-20px)
+            rotate(230deg);
+
+        opacity: 0.9;
+    }
+
+    75% {
+        transform:
+            translateY(88vh)
+            translateX(30px)
+            rotate(340deg);
+    }
+
+    100% {
+        transform:
+            translateY(115vh)
+            translateX(-15px)
+            rotate(480deg);
+
+        opacity: 0;
+    }
+}
+
 
 /* 星の尾 */
 
@@ -975,6 +1074,118 @@
     }
 }
 
+/* joke
+   堕天使の黒い羽 */
+
+#dark-feather-effect {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 1000;
+
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.dark-feather {
+    position: absolute;
+
+    top: -80px;
+
+    width: 13px;
+    height: 36px;
+
+    border-radius:
+        90% 10% 90% 10%;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(20, 20, 25, 0.95),
+            rgba(55, 55, 65, 0.9) 45%,
+            rgba(5, 5, 10, 0.75)
+        );
+
+    box-shadow:
+        0 0 7px
+        rgba(40, 40, 55, 0.65);
+
+    transform-origin: center;
+
+    animation:
+        darkFeatherFall
+        linear
+        infinite;
+}
+
+.dark-feather::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 3px;
+
+    width: 1px;
+    height: 30px;
+
+    background:
+        rgba(95, 95, 110, 0.8);
+
+    transform:
+        rotate(-18deg);
+}
+
+@keyframes darkFeatherFall {
+
+    0% {
+        transform:
+            translateY(-80px)
+            translateX(0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    7% {
+        opacity: 0.85;
+    }
+
+    25% {
+        transform:
+            translateY(28vh)
+            translateX(45px)
+            rotate(110deg);
+    }
+
+    50% {
+        transform:
+            translateY(58vh)
+            translateX(-35px)
+            rotate(220deg);
+
+        opacity: 0.9;
+    }
+
+    75% {
+        transform:
+            translateY(88vh)
+            translateX(50px)
+            rotate(330deg);
+    }
+
+    100% {
+        transform:
+            translateY(115vh)
+            translateX(-25px)
+            rotate(470deg);
+
+        opacity: 0;
+    }
+}
 
 /* クモリオト 天気雨エフェクト */
 
@@ -1693,6 +1904,10 @@
 
 <body>
 
+    <div id="dark-feather-effect"></div>
+
+    <div id="glass-effect"></div>
+
     <div id="feather-effect"></div>
 
     <div id="paw-effect"></div>
@@ -1747,6 +1962,16 @@
 
 
         <div class="song-index-grid update-index-grid">
+
+        <a href="#joke" class="song-index-item">
+                <span class="index-song">joke</span>
+                <span class="index-artist">赤ティン</span>
+        </a>
+
+        <a href="#persona" class="song-index-item">
+                <span class="index-song">ペルソナ</span>
+                <span class="index-artist">赤ティン</span>
+        </a>    
 
         <a href="#fairycall" class="song-index-item">
                 <span class="index-song">Fairycall</span>
@@ -1819,6 +2044,152 @@
          </div>
 
         </section>
+
+<section class="song-article" id="joke">
+
+    <div class="pickup-label">
+        TODAY'S PICKUP
+    </div>
+
+    <h2 class="pickup-title">
+        joke
+    </h2>
+
+    <div class="artist">
+        赤ティン
+    </div>
+
+    <p class="lead">
+        美しさとカッコよさを兼ね備えた、<br>
+        素敵な一曲。
+    </p>
+
+    <div class="youtube">
+        <iframe
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/xktpXvZwWgQ?si=b5u1IfcsTX_nZxCU" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+        <p>
+            チャンネル名：
+            <a href="https://www.youtube.com/@AkatinDayon" target="_blank" rel="noopener noreferrer">
+                    赤ティン
+            </a>
+        </p>
+
+    <div class="youtube-action">
+
+        <a
+            href="https://youtu.be/xktpXvZwWgQ"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-action-button"
+        >
+            ▶ YouTubeで聴く・感想を届ける
+        </a>
+
+        <div class="youtube-action-message">
+            気に入った楽曲があれば、
+            あなたの「好き」を届けてみてください♪
+        </div>
+
+    </div>
+
+    <div class="comment">
+
+        <h3>好きポイント</h3>
+
+        <ul>
+            <li>美しい！</li>
+            <li>カッコすぎる…！！</li>
+        </ul>
+
+    </div>
+
+</section>
+
+<section class="song-article" id="persona">
+
+    <div class="pickup-label">
+        TODAY'S PICKUP
+    </div>
+
+    <h2 class="pickup-title">
+        ペルソナ
+    </h2>
+
+    <div class="artist">
+        赤ティン
+    </div>
+
+    <p class="lead">
+        カッコよくて、綺麗で可愛くて<br>
+        色々な魅力が詰まっている一曲。
+    </p>
+
+    <div class="youtube">
+        <iframe
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/nHrE2agULfs?si=hjcZfB-sTqsPNd5d" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+        <p>
+            チャンネル名：
+            <a href="https://www.youtube.com/@AkatinDayon" target="_blank" rel="noopener noreferrer">
+                    赤ティン
+            </a>
+        </p>
+
+    <div class="youtube-action">
+
+        <a
+            href="https://youtu.be/nHrE2agULfs"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-action-button"
+        >
+            ▶ YouTubeで聴く・感想を届ける
+        </a>
+
+        <div class="youtube-action-message">
+            気に入った楽曲があれば、
+            あなたの「好き」を届けてみてください♪
+        </div>
+
+    </div>
+
+    <div class="comment">
+
+        <h3>好きポイント</h3>
+
+        <ul>
+            <li>
+                カッコよく綺麗な歌声
+            </li>
+
+            <li>
+                おちゃめなところも表現されているところ
+            </li>
+        </ul>
+
+    </div>
+
+</section>
+
 
         <section class="song-article" id="fairycall">
 
@@ -3282,6 +3653,126 @@ for (let i = 0; i < featherCount; i++) {
 </script>
 
 <script>
+const darkFeatherEffect =
+    document.getElementById(
+        "dark-feather-effect"
+    );
+
+const darkFeatherCount = 20;
+
+for ( let i = 0;
+    i < darkFeatherCount; i++
+    ) {
+
+    const feather =
+        document.createElement("div");
+
+    feather.classList.add(
+        "dark-feather"
+    );
+
+    feather.style.left =
+        Math.random() * 100 + "%";
+
+
+    const scale =
+        0.55 + Math.random() * 0.9;
+
+    feather.style.scale =
+        scale;
+
+
+    const duration =
+        8 + Math.random() * 8;
+
+    feather.style.animationDuration =
+        duration + "s";
+
+
+    feather.style.animationDelay =
+        -(Math.random() * duration) + "s";
+
+
+    darkFeatherEffect.appendChild(
+        feather
+    );
+}
+
+</script>
+
+<script>
+
+const glassEffect =
+    document.getElementById(
+        "glass-effect"
+    );
+
+const glassCount = 28;
+
+for (let i = 0; i < glassCount; i++) {
+
+    const shard =
+        document.createElement("div");
+
+    shard.classList.add(
+        "glass-shard"
+    );
+
+
+    /* 横位置をばらけさせる */
+
+    shard.style.left =
+        Math.random() * 100 + "%";
+
+
+    /* 大きさ */
+
+    const scale =
+        0.45 + Math.random() * 1.0;
+
+    shard.style.scale =
+        scale;
+
+
+    /* 落下速度 */
+
+    const duration =
+        3 + Math.random() * 3;
+
+    shard.style.animationDuration =
+        duration + "s";
+
+
+    /*
+       最初から画面内に
+       ガラス片が存在するようにする
+    */
+
+    shard.style.animationDelay =
+        -(Math.random() * duration) + "s";
+
+
+    /* 少し透明度に差をつける */
+
+    shard.style.opacity =
+        0.45 + Math.random() * 0.5;
+
+
+    glassEffect.appendChild(
+        shard
+    );
+
+}
+
+</script>
+
+<script>
+
+    const jokeSection =
+        document.getElementById("joke");
+
+    const personaSection =
+        document.getElementById("persona");
 
     const fairycallSection =
         document.getElementById("fairycall");
@@ -3327,6 +3818,10 @@ for (let i = 0; i < featherCount; i++) {
 
         /* まず全部非表示 */
 
+        darkFeatherEffect.style.opacity = "0";
+
+        glassEffect.style.opacity = "0";
+
         featherEffect.style.opacity = "0";
 
         pawEffect.style.opacity = "0";
@@ -3348,6 +3843,24 @@ for (let i = 0; i < featherCount; i++) {
         flowerEffect.style.opacity = "0";
 
         heavenLightEffect.style.opacity = "0";
+
+        /* joke */
+
+        const jokeTop =
+              jokeSection.offsetTop;
+
+        const jokeBottom =
+              jokeTop +
+              jokeSection.offsetHeight;
+
+        /* persona */
+
+        const personaTop =
+              personaSection.offsetTop;
+
+        const personaBottom =
+              personaTop +
+              personaSection.offsetHeight;
 
         /* fairycall */
 
@@ -3450,6 +3963,24 @@ for (let i = 0; i < featherCount; i++) {
 
 
         /* 現在位置に合わせて表示 */   
+
+        if (
+            scrollPosition >= jokeTop &&
+            scrollPosition < jokeBottom
+        ) {
+
+            darkFeatherEffect.style.opacity = "1";
+
+        }
+
+        if (
+            scrollPosition >= personaTop &&
+            scrollPosition < personaBottom
+        ) {
+
+            glassEffect.style.opacity = "1";
+
+        }
 
         if (
             scrollPosition >= fairycallTop &&
