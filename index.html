@@ -1306,6 +1306,232 @@
     }
 }
 
+/* irodori
+   桜の花びら */
+
+#sakura-effect {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 1000;
+
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.sakura-petal {
+    position: absolute;
+
+    top: -50px;
+
+    width: 14px;
+    height: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 245, 248, 0.95),
+            rgba(255, 190, 210, 0.9)
+        );
+
+    border-radius:
+        70% 20% 70% 20%;
+
+    box-shadow:
+        0 0 5px
+        rgba(255, 205, 220, 0.45);
+
+    transform-origin: center;
+
+    animation:
+        sakuraFall
+        linear
+        infinite;
+}
+
+
+/* 柔らかく揺れながら落下 */
+
+@keyframes sakuraFall {
+
+    0% {
+        transform:
+            translateY(-60px)
+            translateX(0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 0.85;
+    }
+
+    25% {
+        transform:
+            translateY(28vh)
+            translateX(45px)
+            rotate(90deg);
+    }
+
+    50% {
+        transform:
+            translateY(58vh)
+            translateX(-35px)
+            rotate(180deg);
+    }
+
+    75% {
+        transform:
+            translateY(88vh)
+            translateX(50px)
+            rotate(270deg);
+
+        opacity: 0.8;
+    }
+
+    100% {
+        transform:
+            translateY(115vh)
+            translateX(-20px)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+}
+
+/* なないろホログラム
+   カラフルなマニキュア瓶 */
+
+#nail-bottle-effect {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 1000;
+
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.nail-bottle {
+    position: absolute;
+    top: -70px;
+
+    width: 22px;
+    height: 30px;
+
+    border-radius: 5px 5px 7px 7px;
+
+    background: var(--nail-color);
+
+    border: 2px solid
+        rgba(255, 255, 255, 0.75);
+
+    box-shadow:
+        0 0 8px
+        rgba(255, 255, 255, 0.45);
+
+    animation:
+        nailBottleFall
+        linear
+        infinite;
+}
+
+
+/* キャップ */
+
+.nail-bottle::before {
+    content: "";
+
+    position: absolute;
+
+    left: 5px;
+    top: -13px;
+
+    width: 12px;
+    height: 14px;
+
+    border-radius: 3px 3px 1px 1px;
+
+    background:
+        rgba(45, 45, 55, 0.95);
+}
+
+
+/* ガラスの光 */
+
+.nail-bottle::after {
+    content: "";
+
+    position: absolute;
+
+    left: 4px;
+    top: 4px;
+
+    width: 4px;
+    height: 15px;
+
+    border-radius: 3px;
+
+    background:
+        rgba(255, 255, 255, 0.5);
+}
+
+
+@keyframes nailBottleFall {
+
+    0% {
+        transform:
+            translateY(-80px)
+            translateX(0)
+            rotate(-25deg);
+
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 0.9;
+    }
+
+    25% {
+        transform:
+            translateY(28vh)
+            translateX(35px)
+            rotate(70deg);
+    }
+
+    50% {
+        transform:
+            translateY(58vh)
+            translateX(-25px)
+            rotate(170deg);
+    }
+
+    75% {
+        transform:
+            translateY(88vh)
+            translateX(40px)
+            rotate(270deg);
+
+        opacity: 0.9;
+    }
+
+    100% {
+        transform:
+            translateY(115vh)
+            translateX(-15px)
+            rotate(380deg);
+
+        opacity: 0;
+    }
+}
+
 /* joke
    堕天使の黒い羽 */
 
@@ -2136,6 +2362,10 @@
 
 <body>
 
+    <div id="nail-bottle-effect"></div>
+
+    <div id="sakura-effect"></div>
+
     <div id="firefly-effect"></div>
 
     <div id="storm-feather-effect"></div>
@@ -2199,17 +2429,17 @@
 
         <div class="song-index-grid update-index-grid">
 
-            <a href="#kakera"class="song-index-item">
-                <span class="index-song">かけら</span>
-                <span class="index-artist">鴉紋ゆうく</span>
+            <a href="#nanairo-hologram"class="song-index-item">
+                <span class="index-song">なないろホログラム</span>
+                <span class="index-artist">色織ひな</span>
 
             </a>
 
-          <a href="#proof-of-desire"class="song-index-item">
-                <span class="index-song">Proof of desire</span>
-                <span class="index-artist">鴉紋ゆうく</span>
+            <a href="#irodori"class="song-index-item">
+                <span class="index-song">irodori</span>
+                <span class="index-artist">花宮ミュウ</span>
 
-          </a>
+            </a>
 
         </div>
 
@@ -2223,6 +2453,18 @@
          </h2>
 
          <div class="song-index-grid" id="song-index">
+
+        <a href="#kakera"class="song-index-item">
+                <span class="index-song">かけら</span>
+                <span class="index-artist">鴉紋ゆうく</span>
+
+            </a>
+
+          <a href="#proof-of-desire"class="song-index-item">
+                <span class="index-song">Proof of desire</span>
+                <span class="index-artist">鴉紋ゆうく</span>
+
+          </a>    
 
         <a href="#joke" class="song-index-item">
                 <span class="index-song">joke</span>
@@ -2293,10 +2535,167 @@
 
         </section>
 
-<section class="song-article" id="kakera">
+<section class="song-article" id="nanairo-hologram">
 
     <div class="pickup-label">
         TODAY'S PICKUP
+    </div>
+
+    <h2 class="pickup-title">
+        なないろホログラム
+    </h2>
+
+    <div class="artist">
+        色織ひな
+    </div>
+
+    <p class="lead">
+        色織ひなさんの「らしさ」がたっぷり溢れる、<br>
+        明るく楽しさ全開の曲！
+    </p>
+
+    <div class="youtube">
+        <iframe
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/23ZAXGB7Vaw?si=wmVi_sDkYicbkvJJ" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+        <p>
+             チャンネル名：
+            <a href="https://www.youtube.com/@shikiorihina" target="_blank" rel="noopener noreferrer">
+             色織ひな / shikiorihina
+            </a>
+        </p>
+
+    <div class="youtube-action">
+
+        <a
+            href="https://youtu.be/23ZAXGB7Vaw"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-action-button"
+        >
+            ▶ YouTubeで聴く・感想を届ける
+        </a>
+
+        <div class="youtube-action-message">
+            気に入った楽曲があれば、
+            あなたの「好き」を届けてみてください♪
+        </div>
+
+    </div>
+
+    <div class="comment">
+
+        <h3>好きポイント</h3>
+
+        <ul>
+            <li>
+                「わー!!」「びゃー!!」「ぎゃー!!」の
+                3段階シャウト!
+            </li>
+        </ul>
+
+    </div>
+
+</section>
+
+
+<section class="song-article" id="irodori">
+
+    <div class="pickup-label">
+        TODAY'S PICKUP
+    </div>
+
+    <h2 class="pickup-title">
+        irodori
+    </h2>
+
+    <div class="artist">
+        花宮ミュウ
+    </div>
+
+    <p class="lead">
+        新しい世界が始まっていくような、<br>
+        希望に満ちた「はじまりの歌」。
+    </p>
+
+    <div class="youtube">
+        <iframe
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/xDWkdLS5SFI?si=lTom0dt24TtvUUTv" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+        <p>
+                 チャンネル名：
+                <a href="https://www.youtube.com/@myu-tube" target="_blank" rel="noopener noreferrer">
+                 Myu Ch. 花宮ミュウ
+                </a>
+        </p>
+
+    <div class="youtube-action">
+
+            
+
+        <a
+            href="https://youtu.be/xDWkdLS5SFI"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-action-button"
+        >
+            ▶ YouTubeで聴く・感想を届ける
+        </a>
+
+        <div class="youtube-action-message">
+            気に入った楽曲があれば、
+            あなたの「好き」を届けてみてください♪
+        </div>
+
+    </div>
+
+    <div class="comment">
+
+        <h3>好きポイント</h3>
+
+        <ul>
+            <li>
+                柔らかい春の陽気のような歌声と、
+                落ちサビの綺麗な歌声
+            </li>
+
+            <li>
+                ラスサビの開放感のある歌声への変化
+            </li>
+
+            <li>
+                イントロとアウトロの
+                コーラスの雰囲気もとても良い
+            </li>
+        </ul>
+
+    </div>
+
+</section>
+
+
+<section class="song-article" id="kakera">
+
+    <div class="pickup-label">
+        2026.9.7 UPDATE
     </div>
 
     <h2 class="pickup-title">
@@ -2369,7 +2768,7 @@
 <section class="song-article" id="proof-of-desire">
 
     <div class="pickup-label">
-        TODAY'S PICKUP
+        2026.9.7 UPDATE
     </div>
 
     <h2 class="pickup-title">
@@ -4301,6 +4700,167 @@ for (
 
 <script>
 
+const sakuraEffect =
+    document.getElementById(
+        "sakura-effect"
+    );
+
+const sakuraCount = 26;
+
+for (
+    let i = 0;
+    i < sakuraCount;
+    i++
+) {
+
+    const petal =
+        document.createElement("div");
+
+    petal.classList.add(
+        "sakura-petal"
+    );
+
+
+    /* 横位置 */
+
+    petal.style.left =
+        Math.random() * 100 + "%";
+
+
+    /* 大きさに少し差をつける */
+
+    const scale =
+        0.55 + Math.random() * 0.9;
+
+    petal.style.scale =
+        scale;
+
+
+    /*
+       ゆっくり落下
+       12～22秒
+    */
+
+    const duration =
+        12 + Math.random() * 10;
+
+    petal.style.animationDuration =
+        duration + "s";
+
+
+    /*
+       表示直後から
+       画面全体に花びらを存在させる
+    */
+
+    petal.style.animationDelay =
+        -(Math.random() * duration) + "s";
+
+
+    sakuraEffect.appendChild(
+        petal
+    );
+}
+
+</script>
+
+<script>
+
+const nailBottleEffect =
+    document.getElementById(
+        "nail-bottle-effect"
+    );
+
+const nailBottleColors = [
+    "#ff6fae",
+    "#ff8c5a",
+    "#ffd84d",
+    "#77db7a",
+    "#5ecdf2",
+    "#7e8cff",
+    "#b77cff"
+];
+
+const nailBottleCount = 15;
+
+for (
+    let i = 0;
+    i < nailBottleCount;
+    i++
+) {
+
+    const bottle =
+        document.createElement("div");
+
+    bottle.classList.add(
+        "nail-bottle"
+    );
+
+
+    /* 横位置 */
+
+    bottle.style.left =
+        Math.random() * 100 + "%";
+
+
+    /* 色 */
+
+    const color =
+        nailBottleColors[
+            Math.floor(
+                Math.random() *
+                nailBottleColors.length
+            )
+        ];
+
+    bottle.style.setProperty(
+        "--nail-color",
+        color
+    );
+
+
+    /* 大きさ */
+
+    const scale =
+        0.55 + Math.random() * 0.8;
+
+    bottle.style.scale =
+        scale;
+
+
+    /*
+       明るい曲なので
+       少しテンポよく落とす
+    */
+
+    const duration =
+        7 + Math.random() * 7;
+
+    bottle.style.animationDuration =
+        duration + "s";
+
+
+    /* 最初から画面内に散らす */
+
+    bottle.style.animationDelay =
+        -(Math.random() * duration) + "s";
+
+
+    nailBottleEffect.appendChild(
+        bottle
+    );
+}
+
+</script>
+
+<script>
+
+    const nanairoHologramSection =
+        document.getElementById("nanairo-hologram");
+
+    const irodoriSection =
+        document.getElementById("irodori");
+
     const kakeraSection =
         document.getElementById("kakera");
 
@@ -4357,6 +4917,10 @@ for (
 
         /* まず全部非表示 */
 
+        nailBottleEffect.style.opacity = "0";
+
+        sakuraEffect.style.opacity = "0";
+
         fireflyEffect.style.opacity = "0";
 
         stormFeatherEffect.style.opacity = "0";
@@ -4386,6 +4950,24 @@ for (
         flowerEffect.style.opacity = "0";
 
         heavenLightEffect.style.opacity = "0";
+
+        /* nanairo-hologram */
+
+        const nanairoHologramTop =
+                nanairoHologramSection.offsetTop;
+
+        const nanairoHologramBottom =
+                nanairoHologramTop +
+                nanairoHologramSection.offsetHeight;
+
+        /* irodori */
+
+        const irodoriTop =
+              irodoriSection.offsetTop;
+
+        const irodoriBottom =
+              irodoriTop +
+              irodoriSection.offsetHeight;
 
         /* kakera */
 
@@ -4524,6 +5106,24 @@ for (
 
 
         /* 現在位置に合わせて表示 */   
+
+        if (
+            scrollPosition >= nanairoHologramTop &&
+            scrollPosition < nanairoHologramBottom
+        ) {
+
+            nailBottleEffect.style.opacity = "1";
+
+        }
+
+        if (
+            scrollPosition >= irodoriTop &&
+            scrollPosition < irodoriBottom
+        ) {
+
+            sakuraEffect.style.opacity = "1";
+
+        }
 
         if (
             scrollPosition >= kakeraTop &&
