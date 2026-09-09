@@ -1645,6 +1645,229 @@
     }
 }
 
+
+/* キミハナ
+   七色に輝くシャボン玉 */
+
+#rainbow-bubble-effect {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 1000;
+
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.rainbow-bubble {
+    position: absolute;
+    bottom: -80px;
+
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.75);
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(255, 255, 255, 0.85) 0%,
+            rgba(255, 255, 255, 0.15) 12%,
+            transparent 28%
+        ),
+        conic-gradient(
+            from 0deg,
+            rgba(255, 120, 150, 0.32),
+            rgba(255, 210, 100, 0.28),
+            rgba(120, 240, 170, 0.28),
+            rgba(100, 210, 255, 0.32),
+            rgba(150, 130, 255, 0.30),
+            rgba(240, 130, 220, 0.30),
+            rgba(255, 120, 150, 0.32)
+        );
+
+    box-shadow:
+        inset 2px 2px 5px
+            rgba(255, 255, 255, 0.65),
+
+        0 0 8px
+            rgba(170, 220, 255, 0.35);
+
+    animation:
+        rainbowBubbleFloat
+        linear
+        infinite;
+}
+
+/* 常夏ぱっしょん☆たいむっ!!
+   サイダーの炭酸のような泡 */
+
+#cider-bubble-effect {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 1000;
+
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.cider-bubble {
+    position: absolute;
+    bottom: -20px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(225, 250, 255, 0.55) 35%,
+            rgba(170, 235, 255, 0.2) 65%,
+            rgba(170, 235, 255, 0) 100%
+        );
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.55);
+
+    box-shadow:
+        0 0 5px
+        rgba(180, 240, 255, 0.45);
+
+    animation:
+        ciderBubbleRise
+        linear
+        infinite;
+}
+
+@keyframes ciderBubbleRise {
+
+    0% {
+        transform:
+            translateY(30px)
+            translateX(0);
+
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 0.75;
+    }
+
+    30% {
+        transform:
+            translateY(-30vh)
+            translateX(8px);
+    }
+
+    55% {
+        transform:
+            translateY(-60vh)
+            translateX(-6px);
+
+        opacity: 0.8;
+    }
+
+    80% {
+        transform:
+            translateY(-90vh)
+            translateX(5px);
+    }
+
+    100% {
+        transform:
+            translateY(-115vh)
+            translateX(0);
+
+        opacity: 0;
+    }
+}
+
+/* シャボン玉の光 */
+
+.rainbow-bubble::after {
+    content: "";
+
+    position: absolute;
+
+    top: 18%;
+    left: 20%;
+
+    width: 25%;
+    height: 18%;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.8);
+
+    filter: blur(1px);
+}
+
+
+@keyframes rainbowBubbleFloat {
+
+    0% {
+        transform:
+            translateY(80px)
+            translateX(0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 0.75;
+    }
+
+    25% {
+        transform:
+            translateY(-28vh)
+            translateX(35px)
+            rotate(80deg);
+    }
+
+    50% {
+        transform:
+            translateY(-58vh)
+            translateX(-30px)
+            rotate(180deg);
+
+        opacity: 0.85;
+    }
+
+    75% {
+        transform:
+            translateY(-88vh)
+            translateX(40px)
+            rotate(280deg);
+    }
+
+    92% {
+        opacity: 0.7;
+    }
+
+    100% {
+        transform:
+            translateY(-115vh)
+            translateX(-20px)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+}
+
 /* クモリオト 天気雨エフェクト */
 
 #rain-effect {
@@ -2362,6 +2585,10 @@
 
 <body>
 
+    <div id="cider-bubble-effect"></div>
+
+    <div id="rainbow-bubble-effect"></div>
+
     <div id="nail-bottle-effect"></div>
 
     <div id="sakura-effect"></div>
@@ -2429,17 +2656,15 @@
 
         <div class="song-index-grid update-index-grid">
 
-            <a href="#nanairo-hologram"class="song-index-item">
-                <span class="index-song">なないろホログラム</span>
-                <span class="index-artist">色織ひな</span>
-
+            <a href="#tokonatsu-passion-time"class="song-index-item">
+                <span class="index-song">常夏ぱっしょん☆たいむっ!!</span>
+                <span class="index-artist">東雲乃杏</span>
             </a>
 
-            <a href="#irodori"class="song-index-item">
-                <span class="index-song">irodori</span>
-                <span class="index-artist">花宮ミュウ</span>
-
-            </a>
+            <a href="#kimihana"class="song-index-item">
+                <span class="index-song">キミハナ</span>
+                <span class="index-artist">手毬はなん</span>
+            </a>    
 
         </div>
 
@@ -2453,6 +2678,18 @@
          </h2>
 
          <div class="song-index-grid" id="song-index">
+
+        <a href="#nanairo-hologram"class="song-index-item">
+                <span class="index-song">なないろホログラム</span>
+                <span class="index-artist">色織ひな</span>
+
+            </a>
+
+        <a href="#irodori"class="song-index-item">
+                <span class="index-song">irodori</span>
+                <span class="index-artist">花宮ミュウ</span>
+
+            </a>
 
         <a href="#kakera"class="song-index-item">
                 <span class="index-song">かけら</span>
@@ -2535,10 +2772,152 @@
 
         </section>
 
-<section class="song-article" id="nanairo-hologram">
+<section class="song-article" id="tokonatsu-passion-time">
 
     <div class="pickup-label">
         TODAY'S PICKUP
+    </div>
+
+    <h2 class="pickup-title">
+        常夏ぱっしょん☆たいむっ!!
+    </h2>
+
+    <div class="artist">
+        東雲乃杏
+    </div>
+
+    <p class="lead">
+        夏のバカンスを満喫するような、<br>
+        明るく楽しい曲！
+    </p>
+
+    <div class="youtube">
+        <iframe
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/4iudlX-info?si=OP8U_vbCJuRz86-3" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+        <p>
+             チャンネル名：
+            <a href="https://www.youtube.com/@Cs_shinonoa" target="_blank" rel="noopener noreferrer">
+             しののあちゃんねる
+            </a>
+        </p>
+
+    <div class="youtube-action">
+
+        <a
+            href="https://youtu.be/4iudlX-info"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-action-button"
+        >
+            ▶ YouTubeで聴く・感想を届ける
+        </a>
+
+        <div class="youtube-action-message">
+            気に入った楽曲があれば、
+            あなたの「好き」を届けてみてください♪
+        </div>
+
+    </div>
+
+    <div class="comment">
+
+        <h3>好きポイント</h3>
+
+        <ul>
+            <li>アップテンポな曲調</li>
+            <li>MVの水着姿!</li>
+        </ul>
+
+    </div>
+
+</section>
+
+
+<section class="song-article" id="kimihana">
+
+    <div class="pickup-label">
+        TODAY'S PICKUP
+    </div>
+
+    <h2 class="pickup-title">
+        キミハナ
+    </h2>
+
+    <div class="artist">
+        手毬はなん
+    </div>
+
+    <p class="lead">
+        pHで声が七変化する!雨上がりの紫陽花系VTuber!<br>
+        その名の通り、歌の中で変化する歌声に注目!
+    </p>
+
+    <div class="youtube">
+        <iframe
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/9UyOzljkIMw?si=Lw2ffOH-kYl-gBNN" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+        <p>
+             チャンネル名：
+            <a href="https://www.youtube.com/@temari_hanan" target="_blank" rel="noopener noreferrer">
+             手毬はなんTemari Hanan-声で楽しむVtuber-
+            </a>
+        </p>
+
+    <div class="youtube-action">
+
+        <a
+            href="https://youtu.be/9UyOzljkIMw"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-action-button"
+        >
+            ▶ YouTubeで聴く・感想を届ける
+        </a>
+
+        <div class="youtube-action-message">
+            気に入った楽曲があれば、
+            あなたの「好き」を届けてみてください♪
+        </div>
+
+    </div>
+
+    <div class="comment">
+
+        <h3>好きポイント</h3>
+
+        <ul>
+            <li>パッと心が明るくなる歌い出し</li>
+            <li>ガラッと歌声が変化する2番Aメロ部分</li>
+            <li>華やかで彩り豊かなMV</li>
+        </ul>
+
+    </div>
+
+</section>
+
+<section class="song-article" id="nanairo-hologram">
+
+    <div class="pickup-label">
+        2026.9.8 UPDATE
     </div>
 
     <h2 class="pickup-title">
@@ -2611,7 +2990,7 @@
 <section class="song-article" id="irodori">
 
     <div class="pickup-label">
-        TODAY'S PICKUP
+        2026.9.8 UPDATE
     </div>
 
     <h2 class="pickup-title">
@@ -2994,7 +3373,7 @@
             </div>
 
             <div class="pickup-news">
-                ✦ 2026.9.6 18:00 本日復帰配信！ ✦
+                ✦ 2026.9.6 18:00 復帰配信！ ✦
             </div>
 
             <h2 class="pickup-title">
@@ -4853,7 +5232,158 @@ for (
 
 </script>
 
+
 <script>
+
+const rainbowBubbleEffect =
+    document.getElementById(
+        "rainbow-bubble-effect"
+    );
+
+const rainbowBubbleCount = 28;
+
+for (
+    let i = 0;
+    i < rainbowBubbleCount;
+    i++
+) {
+
+    const bubble =
+        document.createElement("div");
+
+    bubble.classList.add(
+        "rainbow-bubble"
+    );
+
+
+    /* 横位置 */
+
+    bubble.style.left =
+        Math.random() * 100 + "%";
+
+
+    /*
+       小さい泡から
+       大きな泡まで
+    */
+
+    const size =
+        12 + Math.random() * 38;
+
+    bubble.style.width =
+        size + "px";
+
+    bubble.style.height =
+        size + "px";
+
+
+    /*
+       ゆっくり上昇
+       10～20秒
+    */
+
+    const duration =
+        4 + Math.random() * 4;
+
+    bubble.style.animationDuration =
+        duration + "s";
+
+
+    /*
+       表示開始時から
+       画面全体に存在させる
+    */
+
+    bubble.style.animationDelay =
+        -(Math.random() * duration) + "s";
+
+
+    rainbowBubbleEffect.appendChild(
+        bubble
+    );
+}
+
+</script>
+
+<script>
+
+const ciderBubbleEffect =
+    document.getElementById(
+        "cider-bubble-effect"
+    );
+
+const ciderBubbleCount = 70;
+
+for (
+    let i = 0;
+    i < ciderBubbleCount;
+    i++
+) {
+
+    const bubble =
+        document.createElement("div");
+
+    bubble.classList.add(
+        "cider-bubble"
+    );
+
+
+    /* 横位置 */
+
+    bubble.style.left =
+        Math.random() * 100 + "%";
+
+
+    /*
+       炭酸なのでかなり小さめ
+       2～9px
+    */
+
+    const size =
+        2 + Math.random() * 7;
+
+    bubble.style.width =
+        size + "px";
+
+    bubble.style.height =
+        size + "px";
+
+
+    /*
+       上昇速度
+       4～9秒
+    */
+
+    const duration =
+        4 + Math.random() * 5;
+
+    bubble.style.animationDuration =
+        duration + "s";
+
+
+    /*
+       最初から画面全体に
+       泡が存在するようにする
+    */
+
+    bubble.style.animationDelay =
+        -(Math.random() * duration) + "s";
+
+
+    ciderBubbleEffect.appendChild(
+        bubble
+    );
+}
+
+</script>
+
+<script>
+
+    const tokonatsuSection =
+        document.getElementById("tokonatsu-passion-time");
+
+    const kimihanaSection =
+        document.getElementById("kimihana");
 
     const nanairoHologramSection =
         document.getElementById("nanairo-hologram");
@@ -4917,6 +5447,10 @@ for (
 
         /* まず全部非表示 */
 
+        ciderBubbleEffect.style.opacity = "0";
+
+        rainbowBubbleEffect.style.opacity = "0";
+
         nailBottleEffect.style.opacity = "0";
 
         sakuraEffect.style.opacity = "0";
@@ -4950,6 +5484,24 @@ for (
         flowerEffect.style.opacity = "0";
 
         heavenLightEffect.style.opacity = "0";
+
+        /* tokonatsu-passion-time */
+
+        const tokonatsuTop =
+                tokonatsuSection.offsetTop;
+
+        const tokonatsuBottom =
+                tokonatsuTop +
+                tokonatsuSection.offsetHeight;
+
+        /* kimihana */
+
+        const kimihanaTop =
+                kimihanaSection.offsetTop;
+
+        const kimihanaBottom =
+                kimihanaTop +
+                kimihanaSection.offsetHeight;
 
         /* nanairo-hologram */
 
@@ -5106,6 +5658,22 @@ for (
 
 
         /* 現在位置に合わせて表示 */   
+
+        if (
+            scrollPosition >= tokonatsuTop &&
+            scrollPosition < tokonatsuBottom
+        ) {
+            ciderBubbleEffect.style.opacity = "1";
+        }
+
+        if (
+            scrollPosition >= kimihanaTop &&
+            scrollPosition < kimihanaBottom
+        ) {
+
+            rainbowBubbleEffect.style.opacity = "1";
+
+        }
 
         if (
             scrollPosition >= nanairoHologramTop &&
