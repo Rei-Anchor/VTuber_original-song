@@ -1975,6 +1975,161 @@
     }
 }
 
+/* 短夜
+   淡く光りながら舞う蝶 */
+
+#glowing-butterfly-effect {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1000;
+
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+/* 短夜
+   光の玉を中心にした蝶 */
+
+.glowing-butterfly {
+    position: absolute;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(220, 240, 255, 0.95) 30%,
+            rgba(175, 195, 255, 0.7) 55%,
+            rgba(170, 180, 255, 0) 100%
+        );
+
+    box-shadow:
+        0 0 5px rgba(255, 255, 255, 0.95),
+        0 0 10px rgba(190, 220, 255, 0.8),
+        0 0 18px rgba(165, 170, 255, 0.55);
+
+    animation:
+    butterflyDance
+    linear
+    infinite;
+}
+
+
+/* 左右の羽 */
+
+.glowing-butterfly::before,
+.glowing-butterfly::after {
+    content: "";
+
+    position: absolute;
+
+    top: -4px;
+
+    width: 17px;
+    height: 15px;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(240, 250, 255, 0.8) 0%,
+            rgba(190, 220, 255, 0.55) 40%,
+            rgba(180, 160, 255, 0.25) 70%,
+            rgba(180, 160, 255, 0) 100%
+        );
+
+    box-shadow:
+        0 0 8px
+        rgba(190, 220, 255, 0.45);
+
+    animation:
+        butterflyWing
+        0.55s
+        ease-in-out
+        infinite alternate;
+}
+
+
+/* 左羽 */
+
+.glowing-butterfly::before {
+    right: 4px;
+
+    border-radius:
+        80% 35% 70% 45%;
+
+    transform-origin:
+        right center;
+}
+
+
+/* 右羽 */
+
+.glowing-butterfly::after {
+    left: 4px;
+
+    border-radius:
+        35% 80% 45% 70%;
+
+    transform-origin:
+        left center;
+}
+
+
+/* 羽ばたき */
+
+@keyframes butterflyWing {
+
+    0% {
+        transform:
+            scaleX(1)
+            scaleY(1)
+            rotate(5deg);
+    }
+
+    100% {
+        transform:
+            scaleX(0.35)
+            scaleY(0.9)
+            rotate(-5deg);
+    }
+}
+
+
+/* ふわふわと漂う */
+
+@keyframes butterflyDance {
+
+    0% {
+        transform:
+            translate(0, 0)
+            scale(var(--butterfly-scale))
+            rotate(-6deg);
+
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 0.9;
+    }
+
+    100% {
+        transform:
+            translate(
+                var(--move-x),
+                var(--move-y)
+            )
+            scale(var(--butterfly-scale))
+            rotate(8deg);
+
+        opacity: 0;
+    }
+}
 
 /* War of Song 火の粉エフェクト */
 
@@ -2066,6 +2221,159 @@
         opacity: 0;
     }
 }
+
+/* 小悪魔💜magic
+   ピンク・紫の流れ星 */
+
+#koakuma-star-effect {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 1000;
+
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+
+.koakuma-star {
+    position: absolute;
+
+    width: 18px;
+    height: 18px;
+
+    background:
+        rgba(255, 170, 235, 0.95);
+
+    clip-path:
+        polygon(
+            50% 0%,
+            61% 35%,
+            98% 35%,
+            68% 57%,
+            79% 92%,
+            50% 70%,
+            21% 92%,
+            32% 57%,
+            2% 35%,
+            39% 35%
+        );
+
+    filter:
+        drop-shadow(
+            0 0 6px
+            rgba(255, 140, 230, 0.9)
+        )
+        drop-shadow(
+            0 0 12px
+            rgba(200, 100, 255, 0.7)
+        );
+
+    animation:
+        koakumaStarFlow
+        linear
+        infinite;
+}
+
+
+/* 星の光の尾 */
+
+.koakuma-star::after {
+    content: "";
+
+    position: absolute;
+
+    right: 3px;
+    bottom: 3px;
+
+    width: 45px;
+    height: 2px;
+
+    transform:
+        rotate(45deg);
+
+    transform-origin:
+        right center;
+
+    background:
+        linear-gradient(
+            to left,
+            rgba(255, 180, 240, 0.8),
+            rgba(210, 120, 255, 0.35),
+            transparent
+        );
+
+    filter:
+        blur(0.5px);
+}
+
+
+@keyframes koakumaStarFlow {
+
+    0% {
+        transform:
+            translate(-120px, -120px)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 0.95;
+    }
+
+    90% {
+        opacity: 0.9;
+    }
+
+    100% {
+        transform:
+            translate(125vw, 125vh)
+            rotate(1080deg);
+
+        opacity: 0;
+    }
+}
+
+
+@keyframes magicCircleAppear {
+
+    0% {
+        transform:
+            scale(0.45)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.75;
+    }
+
+    50% {
+        transform:
+            scale(1)
+            rotate(90deg);
+
+        opacity: 0.95;
+    }
+
+    80% {
+        opacity: 0.7;
+    }
+
+    100% {
+        transform:
+            scale(1.2)
+            rotate(180deg);
+
+        opacity: 0;
+    }
+}
+
 
 /* On your side ピンクの光エフェクト */
 
@@ -2585,6 +2893,10 @@
 
 <body>
 
+    <div id="koakuma-star-effect"></div>
+
+    <div id="glowing-butterfly-effect"></div>
+
     <div id="cider-bubble-effect"></div>
 
     <div id="rainbow-bubble-effect"></div>
@@ -2656,15 +2968,15 @@
 
         <div class="song-index-grid update-index-grid">
 
-            <a href="#tokonatsu-passion-time"class="song-index-item">
-                <span class="index-song">常夏ぱっしょん☆たいむっ!!</span>
-                <span class="index-artist">東雲乃杏</span>
+            <a href="#koakuma-magic" class="song-index-item">
+                <span class="index-song">小悪魔💜magic</span>
+                <span class="index-artist">紫宮りず</span>
             </a>
 
-            <a href="#kimihana"class="song-index-item">
-                <span class="index-song">キミハナ</span>
-                <span class="index-artist">手毬はなん</span>
-            </a>    
+            <a href="#mijikayo"class="song-index-item">
+                <span class="index-song">短夜</span>
+                <span class="index-artist">一夜すみ</span>
+            </a>
 
         </div>
 
@@ -2678,6 +2990,16 @@
          </h2>
 
          <div class="song-index-grid" id="song-index">
+        
+        <a href="#tokonatsu-passion-time"class="song-index-item">
+                <span class="index-song">常夏ぱっしょん☆たいむっ!!</span>
+                <span class="index-artist">東雲乃杏</span>
+            </a>
+
+            <a href="#kimihana"class="song-index-item">
+                <span class="index-song">キミハナ</span>
+                <span class="index-artist">手毬はなん</span>
+            </a>        
 
         <a href="#nanairo-hologram"class="song-index-item">
                 <span class="index-song">なないろホログラム</span>
@@ -2772,10 +3094,132 @@
 
         </section>
 
-<section class="song-article" id="tokonatsu-passion-time">
+<section class="song-article" id="koakuma-magic">
 
     <div class="pickup-label">
         TODAY'S PICKUP
+    </div>
+
+    <h2 class="pickup-title">
+        小悪魔💜magic
+    </h2>
+
+    <div class="artist">
+        紫宮りず
+    </div>
+
+    <p class="lead">
+        紫宮りずっぽさ全開の、<br>
+        明るく元気で可愛らしい一曲！<br>
+        聴いているだけでウキウキしてきませんか？
+    </p>
+
+    <div class="youtube">
+        <iframe
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/EdFoB3iAQxg?si=fthDJ5HqpJIlEXJx" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+        <p>
+             チャンネル名：
+            <a href="https://www.youtube.com/@riz_2828" target="_blank" rel="noopener noreferrer">
+             紫宮りず⪩⪨Shinomiya Riz
+            </a>
+        </p>
+
+    <div class="comment">
+        <h3>好きポイント</h3>
+
+        <ul>
+            <li>魔法感あふれるメロディと、弾むようなりずさんの歌声</li>
+            <li>掛け合い部分</li>
+            <li>間奏部分のコーラス</li>
+            <li>歌い出しの「遠くまで♪」の歌い方</li>
+        </ul>
+    </div>
+
+</section>
+
+<section class="song-article" id="mijikayo">
+
+    <div class="pickup-label">
+        TODAY'S PICKUP
+    </div>
+
+    <h2 class="pickup-title">
+        短夜
+    </h2>
+
+    <div class="artist">
+        一夜すみ
+    </div>
+
+    <p class="lead">
+        「美しいものだけを見て 暮らしたいの」<br>
+        穏やかで優しげな歌……だけど、何処か切なさを感じる。<br>
+        美しい景色が浮かんでくるような一曲。
+    </p>
+
+    <div class="youtube">
+        <iframe
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/-LY8xRi8A9o?si=nF-vEvwb5XE84MsX" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+        <p>
+             チャンネル名：
+            <a href="https://www.youtube.com/@hitoya_sumi" target="_blank" rel="noopener noreferrer">
+             一夜すみ【ひとやすみ】
+            </a>
+        </p>
+
+    <div class="youtube-action">
+        <a
+            href="https://youtu.be/-LY8xRi8A9o"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-action-button"
+        >
+            ▶ YouTubeで聴く・感想を届ける
+        </a>
+
+        <div class="youtube-action-message">
+            気に入った楽曲があれば、
+            あなたの「好き」を届けてみてください♪
+        </div>
+    </div>
+
+    <div class="comment">
+        <h3>好きポイント</h3>
+
+        <ul>
+            <li>穏やかさと切なさを感じる曲の雰囲気</li>
+            <li>1番サビから間奏に入る瞬間</li>
+            <li>MVの雰囲気にぴったり合う、穏やかなすみさんの歌声</li>
+        </ul>
+    </div>
+
+</section>
+
+
+<section class="song-article" id="tokonatsu-passion-time">
+
+    <div class="pickup-label">
+        2026.9.9 UPDATE
     </div>
 
     <h2 class="pickup-title">
@@ -2846,7 +3290,7 @@
 <section class="song-article" id="kimihana">
 
     <div class="pickup-label">
-        TODAY'S PICKUP
+        2026.9.9 UPDATE
     </div>
 
     <h2 class="pickup-title">
@@ -5379,6 +5823,184 @@ for (
 
 <script>
 
+const glowingButterflyEffect =
+    document.getElementById(
+        "glowing-butterfly-effect"
+    );
+
+const butterflyCount = 14;
+
+for (let i = 0; i < butterflyCount; i++) {
+
+    const butterfly =
+        document.createElement("div");
+
+    butterfly.classList.add(
+        "glowing-butterfly"
+    );
+
+
+    /*
+       画面中央付近からスタート
+       完全に同じ場所だと不自然なので
+       少しだけバラけさせる
+    */
+
+    butterfly.style.left =
+        47 + Math.random() * 6 + "%";
+
+    butterfly.style.top =
+        45 + Math.random() * 10 + "%";
+
+
+    /*
+       360度ランダムに
+       飛んでいく方向を決める
+    */
+
+    const angle =
+        Math.random() * Math.PI * 2;
+
+    const distance =
+    700 + Math.random() * 500;
+
+    const moveX =
+        Math.cos(angle) * distance;
+
+    const moveY =
+        Math.sin(angle) * distance;
+
+
+    butterfly.style.setProperty(
+        "--move-x",
+        moveX + "px"
+    );
+
+    butterfly.style.setProperty(
+        "--move-y",
+        moveY + "px"
+    );
+
+
+    /* 蝶の大きさ */
+
+    const scale =
+        0.9 + Math.random() * 0.8;
+
+    butterfly.style.setProperty(
+        "--butterfly-scale",
+        scale
+    );
+
+
+    /*
+       ゆっくり外側へ
+       8～15秒
+    */
+
+    const duration =
+        8 + Math.random() * 7;
+
+    butterfly.style.animationDuration =
+        duration + "s";
+
+    butterfly.style.animationDelay =
+        -(Math.random() * duration) + "s";
+
+
+    glowingButterflyEffect.appendChild(
+        butterfly
+    );
+}
+</script>
+
+<script>
+
+const koakumaStarEffect =
+    document.getElementById(
+        "koakuma-star-effect"
+    );
+
+const koakumaStarCount = 30;
+
+for (let i = 0; i < koakumaStarCount; i++) {
+
+    const star =
+        document.createElement("div");
+
+    star.classList.add(
+        "koakuma-star"
+    );
+
+
+    /* 左上側からランダムに配置 */
+
+    star.style.left =
+        -20 + Math.random() * 90 + "%";
+
+    star.style.top =
+        -60 + Math.random() * 90 + "%";
+
+
+    /* 星のサイズ */
+
+    const size =
+        12 + Math.random() * 30;
+
+    star.style.width =
+        size + "px";
+
+    star.style.height =
+        size + "px";
+
+
+    /* ピンク～紫をランダム */
+
+    const hue =
+        285 + Math.random() * 45;
+
+    star.style.background =
+        `hsla(${hue}, 90%, 80%, 0.95)`;
+
+    star.style.boxShadow =
+        `
+        0 0 6px hsla(${hue}, 90%, 75%, 0.9),
+        0 0 13px hsla(${hue}, 90%, 68%, 0.7),
+        0 0 22px hsla(${hue}, 90%, 60%, 0.4)
+        `;
+
+
+    /* 流れる速度 */
+
+    const duration =
+        5 + Math.random() * 5;
+
+    star.style.animationDuration =
+        duration + "s";
+
+
+    /* 最初からバラけて流す */
+
+    star.style.animationDelay =
+        -(Math.random() * duration) + "s";
+
+
+    koakumaStarEffect.appendChild(
+        star
+    );
+}
+
+</script>
+
+
+<script>
+
+    const koakumaMagicSection =
+        document.getElementById("koakuma-magic");
+
+    const mijikayoSection =
+        document.getElementById("mijikayo");
+
     const tokonatsuSection =
         document.getElementById("tokonatsu-passion-time");
 
@@ -5447,6 +6069,10 @@ for (
 
         /* まず全部非表示 */
 
+        koakumaStarEffect.style.opacity = "0";
+
+        glowingButterflyEffect.style.opacity = "0";
+
         ciderBubbleEffect.style.opacity = "0";
 
         rainbowBubbleEffect.style.opacity = "0";
@@ -5484,6 +6110,25 @@ for (
         flowerEffect.style.opacity = "0";
 
         heavenLightEffect.style.opacity = "0";
+
+        /* koakuma-magic */
+
+        const koakumaMagicTop =
+                koakumaMagicSection.offsetTop;
+
+        const koakumaMagicBottom =
+                koakumaMagicTop +
+                koakumaMagicSection.offsetHeight;
+
+        /* mijikayo */
+
+        const mijikayoTop =
+                mijikayoSection.offsetTop;
+
+        const mijikayoBottom =
+                mijikayoTop +
+                mijikayoSection.offsetHeight;
+
 
         /* tokonatsu-passion-time */
 
@@ -5658,6 +6303,20 @@ for (
 
 
         /* 現在位置に合わせて表示 */   
+
+        if (
+            scrollPosition >= koakumaMagicTop &&
+            scrollPosition < koakumaMagicBottom
+        ) {
+            koakumaStarEffect.style.opacity = "1";
+        }
+
+        if (
+            scrollPosition >= mijikayoTop &&
+            scrollPosition < mijikayoBottom
+        ) {
+            glowingButterflyEffect.style.opacity = "1";
+        }
 
         if (
             scrollPosition >= tokonatsuTop &&
