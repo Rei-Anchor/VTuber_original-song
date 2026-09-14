@@ -2020,6 +2020,365 @@
     infinite;
 }
 
+/* Ⅲuminσ Sömniσ
+   水中から連なって上昇する泡 */
+
+#underwater-bubble-effect {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 1000;
+
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+
+.underwater-bubble {
+    position: absolute;
+
+    bottom: -30px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(215, 245, 255, 0.55) 30%,
+            rgba(140, 210, 255, 0.22) 65%,
+            rgba(120, 190, 255, 0) 100%
+        );
+
+    border:
+        1px solid
+        rgba(220, 245, 255, 0.6);
+
+    box-shadow:
+        0 0 5px rgba(180, 225, 255, 0.55),
+        0 0 12px rgba(140, 200, 255, 0.25);
+
+    animation:
+        underwaterBubbleRise
+        linear
+        infinite;
+}
+
+
+@keyframes underwaterBubbleRise {
+
+    0% {
+        transform:
+            translateY(20px)
+            translateX(0);
+
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 0.85;
+    }
+
+    50% {
+        transform:
+            translateY(-55vh)
+            translateX(8px);
+
+        opacity: 0.9;
+    }
+
+    100% {
+        transform:
+            translateY(-115vh)
+            translateX(-5px);
+
+        opacity: 0;
+    }
+}
+
+/* Åstronova
+   小さな光から大きな星へ */
+
+#astronova-light-effect {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 1000;
+
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+
+.astronova-light {
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 1);
+
+    box-shadow:
+        0 0 5px rgba(255, 255, 255, 1),
+        0 0 10px rgba(190, 225, 255, 0.9),
+        0 0 18px rgba(150, 190, 255, 0.6);
+
+    animation:
+    astronovaBurst
+    var(--burst-duration)
+    ease-out
+    infinite;
+}
+
+
+/* 縦方向の光 */
+
+.astronova-light::before {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 3px;
+    height: 80px;
+
+    transform:
+        translate(-50%, -50%);
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(255,255,255,0),
+            rgba(220,240,255,0.6),
+            rgba(255,255,255,1),
+            rgba(220,240,255,0.6),
+            rgba(255,255,255,0)
+        );
+
+    opacity: 0;
+}
+
+
+/* 横方向の光 */
+
+.astronova-light::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 80px;
+    height: 3px;
+
+    transform:
+        translate(-50%, -50%);
+
+    background:
+        linear-gradient(
+            to right,
+            rgba(255,255,255,0),
+            rgba(220,240,255,0.6),
+            rgba(255,255,255,1),
+            rgba(220,240,255,0.6),
+            rgba(255,255,255,0)
+        );
+
+    opacity: 0;
+}
+
+
+@keyframes astronovaBurst {
+
+    0% {
+        transform:
+            scale(0.15);
+
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.4;
+    }
+
+    35% {
+        transform:
+            scale(0.5);
+
+        opacity: 0.8;
+    }
+
+    55% {
+        transform:
+            scale(2.8);
+
+        opacity: 1;
+    }
+
+    75% {
+        transform:
+            scale(3.8);
+
+        opacity: 0.7;
+    }
+
+    100% {
+        transform:
+            scale(4.5);
+
+        opacity: 0;
+    }
+}
+
+
+/* 大きく輝くタイミングで光線も出す */
+
+.astronova-light::before,
+.astronova-light::after {
+    animation:
+        astronovaRay
+        var(--burst-duration)
+        ease-out
+        infinite;
+}
+
+@keyframes astronovaRay {
+
+    0%,
+    30% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.2;
+    }
+
+    60% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 0.45;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* νtopia
+   瞬く菱形の光 */
+
+#diamond-light-effect {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 1000;
+
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+
+.diamond-light {
+    position: absolute;
+
+    width: 14px;
+    height: 14px;
+
+    background:
+        rgba(235, 245, 255, 0.95);
+
+    transform: rotate(45deg);
+
+    box-shadow:
+        0 0 6px rgba(220, 240, 255, 0.95),
+        0 0 14px rgba(180, 220, 255, 0.8),
+        0 0 26px rgba(170, 190, 255, 0.45);
+
+    animation:
+        diamondTwinkle
+        ease-in-out
+        infinite;
+}
+
+
+/* 中央の強い光 */
+
+.diamond-light::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 4px;
+    height: 4px;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 1);
+
+    box-shadow:
+        0 0 8px
+        rgba(255, 255, 255, 0.95);
+}
+
+
+@keyframes diamondTwinkle {
+
+    0% {
+        transform:
+            rotate(45deg)
+            scale(0.2);
+
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 0.35;
+    }
+
+    50% {
+        transform:
+            rotate(45deg)
+            scale(1);
+
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 0.45;
+    }
+
+    100% {
+        transform:
+            rotate(45deg)
+            scale(0.25);
+
+        opacity: 0;
+    }
+}
 
 /* 左右の羽 */
 
@@ -2892,6 +3251,12 @@
 </head>
 
 <body>
+    
+    <div id="astronova-light-effect"></div>
+
+    <div id="underwater-bubble-effect"></div>
+
+    <div id="diamond-light-effect"></div>
 
     <div id="koakuma-star-effect"></div>
 
@@ -2968,14 +3333,19 @@
 
         <div class="song-index-grid update-index-grid">
 
-            <a href="#koakuma-magic" class="song-index-item">
-                <span class="index-song">小悪魔💜magic</span>
-                <span class="index-artist">紫宮りず</span>
+            <a href="#astronova" class="song-index-item">
+                <span class="index-song">Åstronova</span>
+                <span class="index-artist">文福しゃのめ</span>
             </a>
 
-            <a href="#mijikayo"class="song-index-item">
-                <span class="index-song">短夜</span>
-                <span class="index-artist">一夜すみ</span>
+            <a href="#lumino-somnio" class="song-index-item">
+                <span class="index-song">Ⅲuminσ Sömniσ</span>
+                <span class="index-artist">文福しゃのめ</span>
+            </a>
+
+            <a href="#nutopia" class="song-index-item">
+                <span class="index-song">νtopia</span>
+                <span class="index-artist">文福しゃのめ</span>
             </a>
 
         </div>
@@ -2990,6 +3360,16 @@
          </h2>
 
          <div class="song-index-grid" id="song-index">
+
+        <a href="#koakuma-magic" class="song-index-item">
+                <span class="index-song">小悪魔💜magic</span>
+                <span class="index-artist">紫宮りず</span>
+            </a>
+
+            <a href="#mijikayo"class="song-index-item">
+                <span class="index-song">短夜</span>
+                <span class="index-artist">一夜すみ</span>
+            </a>
         
         <a href="#tokonatsu-passion-time"class="song-index-item">
                 <span class="index-song">常夏ぱっしょん☆たいむっ!!</span>
@@ -3094,10 +3474,209 @@
 
         </section>
 
-<section class="song-article" id="koakuma-magic">
+<section class="song-article" id="astronova">
 
     <div class="pickup-label">
         TODAY'S PICKUP
+    </div>
+
+    <h2 class="pickup-title">
+        Åstronova
+    </h2>
+
+    <div class="artist">
+        文福しゃのめ
+    </div>
+
+    <p class="lead">
+        疾走感のある、聴いていて気持ちが良い一曲！<br>
+        真っ直ぐ伸びていく歌声で、手を前に伸ばしたくなる……！
+    </p>
+
+    <div class="youtube">
+        <iframe
+            src="https://www.youtube.com/embed/GlT0j8z5BTw"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+        </iframe>
+    </div>
+
+        <p>
+             チャンネル名：
+            <a href="https://www.youtube.com/@bunpukusyanome" target="_blank" rel="noopener noreferrer">
+             文福しゃのめ
+            </a>
+        </p>
+
+    <div class="youtube-action">
+        <a
+            href="https://youtu.be/GlT0j8z5BTw"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-action-button"
+        >
+            ▶ YouTubeで聴く・感想を届ける
+        </a>
+
+        <div class="youtube-action-message">
+            気に入った楽曲があれば、
+            あなたの「好き」を届けてみてください♪
+        </div>
+    </div>
+
+    <div class="comment">
+        <h3>好きポイント</h3>
+
+        <ul>
+            <li>ワクワクしてくる前奏</li>
+            <li>漂うような歌声のBメロから、真っ直ぐ伸びていくような歌声のサビへの変化</li>
+            <li>思わず顔を上げたくなる、しゃのめさんの力強い歌声</li>
+        </ul>
+    </div>
+
+</section>
+
+<section class="song-article" id="lumino-somnio">
+
+    <div class="pickup-label">
+        TODAY'S PICKUP
+    </div>
+
+    <h2 class="pickup-title">
+        Ⅲuminσ Sömniσ
+    </h2>
+
+    <div class="artist">
+        文福しゃのめ
+    </div>
+
+    <p class="lead">
+        深く響く美しい音楽と、<br>
+        どこまでも響く歌声が素敵な一曲
+    </p>
+
+    <div class="youtube">
+        <iframe
+            src="https://www.youtube.com/embed/h2oUImM1uUA"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+        </iframe>
+    </div>
+
+        <p>
+             チャンネル名：
+            <a href="https://www.youtube.com/@bunpukusyanome" target="_blank" rel="noopener noreferrer">
+             文福しゃのめ
+            </a>
+        </p>
+
+    <div class="youtube-action">
+        <a
+            href="https://youtu.be/h2oUImM1uUA"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-action-button"
+        >
+            ▶ YouTubeで聴く・感想を届ける
+        </a>
+
+        <div class="youtube-action-message">
+            気に入った楽曲があれば、
+            あなたの「好き」を届けてみてください♪
+        </div>
+    </div>
+
+    <div class="comment">
+        <h3>好きポイント</h3>
+
+        <ul>
+            <li>波打つように揺らぐ前奏から、海の中のように静かに響く歌い出し</li>
+            <li>どっしりとした低音と、色々な楽器の音色の重なり合い</li>
+            <li>サビの、パッと光り輝くような真っ直ぐ響く歌声</li>
+        </ul>
+    </div>
+
+</section>
+
+<section class="song-article" id="nutopia">
+
+    <div class="pickup-label">
+        TODAY'S PICKUP
+    </div>
+
+    <h2 class="pickup-title">
+        νtopia
+    </h2>
+
+    <div class="artist">
+        文福しゃのめ
+    </div>
+
+    <p class="lead">
+        ーそばにおいで、君の孤独は僕の腕の中。<br>
+        <span class="quote-source">
+            （YouTube概要欄より引用）
+        </span>
+    </p>
+
+    <div class="youtube">
+        <iframe
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/HSzU8eXwm0E?si=CwyXLD7wj15Q9LKv" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+        <p>
+             チャンネル名：
+            <a href="https://www.youtube.com/@bunpukusyanome" target="_blank" rel="noopener noreferrer">
+             文福しゃのめ
+            </a>
+        </p>
+
+    <div class="youtube-action">
+        <a
+            href="https://youtu.be/HSzU8eXwm0E"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-action-button"
+        >
+            ▶ YouTubeで聴く・感想を届ける
+        </a>
+
+        <div class="youtube-action-message">
+            気に入った楽曲があれば、
+            あなたの「好き」を届けてみてください♪
+        </div>
+    </div>
+
+    <div class="comment">
+        <h3>好きポイント</h3>
+
+        <ul>
+            <li>静かな歌い始めから、広大なサビへの移り変わり</li>
+            <li>力強いヒーカップ</li>
+            <li>所々に入るウィスパーボイスのコーラス</li>
+        </ul>
+    </div>
+
+</section>
+
+<section class="song-article" id="koakuma-magic">
+
+    <div class="pickup-label">
+        2026.9.10 UPDATE
     </div>
 
     <h2 class="pickup-title">
@@ -3150,7 +3729,7 @@
 <section class="song-article" id="mijikayo">
 
     <div class="pickup-label">
-        TODAY'S PICKUP
+        2026.9.10 UPDATE
     </div>
 
     <h2 class="pickup-title">
@@ -5992,8 +6571,251 @@ for (let i = 0; i < koakumaStarCount; i++) {
 
 </script>
 
+<script>
+
+const diamondLightEffect =
+    document.getElementById(
+        "diamond-light-effect"
+    );
+
+const diamondLightCount = 24;
+
+for (let i = 0; i < diamondLightCount; i++) {
+
+    const diamond =
+        document.createElement("div");
+
+    diamond.classList.add(
+        "diamond-light"
+    );
+
+
+    /* 画面全体にランダム配置 */
+
+    diamond.style.left =
+        Math.random() * 96 + "%";
+
+    diamond.style.top =
+        Math.random() * 92 + "%";
+
+
+    /* 大小をランダムに */
+
+    const size =
+        7 + Math.random() * 17;
+
+    diamond.style.width =
+        size + "px";
+
+    diamond.style.height =
+        size + "px";
+
+
+    /* 光る長さ */
+
+    const duration =
+        2.5 + Math.random() * 4;
+
+    diamond.style.animationDuration =
+        duration + "s";
+
+
+    /* 光るタイミングをバラけさせる */
+
+    diamond.style.animationDelay =
+        -(Math.random() * duration) + "s";
+
+
+    diamondLightEffect.appendChild(
+        diamond
+    );
+}
+
+</script>
 
 <script>
+
+const underwaterBubbleEffect =
+    document.getElementById(
+        "underwater-bubble-effect"
+    );
+
+const bubbleStreams = 7;
+
+for (let stream = 0; stream < bubbleStreams; stream++) {
+
+    /*
+       泡が上がる筋の位置
+    */
+
+    const streamX =
+        8 + Math.random() * 84;
+
+
+    /*
+       1本につき8～14個くらい
+    */
+
+    const bubbleCount =
+        8 + Math.floor(Math.random() * 7);
+
+
+    for (let i = 0; i < bubbleCount; i++) {
+
+        const bubble =
+            document.createElement("div");
+
+        bubble.classList.add(
+            "underwater-bubble"
+        );
+
+
+        /*
+           完全な一直線にしないよう
+           少し左右へ散らす
+        */
+
+        bubble.style.left =
+            streamX +
+            (Math.random() * 5 - 2.5) +
+            "%";
+
+
+        /*
+           小さい泡～大きい泡
+        */
+
+        const size =
+            3 + Math.random() * 15;
+
+        bubble.style.width =
+            size + "px";
+
+        bubble.style.height =
+            size + "px";
+
+
+        /*
+           素早く上昇
+           2.8～5秒
+        */
+
+        const duration =
+            2.8 + Math.random() * 2.2;
+
+        bubble.style.animationDuration =
+            duration + "s";
+
+
+        /*
+           同じ筋の中で
+           少しずつタイミングをずらす
+        */
+
+        bubble.style.animationDelay =
+            -(
+                Math.random() * duration
+            ) + "s";
+
+
+        underwaterBubbleEffect.appendChild(
+            bubble
+        );
+    }
+}
+
+</script>
+
+<script>    
+
+const astronovaLightEffect =
+    document.getElementById(
+        "astronova-light-effect"
+    );
+
+const astronovaLightCount = 16;
+
+for (let i = 0; i < astronovaLightCount; i++) {
+
+    const light =
+        document.createElement("div");
+
+    light.classList.add(
+        "astronova-light"
+    );
+
+
+    /* 画面全体にランダム配置 */
+
+    light.style.left =
+        5 + Math.random() * 90 + "%";
+
+    light.style.top =
+        5 + Math.random() * 90 + "%";
+
+
+    /*
+       星ごとに最終的な大きさを変える
+    */
+
+    const size =
+        3 + Math.random() * 5;
+
+    light.style.width =
+        size + "px";
+
+    light.style.height =
+        size + "px";
+
+
+    /*
+       発光時間
+       かなり短め
+    */
+
+    const duration =
+        1.4 + Math.random() * 1.6;
+
+    light.style.animationDuration =
+        duration + "s";
+
+
+    /*
+       ::before / ::after も
+       同じ時間に合わせる
+    */
+
+    light.style.setProperty(
+        "--burst-duration",
+        duration + "s"
+    );
+
+
+    /*
+       発生タイミングを大きくバラけさせる
+    */
+
+    light.style.animationDelay =
+        -(Math.random() * 6) + "s";
+
+
+    astronovaLightEffect.appendChild(
+        light
+    );
+}
+
+</script>
+
+<script>
+
+    const astronovaSection =
+        document.getElementById("astronova");
+
+    const luminoSomnioSection =
+        document.getElementById("lumino-somnio");
+
+    const nutopiaSection =
+        document.getElementById("nutopia");
 
     const koakumaMagicSection =
         document.getElementById("koakuma-magic");
@@ -6069,6 +6891,12 @@ for (let i = 0; i < koakumaStarCount; i++) {
 
         /* まず全部非表示 */
 
+        astronovaLightEffect.style.opacity = "0";
+
+        underwaterBubbleEffect.style.opacity = "0";
+
+        diamondLightEffect.style.opacity = "0";
+
         koakumaStarEffect.style.opacity = "0";
 
         glowingButterflyEffect.style.opacity = "0";
@@ -6110,6 +6938,34 @@ for (let i = 0; i < koakumaStarCount; i++) {
         flowerEffect.style.opacity = "0";
 
         heavenLightEffect.style.opacity = "0";
+
+        /* astronova */
+
+        const astronovaTop =
+                astronovaSection.offsetTop;
+
+        const astronovaBottom =
+                astronovaTop +
+                astronovaSection.offsetHeight;
+
+        /* lumino-somnio */
+
+        const luminoSomnioTop =
+            luminoSomnioSection.offsetTop;
+
+        const luminoSomnioBottom =
+                luminoSomnioTop +
+                luminoSomnioSection.offsetHeight;
+
+        /* nutopia */
+
+        const nutopiaTop =
+                nutopiaSection.offsetTop;
+
+        const nutopiaBottom =
+                nutopiaTop +
+                nutopiaSection.offsetHeight;
+
 
         /* koakuma-magic */
 
@@ -6303,6 +7159,27 @@ for (let i = 0; i < koakumaStarCount; i++) {
 
 
         /* 現在位置に合わせて表示 */   
+
+        if (
+            scrollPosition >= astronovaTop &&
+            scrollPosition < astronovaBottom
+        ) {
+            astronovaLightEffect.style.opacity = "1";
+        }
+
+        if (
+            scrollPosition >= luminoSomnioTop &&
+            scrollPosition < luminoSomnioBottom
+        ) {
+            underwaterBubbleEffect.style.opacity = "1";
+        }
+
+        if (
+            scrollPosition >= nutopiaTop &&
+            scrollPosition < nutopiaBottom
+        ) {
+            diamondLightEffect.style.opacity = "1";
+        }
 
         if (
             scrollPosition >= koakumaMagicTop &&
