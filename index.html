@@ -2734,6 +2734,232 @@
 }
 
 
+/* 雨とおぼろ月
+   浮かんでは消える淡い霞 */
+
+#mist-effect {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 1000;
+
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+
+.mist {
+    position: absolute;
+
+    width: 420px;
+    height: 130px;
+
+    border-radius: 50%;
+
+    background:
+    radial-gradient(
+        ellipse at center,
+        rgba(235, 240, 250, 0.55) 0%,
+        rgba(220, 230, 245, 0.38) 35%,
+        rgba(205, 215, 235, 0.20) 60%,
+        rgba(200, 210, 230, 0) 82%
+    );
+
+    filter: blur(10px);
+
+    animation:
+        mistAppear
+        var(--mist-duration)
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes mistAppear {
+
+    0% {
+        transform:
+            translateX(-25px)
+            scaleX(0.7)
+            scaleY(0.8);
+
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.25;
+    }
+
+    45% {
+    transform:
+        translateX(0)
+        scaleX(1)
+        scaleY(1);
+
+    opacity: 0.85;
+    }
+
+    70% {
+    transform:
+        translateX(20px)
+        scaleX(1.15)
+        scaleY(1.05);
+
+    opacity: 0.5;
+    }
+
+    100% {
+        transform:
+            translateX(45px)
+            scaleX(1.3)
+            scaleY(1.1);
+
+        opacity: 0;
+    }
+}
+
+
+/* 満開ときめきチャージ
+   桜と若葉の春風 */
+
+#spring-breeze-effect {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 1000;
+
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+
+/* 共通 */
+
+.spring-petal,
+.spring-leaf {
+    position: absolute;
+
+    left: -60px;
+    top: -60px;
+
+    animation:
+        springBreezeFlow
+        linear
+        infinite;
+}
+
+
+/* 桜の花びら */
+
+.spring-petal {
+    width: 13px;
+    height: 9px;
+
+    border-radius:
+        80% 20%
+        80% 20%;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 245, 250, 0.95),
+            rgba(255, 175, 205, 0.9)
+        );
+
+    box-shadow:
+        0 0 5px
+        rgba(255, 190, 215, 0.35);
+}
+
+
+/* 若葉 */
+
+.spring-leaf {
+    width: 15px;
+    height: 8px;
+
+    border-radius:
+        100% 0
+        100% 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(205, 245, 170, 0.95),
+            rgba(95, 185, 105, 0.9)
+        );
+
+    box-shadow:
+        0 0 4px
+        rgba(120, 200, 120, 0.25);
+}
+
+
+/* 春風に乗って画面を横断 */
+
+@keyframes springBreezeFlow {
+
+    0% {
+        transform:
+            translate(
+                var(--start-x),
+                var(--start-y)
+            )
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 0.9;
+    }
+
+    25% {
+        transform:
+            translate(
+                calc(var(--start-x) + 30vw),
+                calc(var(--start-y) + 12vh)
+            )
+            rotate(160deg);
+    }
+
+    50% {
+        transform:
+            translate(
+                calc(var(--start-x) + 60vw),
+                calc(var(--start-y) + 3vh)
+            )
+            rotate(340deg);
+    }
+
+    75% {
+        transform:
+            translate(
+                calc(var(--start-x) + 90vw),
+                calc(var(--start-y) + 17vh)
+            )
+            rotate(520deg);
+    }
+
+    100% {
+        transform:
+            translate(
+                calc(var(--start-x) + 130vw),
+                calc(var(--start-y) + 8vh)
+            )
+            rotate(720deg);
+
+        opacity: 0;
+    }
+}
+
+
 /* On your side ピンクの光エフェクト */
 
 #light-effect {
@@ -3251,6 +3477,10 @@
 </head>
 
 <body>
+
+    <div id="mist-effect"></div>
+
+    <div id="spring-breeze-effect"></div>
     
     <div id="astronova-light-effect"></div>
 
@@ -3333,19 +3563,14 @@
 
         <div class="song-index-grid update-index-grid">
 
-            <a href="#astronova" class="song-index-item">
-                <span class="index-song">Åstronova</span>
-                <span class="index-artist">文福しゃのめ</span>
+            <a href="#ame-to-oborozuki" class="song-index-item">
+                <span class="index-song">雨とおぼろ月</span>
+                <span class="index-artist">雨月紫乃</span>
             </a>
 
-            <a href="#lumino-somnio" class="song-index-item">
-                <span class="index-song">Ⅲuminσ Sömniσ</span>
-                <span class="index-artist">文福しゃのめ</span>
-            </a>
-
-            <a href="#nutopia" class="song-index-item">
-                <span class="index-song">νtopia</span>
-                <span class="index-artist">文福しゃのめ</span>
+            <a href="#mankai-tokimeki-charge" class="song-index-item">
+                <span class="index-song">満開ときめきチャージ</span>
+                <span class="index-artist">はなごろも</span>
             </a>
 
         </div>
@@ -3361,7 +3586,22 @@
 
          <div class="song-index-grid" id="song-index">
 
-        <a href="#koakuma-magic" class="song-index-item">
+            <a href="#astronova" class="song-index-item">
+                <span class="index-song">Åstronova</span>
+                <span class="index-artist">文福しゃのめ</span>
+            </a>
+
+            <a href="#lumino-somnio" class="song-index-item">
+                <span class="index-song">Ⅲuminσ Sömniσ</span>
+                <span class="index-artist">文福しゃのめ</span>
+            </a>
+
+            <a href="#nutopia" class="song-index-item">
+                <span class="index-song">νtopia</span>
+                <span class="index-artist">文福しゃのめ</span>
+            </a>
+
+            <a href="#koakuma-magic" class="song-index-item">
                 <span class="index-song">小悪魔💜magic</span>
                 <span class="index-artist">紫宮りず</span>
             </a>
@@ -3474,10 +3714,142 @@
 
         </section>
 
-<section class="song-article" id="astronova">
+<section class="song-article" id="ame-to-oborozuki">
 
     <div class="pickup-label">
         TODAY'S PICKUP
+    </div>
+
+    <h2 class="pickup-title">
+        雨とおぼろ月
+    </h2>
+
+    <div class="artist">
+        雨月紫乃
+    </div>
+
+    <p class="lead">
+        雨の中で月を見上げるような、<br>
+        静かな強さと優しさが詰まった一曲。
+    </p>
+
+    <div class="youtube">
+        <iframe
+            src="https://www.youtube.com/embed/LuEBzsEe15Q"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+        </iframe>
+    </div>
+    
+        <p>
+             チャンネル名：
+            <a href="https://www.youtube.com/@amatsukishino" target="_blank" rel="noopener noreferrer">
+             雨月紫乃 / Amatsuki Shino
+            </a>
+        </p>
+
+    <div class="youtube-action">
+        <a
+            href="https://youtu.be/LuEBzsEe15Q"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-action-button"
+        >
+            ▶ YouTubeで聴く・感想を届ける
+        </a>
+
+        <div class="youtube-action-message">
+            気に入った楽曲があれば、
+            あなたの「好き」を届けてみてください♪
+        </div>
+    </div>
+
+    <div class="comment">
+        <h3>好きポイント</h3>
+
+        <ul>
+            <li>諦めと前向きさが混ざった情感が深く響く</li>
+            <li>優しさと澄んだ響きが、雨音のような静けさの中で際立つところ</li>
+        </ul>
+    </div>
+
+</section>
+
+<section class="song-article" id="mankai-tokimeki-charge">
+
+    <div class="pickup-label">
+        TODAY'S PICKUP
+    </div>
+
+    <h2 class="pickup-title">
+        満開ときめきチャージ
+    </h2>
+
+    <div class="artist">
+        はなごろも
+    </div>
+
+    <p class="lead">
+        聴くと心が明るくなる、元気いっぱいな一曲！<br>
+        笑顔満開になりましょ～！！
+    </p>
+
+    <div class="youtube">
+        <iframe
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/UP4cje8sKK4?si=xINfTltLKDyD_2am" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+        <p>
+             チャンネル名：
+            <a href="https://www.youtube.com/@hanagoromo" target="_blank" rel="noopener noreferrer">
+             はなごろも - Hanagoromo
+            </a>
+        </p>
+
+    <div class="youtube-action">
+        <a
+            href="https://youtu.be/UP4cje8sKK4"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-action-button"
+        >
+            ▶ YouTubeで聴く・感想を届ける
+        </a>
+
+        <div class="youtube-action-message">
+            気に入った楽曲があれば、
+            あなたの「好き」を届けてみてください♪
+        </div>
+    </div>
+
+    <div class="comment">
+        <h3>好きポイント</h3>
+
+        <ul>
+            <li>ラスサビの変調</li>
+            <li>思わず声が出る、ノリノリな曲調</li>
+            <li>Aメロの元気の出る歌声、Bメロの柔らかい歌声、サビの柔らかくも弾むような歌声</li>
+            <li>コーレス練習動画もあるのでライブの練習もしやすい！</li>
+        </ul>
+    </div>
+
+</section>
+
+<section class="song-article" id="astronova">
+
+    <div class="pickup-label">
+        2026.9.14 UPDATE
     </div>
 
     <h2 class="pickup-title">
@@ -3542,7 +3914,7 @@
 <section class="song-article" id="lumino-somnio">
 
     <div class="pickup-label">
-        TODAY'S PICKUP
+        2026.9.14 UPDATE
     </div>
 
     <h2 class="pickup-title">
@@ -3607,7 +3979,7 @@
 <section class="song-article" id="nutopia">
 
     <div class="pickup-label">
-        TODAY'S PICKUP
+        2026.9.14 UPDATE
     </div>
 
     <h2 class="pickup-title">
@@ -3668,6 +4040,11 @@
             <li>静かな歌い始めから、広大なサビへの移り変わり</li>
             <li>力強いヒーカップ</li>
             <li>所々に入るウィスパーボイスのコーラス</li>
+            <li>オルタナ・ロック寄りのバンドサウンドが最高にカッコいい！</li>
+            <li>歪んだギターや力強いリズムがしゃのめさんの中性的で個性的な歌声と絶妙にマッチ</li>
+            <li>「壊せDistopia」「向かうUtopia」「君の手繋いで ねぇ 離さないよ」の歌詞の対比</li>
+            <li>切なさの中にも希望を感じさせる世界観が素敵！</li>
+            <li>しゃのめさん本人の想いがストレートに込められているところ</li>
         </ul>
     </div>
 
@@ -6806,7 +7183,201 @@ for (let i = 0; i < astronovaLightCount; i++) {
 
 </script>
 
+
 <script>
+
+const springBreezeEffect =
+    document.getElementById(
+        "spring-breeze-effect"
+    );
+
+
+/* -----------------
+   桜の花びら
+----------------- */
+
+const springPetalCount = 32;
+
+for (let i = 0; i < springPetalCount; i++) {
+
+    const petal =
+        document.createElement("div");
+
+    petal.classList.add(
+        "spring-petal"
+    );
+
+
+    /* 左側～少し画面内からスタート */
+
+    petal.style.setProperty(
+        "--start-x",
+        (-15 + Math.random() * 30) + "vw"
+    );
+
+    petal.style.setProperty(
+        "--start-y",
+        (Math.random() * 85) + "vh"
+    );
+
+
+    /* 花びらの大きさ */
+
+    const scale =
+        0.6 + Math.random() * 1.1;
+
+    petal.style.width =
+        13 * scale + "px";
+
+    petal.style.height =
+        9 * scale + "px";
+
+
+    /* 流れる速度 */
+
+    const duration =
+        5 + Math.random() * 5;
+
+    petal.style.animationDuration =
+        duration + "s";
+
+    petal.style.animationDelay =
+        -(Math.random() * duration) + "s";
+
+
+    springBreezeEffect.appendChild(
+        petal
+    );
+}
+
+
+/* -----------------
+   若葉
+----------------- */
+
+const springLeafCount = 14;
+
+for (let i = 0; i < springLeafCount; i++) {
+
+    const leaf =
+        document.createElement("div");
+
+    leaf.classList.add(
+        "spring-leaf"
+    );
+
+
+    leaf.style.setProperty(
+        "--start-x",
+        (-15 + Math.random() * 30) + "vw"
+    );
+
+    leaf.style.setProperty(
+        "--start-y",
+        (Math.random() * 85) + "vh"
+    );
+
+
+    /* 若葉は少し大きめ */
+
+    const scale =
+        0.8 + Math.random() * 1.2;
+
+    leaf.style.width =
+        15 * scale + "px";
+
+    leaf.style.height =
+        8 * scale + "px";
+
+
+    const duration =
+        6 + Math.random() * 5;
+
+    leaf.style.animationDuration =
+        duration + "s";
+
+    leaf.style.animationDelay =
+        -(Math.random() * duration) + "s";
+
+
+    springBreezeEffect.appendChild(
+        leaf
+    );
+}
+
+</script>
+
+<script>
+
+const mistEffect =
+    document.getElementById(
+        "mist-effect"
+    );
+
+const mistCount = 10;
+
+for (let i = 0; i < mistCount; i++) {
+
+    const mist =
+        document.createElement("div");
+
+    mist.classList.add(
+        "mist"
+    );
+
+
+    /* 画面全体に配置 */
+
+    mist.style.left =
+        -10 + Math.random() * 100 + "%";
+
+    mist.style.top =
+        5 + Math.random() * 85 + "%";
+
+
+    /* 大きさをランダムに */
+
+    const scale =
+        0.8 + Math.random() * 1.2;
+
+    mist.style.width =
+        420 * scale + "px";
+
+    mist.style.height =
+        130 * scale + "px";
+
+
+    /* ゆっくり浮かんで消える */
+
+    const duration =
+        5 + Math.random() * 5;
+
+    mist.style.setProperty(
+        "--mist-duration",
+        duration + "s"
+    );
+
+
+    /* 発生タイミングをバラす */
+
+    mist.style.animationDelay =
+        -(Math.random() * duration) + "s";
+
+
+    mistEffect.appendChild(
+        mist
+    );
+}
+
+</script>
+
+<script>
+
+    const ameToOborozukiSection =
+        document.getElementById("ame-to-oborozuki");
+
+    const mankaiTokimekiSection =
+        document.getElementById("mankai-tokimeki-charge");
 
     const astronovaSection =
         document.getElementById("astronova");
@@ -6891,6 +7462,10 @@ for (let i = 0; i < astronovaLightCount; i++) {
 
         /* まず全部非表示 */
 
+        mistEffect.style.opacity = "0";
+
+        springBreezeEffect.style.opacity = "0";
+
         astronovaLightEffect.style.opacity = "0";
 
         underwaterBubbleEffect.style.opacity = "0";
@@ -6938,6 +7513,25 @@ for (let i = 0; i < astronovaLightCount; i++) {
         flowerEffect.style.opacity = "0";
 
         heavenLightEffect.style.opacity = "0";
+
+        /* ame-to-oborozuki */
+
+        const ameToOborozukiTop =
+                ameToOborozukiSection.offsetTop;
+
+        const ameToOborozukiBottom =
+                ameToOborozukiTop +
+                ameToOborozukiSection.offsetHeight;
+
+        /* mankai-tokimeki-charge */
+
+        const mankaiTokimekiTop =
+                mankaiTokimekiSection.offsetTop;
+
+        const mankaiTokimekiBottom =
+                mankaiTokimekiTop +
+                mankaiTokimekiSection.offsetHeight;
+
 
         /* astronova */
 
@@ -7159,6 +7753,20 @@ for (let i = 0; i < astronovaLightCount; i++) {
 
 
         /* 現在位置に合わせて表示 */   
+
+        if (
+            scrollPosition >= ameToOborozukiTop &&
+            scrollPosition < ameToOborozukiBottom
+        ) {
+            mistEffect.style.opacity = "1";
+        }
+
+        if (
+            scrollPosition >= mankaiTokimekiTop &&
+            scrollPosition < mankaiTokimekiBottom
+        ) {
+            springBreezeEffect.style.opacity = "1";
+        }
 
         if (
             scrollPosition >= astronovaTop &&
