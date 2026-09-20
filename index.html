@@ -3156,6 +3156,458 @@
 }
 
 
+/* ロストメモリー
+   色褪せた記憶と残された記憶の花びら */
+
+#lost-memory-petal-effect {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 1000;
+
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+
+.memory-petal {
+    position: absolute;
+
+    top: -40px;
+
+    width: 18px;
+    height: 22px;
+
+    /*
+       花びら型
+       上部にわずかな切れ込みを作り、
+       下へ向かって細くする
+    */
+    clip-path:
+        polygon(
+            50% 10%,
+            62% 2%,
+            78% 6%,
+            92% 20%,
+            96% 40%,
+            88% 60%,
+            72% 78%,
+            50% 100%,
+            28% 78%,
+            12% 60%,
+            4% 40%,
+            8% 20%,
+            22% 6%,
+            38% 2%
+        );
+
+    transform-origin:
+        50% 85%;
+
+    animation:
+        memoryPetalFall
+        var(--petal-duration)
+        linear
+        infinite;
+}
+
+
+/* 色褪せた記憶 */
+
+.memory-petal.faded {
+    background:
+        radial-gradient(
+            ellipse at 50% 70%,
+            rgba(205, 205, 210, 0.9) 0%,
+            rgba(165, 165, 175, 0.78) 50%,
+            rgba(125, 130, 140, 0.62) 100%
+        );
+
+    box-shadow:
+        0 0 4px
+        rgba(170, 175, 185, 0.15);
+}
+
+
+/* 心に残る記憶 */
+
+.memory-petal.indigo {
+    background:
+        radial-gradient(
+            ellipse at 50% 70%,
+            rgba(125, 145, 200, 0.95) 0%,
+            rgba(75, 95, 155, 0.9) 50%,
+            rgba(40, 50, 105, 0.82) 100%
+        );
+
+    box-shadow:
+        0 0 6px
+        rgba(75, 100, 175, 0.28);
+}
+
+
+@keyframes memoryPetalFall {
+
+    0% {
+        transform:
+            translate(0, -10vh)
+            rotate(0deg)
+            rotateY(0deg);
+
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 0.85;
+    }
+
+    25% {
+        transform:
+            translate(
+                var(--drift-one),
+                25vh
+            )
+            rotate(100deg)
+            rotateY(70deg);
+    }
+
+    50% {
+        transform:
+            translate(
+                var(--drift-two),
+                55vh
+            )
+            rotate(210deg)
+            rotateY(150deg);
+    }
+
+    75% {
+        transform:
+            translate(
+                var(--drift-three),
+                85vh
+            )
+            rotate(310deg)
+            rotateY(230deg);
+
+        opacity: 0.7;
+    }
+
+    100% {
+        transform:
+            translate(
+                var(--drift-end),
+                115vh
+            )
+            rotate(420deg)
+            rotateY(360deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================
+   Aurora
+   縦に垂れる光のカーテン
+========================= */
+
+#aurora-effect {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 1000;
+
+    opacity: 0;
+    transition: opacity 1.2s ease;
+}
+
+
+/* オーロラ1本分 */
+
+.aurora-curtain {
+    position: absolute;
+
+    top: -8%;
+
+    width: var(--aurora-width);
+    height: var(--aurora-height);
+
+    border-radius:
+        0 0
+        50% 50%;
+
+    opacity: var(--aurora-opacity);
+
+    filter:
+        blur(var(--aurora-blur));
+
+    transform-origin:
+        top center;
+
+    animation:
+        auroraCurtainFlow
+        var(--aurora-duration)
+        ease-in-out
+        infinite alternate;
+}
+
+
+/* 水色 */
+
+.aurora-curtain.cyan {
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(150, 245, 255, 0),
+            rgba(130, 235, 255, 0.55) 12%,
+            rgba(105, 220, 255, 0.48) 40%,
+            rgba(110, 210, 255, 0.20) 72%,
+            rgba(110, 210, 255, 0)
+        );
+}
+
+
+/* 青 */
+
+.aurora-curtain.blue {
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(125, 175, 255, 0),
+            rgba(110, 180, 255, 0.48) 15%,
+            rgba(105, 160, 255, 0.42) 45%,
+            rgba(100, 145, 255, 0.16) 75%,
+            rgba(100, 145, 255, 0)
+        );
+}
+
+
+/* 紫 */
+
+.aurora-curtain.purple {
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(205, 160, 255, 0),
+            rgba(195, 145, 255, 0.48) 15%,
+            rgba(175, 125, 255, 0.40) 45%,
+            rgba(155, 115, 255, 0.15) 75%,
+            rgba(155, 115, 255, 0)
+        );
+}
+
+
+/* 淡い緑 */
+
+.aurora-curtain.green {
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(145, 255, 220, 0),
+            rgba(135, 250, 215, 0.42) 15%,
+            rgba(115, 235, 205, 0.36) 45%,
+            rgba(110, 220, 200, 0.14) 75%,
+            rgba(110, 220, 200, 0)
+        );
+}
+
+
+/* =========================
+   ゆらめき
+========================= */
+
+@keyframes auroraCurtainFlow {
+
+    0% {
+        transform:
+            translateX(-8px)
+            skewX(-3deg)
+            scaleY(0.92);
+
+        opacity:
+            calc(
+                var(--aurora-opacity) * 0.65
+            );
+    }
+
+    30% {
+        transform:
+            translateX(5px)
+            skewX(2deg)
+            scaleY(1.03);
+    }
+
+    60% {
+        transform:
+            translateX(-3px)
+            skewX(-1deg)
+            scaleY(0.97);
+
+        opacity:
+            var(--aurora-opacity);
+    }
+
+    100% {
+        transform:
+            translateX(9px)
+            skewX(3deg)
+            scaleY(1.08);
+
+        opacity:
+            calc(
+                var(--aurora-opacity) * 0.75
+            );
+    }
+}
+
+
+/* =========================
+   虎嘯孤月
+   鏡花水月・水面の月明かり
+========================= */
+
+#moon-water-effect {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 1000;
+
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+
+/* 水面に反射する月光 */
+
+.moon-reflection {
+    position: absolute;
+
+    left: 50%;
+
+    width: var(--reflection-width);
+    height: 2px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0),
+            rgba(215,230,255,0.35),
+            rgba(245,248,255,0.95),
+            rgba(215,230,255,0.35),
+            rgba(255,255,255,0)
+        );
+
+    box-shadow:
+        0 0 7px
+        rgba(205,225,255,0.55);
+
+    opacity:
+        var(--reflection-opacity);
+
+    animation:
+        moonWaterShimmer
+        var(--reflection-duration)
+        ease-in-out
+        infinite alternate;
+}
+
+
+@keyframes moonWaterShimmer {
+
+    0% {
+        transform:
+            translateX(-50%)
+            scaleX(0.55);
+
+        opacity: 0.25;
+    }
+
+    40% {
+        transform:
+            translateX(-50%)
+            scaleX(1.15);
+
+        opacity:
+            var(--reflection-opacity);
+    }
+
+    70% {
+        transform:
+            translateX(-50%)
+            scaleX(0.75);
+
+        opacity: 0.5;
+    }
+
+    100% {
+        transform:
+            translateX(-50%)
+            scaleX(1.35);
+
+        opacity:
+            var(--reflection-opacity);
+    }
+}
+
+
+/* 星明かり */
+
+.water-star {
+    position: absolute;
+
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(245, 250, 255, 0.95);
+
+    box-shadow:
+        0 0 5px rgba(220,235,255,0.9),
+        0 0 10px rgba(180,210,255,0.55);
+
+    animation:
+        waterStarTwinkle
+        var(--star-duration)
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes waterStarTwinkle {
+
+    0%,
+    100% {
+        transform:
+            scaleX(0.5)
+            scaleY(0.7);
+
+        opacity: 0.1;
+    }
+
+    50% {
+        transform:
+            scaleX(3.5)
+            scaleY(1);
+
+        opacity: 1;
+    }
+}
+
+
 /* On your side ピンクの光エフェクト */
 
 #light-effect {
@@ -3674,6 +4126,12 @@
 
 <body>
 
+    <div id="moon-water-effect"></div>
+
+    <div id="aurora-effect"></div>
+
+    <div id="lost-memory-petal-effect"></div>
+
     <div id="sound-wave-effect"></div>
 
     <div id="mist-effect"></div>
@@ -3760,6 +4218,21 @@
 
 
         <div class="song-index-grid update-index-grid">
+
+            <a href="#koshou-kogetsu" class="song-index-item">
+                <span class="index-song">虎嘯孤月</span>
+                <span class="index-artist">寅田ぱんだ</span>
+            </a>
+
+            <a href="#aurora" class="song-index-item">
+                <span class="index-song">Aurora</span>
+                <span class="index-artist">あさはねむゐ</span>
+            </a>
+
+            <a href="#lost-memory" class="song-index-item">
+                <span class="index-song">ロストメモリー</span>
+                <span class="index-artist">深影</span>
+            </a>
 
             <a href="#hauchau" class="song-index-item">
                 <span class="index-song">ハウっちゃう</span>
@@ -3917,6 +4390,208 @@
 
         </section>
 
+<section class="song-article" id="koshou-kogetsu">
+
+    <div class="pickup-label">
+        TODAY'S PICKUP
+    </div>
+
+    <h2 class="pickup-title">
+        虎嘯孤月
+    </h2>
+
+    <div class="artist">
+        寅田ぱんだ
+    </div>
+
+    <p class="lead">
+        この歌は彼女のことを知れば知るほどに心に沁みる。<br>
+        寅田ぱんださんの人生のような歌
+    </p>
+
+    <div class="youtube">
+        <iframe
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/Oruf_fUgBPU?si=GHVyArmMM9T8NStH" 
+            title="YouTube video player" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+        <p>
+             チャンネル名：
+            <a href="https://www.youtube.com/@ToradaPanda" target="_blank" rel="noopener noreferrer">
+             寅田ぱんだ / Torada Panda
+            </a>
+        </p>
+
+
+    <div class="youtube-action">
+        <a
+            href="https://youtu.be/Oruf_fUgBPU"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-action-button"
+        >
+            ▶ YouTubeで聴く・感想を届ける
+        </a>
+
+        <div class="youtube-action-message">
+            気に入った楽曲があれば、
+            あなたの「好き」を届けてみてください♪
+        </div>
+    </div>
+
+    <div class="comment">
+        <h3>好きポイント</h3>
+
+        <ul>
+            <li>澄み渡る素敵な歌声</li>
+        </ul>
+    </div>
+
+</section>
+
+<section class="song-article" id="aurora">
+
+    <div class="pickup-label">
+        TODAY'S PICKUP
+    </div>
+
+    <h2 class="pickup-title">
+        Aurora
+    </h2>
+
+    <div class="artist">
+        あさはねむゐ
+    </div>
+
+    <p class="lead">
+        "歌うこと"への想いを、<br>
+        静寂な空に舞うAuroraのような<br>
+        美しいメロディにのせた一曲
+    </p>
+
+    <div class="youtube">
+        <iframe
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/-hTa1S_I0wM?si=B2XAdz5VqTlXBg-T" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+        <p>
+             チャンネル名：
+            <a href="https://www.youtube.com/@nemui-asaha" target="_blank" rel="noopener noreferrer">
+             あさは ねむゐ / ASAHA NEMUI
+            </a>
+        </p>
+
+    <div class="youtube-action">
+        <a
+            href="https://youtu.be/-hTa1S_I0wM"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-action-button"
+        >
+            ▶ YouTubeで聴く・感想を届ける
+        </a>
+
+        <div class="youtube-action-message">
+            気に入った楽曲があれば、
+            あなたの「好き」を届けてみてください♪
+        </div>
+    </div>
+
+    <div class="comment">
+        <h3>好きポイント</h3>
+
+        <ul>
+            <li>
+                壊れそうなほど繊細な旋律と歌声の中に、
+                決して壊れない強さを感じるところ
+            </li>
+        </ul>
+    </div>
+
+</section>
+
+<section class="song-article" id="lost-memory">
+
+    <div class="pickup-label">
+        TODAY'S PICKUP
+    </div>
+
+    <h2 class="pickup-title">
+        ロストメモリー
+    </h2>
+
+    <div class="artist">
+        深影
+    </div>
+
+    <p class="lead">
+        MVの世界観との相性が良く、<br>
+        何度も繰り返し聴きたくなる一曲
+    </p>
+
+    <div class="youtube">
+        <iframe
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/QjULtzL4zb4?si=zoUtc385l60DqR5R" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+        <p>
+             チャンネル名：
+            <a href="https://www.youtube.com/@Mikage_RKMusic" target="_blank" rel="noopener noreferrer">
+             深影
+            </a>
+        </p>
+
+    <div class="youtube-action">
+        <a
+            href="https://youtu.be/QjULtzL4zb4"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-action-button"
+        >
+            ▶ YouTubeで聴く・感想を届ける
+        </a>
+
+        <div class="youtube-action-message">
+            気に入った楽曲があれば、
+            あなたの「好き」を届けてみてください♪
+        </div>
+    </div>
+
+    <div class="comment">
+        <h3>好きポイント</h3>
+
+        <ul>
+            <li>透き通るような歌声と実直な感情表現が、切なさと情緒を高みまで昇華させているところ</li>
+            <li>日常の小さな思い出が丁寧に積み重なっていく描写が、すごく胸に刺さる</li>
+            <li>相手を思う優しさと自己犠牲的な心情がとても繊細で、聴くたびに心を優しく揺さぶるところ</li>
+            <li>メロディーと歌声のマッチングが抜群で、静かな切なさと暖かい余韻が長く残るキラーチューン</li>
+        </ul>
+    </div>
+
+</section>
+
 <section class="song-article" id="hauchau">
 
     <div class="pickup-label">
@@ -3988,7 +4663,7 @@
 <section class="song-article" id="ame-to-oborozuki">
 
     <div class="pickup-label">
-        TODAY'S PICKUP
+        2026.9.19 UPDATE
     </div>
 
     <h2 class="pickup-title">
@@ -4052,7 +4727,7 @@
 <section class="song-article" id="mankai-tokimeki-charge">
 
     <div class="pickup-label">
-        TODAY'S PICKUP
+        2026.9.19 UPDATE
     </div>
 
     <h2 class="pickup-title">
@@ -7721,6 +8396,392 @@ for (let i = 0; i < soundWaveCount; i++) {
 
 <script>
 
+const lostMemoryPetalEffect =
+    document.getElementById(
+        "lost-memory-petal-effect"
+    );
+
+const memoryPetalCount = 34;
+
+for (let i = 0; i < memoryPetalCount; i++) {
+
+    const petal =
+        document.createElement("div");
+
+    petal.classList.add(
+        "memory-petal"
+    );
+
+
+    /*
+       約70%を灰色
+       約30%を藍色
+    */
+
+    if (Math.random() < 0.7) {
+
+        petal.classList.add(
+            "faded"
+        );
+
+    } else {
+
+        petal.classList.add(
+            "indigo"
+        );
+    }
+
+
+    /* 横方向にランダム配置 */
+
+    petal.style.left =
+        Math.random() * 100 + "%";
+
+
+    /* 大小を少し混ぜる */
+
+    const scale =
+        0.65 + Math.random() * 0.8;
+
+    petal.style.width =
+        18 * scale + "px";
+
+    petal.style.height =
+        22 * scale + "px";
+
+
+    /*
+       左右への揺らぎ
+       花びらごとに違う軌道
+    */
+
+    petal.style.setProperty(
+        "--drift-one",
+        (-25 + Math.random() * 50) + "px"
+    );
+
+    petal.style.setProperty(
+        "--drift-two",
+        (-45 + Math.random() * 90) + "px"
+    );
+
+    petal.style.setProperty(
+        "--drift-three",
+        (-30 + Math.random() * 60) + "px"
+    );
+
+    petal.style.setProperty(
+        "--drift-end",
+        (-55 + Math.random() * 110) + "px"
+    );
+
+
+    /*
+       ゆっくり散る
+    */
+
+    const duration =
+        7 + Math.random() * 6;
+
+    petal.style.setProperty(
+        "--petal-duration",
+        duration + "s"
+    );
+
+
+    /* 最初から画面全体に散らしておく */
+
+    petal.style.animationDelay =
+        -(Math.random() * duration) + "s";
+
+
+    lostMemoryPetalEffect.appendChild(
+        petal
+    );
+}
+
+</script>
+
+
+<script>
+
+const auroraEffect =
+    document.getElementById(
+        "aurora-effect"
+    );
+
+
+const auroraCurtainCount = 34;
+
+const auroraColors = [
+    "cyan",
+    "cyan",
+    "blue",
+    "blue",
+    "purple",
+    "green"
+];
+
+
+for (
+    let i = 0;
+    i < auroraCurtainCount;
+    i++
+) {
+
+    const curtain =
+        document.createElement("div");
+
+    curtain.classList.add(
+        "aurora-curtain"
+    );
+
+
+    /* 色 */
+
+    const color =
+        auroraColors[
+            Math.floor(
+                Math.random() *
+                auroraColors.length
+            )
+        ];
+
+    curtain.classList.add(
+        color
+    );
+
+
+    /* 横方向に配置 */
+
+    curtain.style.left =
+        -5 + Math.random() * 105 + "%";
+
+
+    /*
+       細い光～太い光を混ぜる
+    */
+
+    const width =
+        20 + Math.random() * 65;
+
+    curtain.style.setProperty(
+        "--aurora-width",
+        width + "px"
+    );
+
+
+    /*
+       垂れ下がる長さ
+       短いものと長いものを混ぜる
+    */
+
+    const height =
+        35 + Math.random() * 55;
+
+    curtain.style.setProperty(
+        "--aurora-height",
+        height + "vh"
+    );
+
+
+    /*
+       透明度
+    */
+
+    const opacity =
+        0.25 + Math.random() * 0.4;
+
+    curtain.style.setProperty(
+        "--aurora-opacity",
+        opacity
+    );
+
+
+    /*
+       光をぼかす
+    */
+
+    const blur =
+        7 + Math.random() * 12;
+
+    curtain.style.setProperty(
+        "--aurora-blur",
+        blur + "px"
+    );
+
+
+    /*
+       ゆっくり揺らす
+    */
+
+    const duration =
+        5 + Math.random() * 7;
+
+    curtain.style.setProperty(
+        "--aurora-duration",
+        duration + "s"
+    );
+
+
+    curtain.style.animationDelay =
+        -(Math.random() * duration) + "s";
+
+
+    auroraEffect.appendChild(
+        curtain
+    );
+}
+
+</script>
+
+
+<script>
+
+const moonWaterEffect =
+    document.getElementById(
+        "moon-water-effect"
+    );
+
+
+/* =========================
+   月明かりの水面反射
+========================= */
+
+const reflectionCount = 32;
+
+for (
+    let i = 0;
+    i < reflectionCount;
+    i++
+) {
+
+    const reflection =
+        document.createElement("div");
+
+    reflection.classList.add(
+        "moon-reflection"
+    );
+
+
+    /*
+       画面中央を基準に
+       少し左右へずらす
+    */
+
+    reflection.style.left =
+        42 + Math.random() * 16 + "%";
+
+
+    /*
+       水面なので下半分へ
+    */
+
+    reflection.style.top =
+        52 + Math.random() * 43 + "%";
+
+
+    /*
+       短い反射～長い反射
+    */
+
+    const width =
+        25 + Math.random() * 130;
+
+    reflection.style.setProperty(
+        "--reflection-width",
+        width + "px"
+    );
+
+
+    const opacity =
+        0.35 + Math.random() * 0.55;
+
+    reflection.style.setProperty(
+        "--reflection-opacity",
+        opacity
+    );
+
+
+    /*
+       それぞれ違う速度で揺れる
+    */
+
+    const duration =
+        1.5 + Math.random() * 2.5;
+
+    reflection.style.setProperty(
+        "--reflection-duration",
+        duration + "s"
+    );
+
+    reflection.style.animationDelay =
+        -(Math.random() * duration) + "s";
+
+
+    moonWaterEffect.appendChild(
+        reflection
+    );
+}
+
+
+/* =========================
+   水面に映る星の光
+========================= */
+
+const waterStarCount = 24;
+
+for (
+    let i = 0;
+    i < waterStarCount;
+    i++
+) {
+
+    const star =
+        document.createElement("div");
+
+    star.classList.add(
+        "water-star"
+    );
+
+
+    star.style.left =
+        5 + Math.random() * 90 + "%";
+
+    star.style.top =
+        50 + Math.random() * 45 + "%";
+
+
+    const duration =
+        1.5 + Math.random() * 3;
+
+    star.style.setProperty(
+        "--star-duration",
+        duration + "s"
+    );
+
+    star.style.animationDelay =
+        -(Math.random() * duration) + "s";
+
+
+    moonWaterEffect.appendChild(
+        star
+    );
+}
+
+</script>
+
+<script>
+
+    const koshouKogetsuSection =
+        document.getElementById("koshou-kogetsu");
+
+    const auroraSection =
+        document.getElementById("aurora");
+
+    const lostMemorySection =
+        document.getElementById("lost-memory");
+
     const hauchauSection =
         document.getElementById("hauchau");
 
@@ -7813,6 +8874,12 @@ for (let i = 0; i < soundWaveCount; i++) {
 
         /* まず全部非表示 */
 
+        moonWaterEffect.style.opacity = "0";
+
+        auroraEffect.style.opacity = "0";
+
+        lostMemoryPetalEffect.style.opacity = "0";
+
         soundWaveEffect.style.opacity = "0";
 
         mistEffect.style.opacity = "0";
@@ -7866,6 +8933,36 @@ for (let i = 0; i < soundWaveCount; i++) {
         flowerEffect.style.opacity = "0";
 
         heavenLightEffect.style.opacity = "0";
+
+        /* koshoukogetsu */
+
+        const koshouKogetsuTop =
+                koshouKogetsuSection.offsetTop;
+
+        const koshouKogetsuBottom =
+                koshouKogetsuTop +
+                koshouKogetsuSection.offsetHeight;
+
+
+        /* aurora */
+
+        const auroraTop =
+                auroraSection.offsetTop;
+
+        const auroraBottom =
+                auroraTop +
+                auroraSection.offsetHeight;
+
+
+
+        /* lostMemory */
+
+        const lostMemoryTop =
+                lostMemorySection.offsetTop;
+
+        const lostMemoryBottom =
+                lostMemoryTop +
+                lostMemorySection.offsetHeight;
 
         /* hauchau */
 
@@ -8115,6 +9212,28 @@ for (let i = 0; i < soundWaveCount; i++) {
 
 
         /* 現在位置に合わせて表示 */   
+
+        if (
+            scrollPosition >= koshouKogetsuTop &&
+            scrollPosition < koshouKogetsuBottom
+        ) {
+            moonWaterEffect.style.opacity = "1";
+        }
+
+
+        if (
+            scrollPosition >= auroraTop &&
+            scrollPosition < auroraBottom
+        ) {
+            auroraEffect.style.opacity = "1";
+        }
+
+        if (
+            scrollPosition >= lostMemoryTop &&
+            scrollPosition < lostMemoryBottom
+        ) {
+            lostMemoryPetalEffect.style.opacity = "1";
+        }
 
         if (
             scrollPosition >= hauchauTop &&
