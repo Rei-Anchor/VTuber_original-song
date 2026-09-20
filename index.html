@@ -2490,6 +2490,202 @@
     }
 }
 
+
+/* ハウっちゃう
+   中心から飛び交う音波 */
+
+#sound-wave-effect {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 1000;
+
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+
+.sound-wave {
+    position: absolute;
+
+    left: var(--wave-x);
+    top: var(--wave-y);
+
+    width: 45px;
+    height: 55px;
+
+    opacity: 0;
+
+    animation:
+        soundWaveSpread
+        var(--wave-duration)
+        ease-out
+        infinite;
+}
+
+
+/* =========================
+   右向き音波 )))
+========================= */
+
+.sound-wave.right {
+    border-right:
+        2px solid
+        rgba(160, 210, 255, 0.9);
+
+    border-radius:
+        0 100% 100% 0;
+
+    filter:
+        drop-shadow(
+            0 0 4px
+            rgba(130, 200, 255, 0.7)
+        );
+}
+
+
+/* 2本目 */
+
+.sound-wave.right::before {
+    content: "";
+
+    position: absolute;
+
+    top: 8px;
+    right: 8px;
+
+    width: 28px;
+    height: 39px;
+
+    border-right:
+        2px solid
+        rgba(160, 210, 255, 0.85);
+
+    border-radius:
+        0 100% 100% 0;
+}
+
+
+/* 3本目 */
+
+.sound-wave.right::after {
+    content: "";
+
+    position: absolute;
+
+    top: 16px;
+    right: 16px;
+
+    width: 14px;
+    height: 23px;
+
+    border-right:
+        2px solid
+        rgba(160, 210, 255, 0.8);
+
+    border-radius:
+        0 100% 100% 0;
+}
+
+
+/* =========================
+   左向き音波 (((
+========================= */
+
+.sound-wave.left {
+    border-left:
+        2px solid
+        rgba(215, 170, 255, 0.9);
+
+    border-radius:
+        100% 0 0 100%;
+
+    filter:
+        drop-shadow(
+            0 0 4px
+            rgba(200, 140, 255, 0.7)
+        );
+}
+
+
+/* 2本目 */
+
+.sound-wave.left::before {
+    content: "";
+
+    position: absolute;
+
+    top: 8px;
+    left: 8px;
+
+    width: 28px;
+    height: 39px;
+
+    border-left:
+        2px solid
+        rgba(215, 170, 255, 0.85);
+
+    border-radius:
+        100% 0 0 100%;
+}
+
+
+/* 3本目 */
+
+.sound-wave.left::after {
+    content: "";
+
+    position: absolute;
+
+    top: 16px;
+    left: 16px;
+
+    width: 14px;
+    height: 23px;
+
+    border-left:
+        2px solid
+        rgba(215, 170, 255, 0.8);
+
+    border-radius:
+        100% 0 0 100%;
+}
+
+
+@keyframes soundWaveSpread {
+
+    0% {
+        transform:
+            translate(-50%, -50%)
+            scale(0.15);
+
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.9;
+    }
+
+    55% {
+        transform:
+            translate(-50%, -50%)
+            scale(1.2);
+
+        opacity: 0.75;
+    }
+
+    100% {
+        transform:
+            translate(-50%, -50%)
+            scale(2.2);
+
+        opacity: 0;
+    }
+}
+
 /* War of Song 火の粉エフェクト */
 
 #fire-effect {
@@ -3478,6 +3674,8 @@
 
 <body>
 
+    <div id="sound-wave-effect"></div>
+
     <div id="mist-effect"></div>
 
     <div id="spring-breeze-effect"></div>
@@ -3563,14 +3761,9 @@
 
         <div class="song-index-grid update-index-grid">
 
-            <a href="#ame-to-oborozuki" class="song-index-item">
-                <span class="index-song">雨とおぼろ月</span>
-                <span class="index-artist">雨月紫乃</span>
-            </a>
-
-            <a href="#mankai-tokimeki-charge" class="song-index-item">
-                <span class="index-song">満開ときめきチャージ</span>
-                <span class="index-artist">はなごろも</span>
+            <a href="#hauchau" class="song-index-item">
+                <span class="index-song">ハウっちゃう</span>
+                <span class="index-artist">天ノ譜ステラ</span>
             </a>
 
         </div>
@@ -3585,6 +3778,16 @@
          </h2>
 
          <div class="song-index-grid" id="song-index">
+
+            <a href="#ame-to-oborozuki" class="song-index-item">
+                <span class="index-song">雨とおぼろ月</span>
+                <span class="index-artist">雨月紫乃</span>
+            </a>
+
+            <a href="#mankai-tokimeki-charge" class="song-index-item">
+                <span class="index-song">満開ときめきチャージ</span>
+                <span class="index-artist">はなごろも</span>
+            </a>
 
             <a href="#astronova" class="song-index-item">
                 <span class="index-song">Åstronova</span>
@@ -3713,6 +3916,74 @@
          </div>
 
         </section>
+
+<section class="song-article" id="hauchau">
+
+    <div class="pickup-label">
+        TODAY'S PICKUP
+    </div>
+
+    <h2 class="pickup-title">
+        ハウっちゃう
+    </h2>
+
+    <div class="artist">
+        天ノ譜ステラ
+    </div>
+
+    <p class="lead">
+        毎日聴いていますが中毒ではありません<br>
+        １回聞いた後、イヤホンのイコライザ設定を変えて聞き直したりしますが中毒ではありません<br>
+        １番聞き終わった後、１回巻き戻したりしますが中毒ではありません。
+    </p>
+
+    <div class="youtube">
+        <iframe
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/eiImo8U_20I?si=gwmcP9HKQMTRFJsd" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+        <p>
+             チャンネル名：
+            <a href="https://www.youtube.com/@AmanofuStella" target="_blank" rel="noopener noreferrer">
+             天ノ譜ステラ Stella Ch.【VSinger
+            </a>
+        </p>
+
+    <div class="youtube-action">
+        <a
+            href="https://youtu.be/eiImo8U_20I"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-action-button"
+        >
+            ▶ YouTubeで聴く・感想を届ける
+        </a>
+
+        <div class="youtube-action-message">
+            気に入った楽曲があれば、
+            あなたの「好き」を届けてみてください♪
+        </div>
+    </div>
+
+    <div class="comment">
+        <h3>好きポイント</h3>
+
+        <ul>
+            <li>キャッチーすぎるメロディに、超絶歌唱力が乗ってぶちかまされます</li>
+            <li>「あーハウちゃってハウちゃって」の中毒性</li>
+            <li>と、言うか曲全体に中毒性があります</li>
+        </ul>
+    </div>
+
+</section>
 
 <section class="song-article" id="ame-to-oborozuki">
 
@@ -7371,7 +7642,87 @@ for (let i = 0; i < mistCount; i++) {
 
 </script>
 
+
 <script>
+
+const soundWaveEffect =
+    document.getElementById(
+        "sound-wave-effect"
+    );
+
+const soundWaveCount = 26;
+
+for (let i = 0; i < soundWaveCount; i++) {
+
+    const wave =
+        document.createElement("div");
+
+    wave.classList.add(
+        "sound-wave"
+    );
+
+
+    /* 左右どちらへ広がる波か */
+
+    if (Math.random() < 0.5) {
+
+        wave.classList.add("left");
+
+    } else {
+
+        wave.classList.add("right");
+
+    }
+
+
+    /*
+       画面中央付近から発生
+       完全な一点にはしない
+    */
+
+    wave.style.setProperty(
+        "--wave-x",
+        35 + Math.random() * 30 + "%"
+    );
+
+    wave.style.setProperty(
+        "--wave-y",
+        20 + Math.random() * 60 + "%"
+    );
+
+    /*
+       音波なので比較的速く
+       0.9～2秒
+    */
+
+    const duration =
+        0.9 + Math.random() * 1.1;
+
+    wave.style.setProperty(
+        "--wave-duration",
+        duration + "s"
+    );
+
+
+    /*
+       発生タイミングをランダム化
+    */
+
+    wave.style.animationDelay =
+        -(Math.random() * duration) + "s";
+
+
+    soundWaveEffect.appendChild(
+        wave
+    );
+}
+
+</script>
+
+<script>
+
+    const hauchauSection =
+        document.getElementById("hauchau");
 
     const ameToOborozukiSection =
         document.getElementById("ame-to-oborozuki");
@@ -7462,6 +7813,8 @@ for (let i = 0; i < mistCount; i++) {
 
         /* まず全部非表示 */
 
+        soundWaveEffect.style.opacity = "0";
+
         mistEffect.style.opacity = "0";
 
         springBreezeEffect.style.opacity = "0";
@@ -7513,6 +7866,15 @@ for (let i = 0; i < mistCount; i++) {
         flowerEffect.style.opacity = "0";
 
         heavenLightEffect.style.opacity = "0";
+
+        /* hauchau */
+
+        const hauchauTop =
+                hauchauSection.offsetTop;
+
+        const hauchauBottom =
+                hauchauTop +
+                hauchauSection.offsetHeight;
 
         /* ame-to-oborozuki */
 
@@ -7753,6 +8115,13 @@ for (let i = 0; i < mistCount; i++) {
 
 
         /* 現在位置に合わせて表示 */   
+
+        if (
+            scrollPosition >= hauchauTop &&
+            scrollPosition < hauchauBottom
+        ) {
+            soundWaveEffect.style.opacity = "1";
+        }
 
         if (
             scrollPosition >= ameToOborozukiTop &&
