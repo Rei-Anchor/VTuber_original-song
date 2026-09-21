@@ -3469,6 +3469,190 @@
 
 
 /* =========================
+   救世主ちゃん！
+   ポップな磁石の雨
+========================= */
+
+#magnet-rain-effect {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 1000;
+
+    opacity: 0;
+    transition: opacity 0.7s ease;
+}
+
+
+.magnet-item {
+    position: absolute;
+    top: -80px;
+
+    animation:
+        magnetFall
+        var(--magnet-duration)
+        linear
+        infinite;
+
+    animation-delay:
+        var(--magnet-delay);
+}
+
+
+/* =========================
+   U字磁石
+========================= */
+
+.magnet-u {
+    position: relative;
+
+    width: 28px;
+    height: 34px;
+
+    border-left: 8px solid #3f4349;
+    border-right: 8px solid #3f4349;
+    border-bottom: 8px solid #3f4349;
+
+    border-radius:
+        0 0 18px 18px;
+
+    box-sizing: border-box;
+
+    filter:
+        drop-shadow(
+            0 2px 3px
+            rgba(0, 0, 0, 0.18)
+        );
+}
+
+
+/* U字磁石の先端 */
+
+/* =========================
+   U字磁石の磁極
+========================= */
+
+.magnet-u::before,
+.magnet-u::after {
+    content: "";
+
+    position: absolute;
+
+    top: -1px;
+
+    width: 8px;
+    height: 11px;
+
+    border-radius:
+        2px 2px 1px 1px;
+}
+
+
+/* N極 */
+
+.magnet-u::before {
+    left: -8px;
+
+    background:
+        #ff4f5e;
+}
+
+
+/* S極 */
+
+.magnet-u::after {
+    right: -8px;
+
+    background:
+        #4ba9ff;
+}
+
+
+/* =========================
+   I字磁石
+========================= */
+
+.magnet-i {
+    width: 12px;
+    height: 42px;
+
+    border-radius: 3px;
+
+    background:
+        linear-gradient(
+            to bottom,
+
+            /* N極 */
+            #ff4f5e 0%,
+            #ff4f5e 20%,
+
+            /* 本体 */
+            #3f4349 20%,
+            #3f4349 80%,
+
+            /* S極 */
+            #4ba9ff 80%,
+            #4ba9ff 100%
+        );
+
+    box-shadow:
+        0 2px 4px
+        rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================
+   落下
+========================= */
+
+@keyframes magnetFall {
+
+    0% {
+        transform:
+            translateY(-10vh)
+            translateX(0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 0.9;
+    }
+
+    30% {
+        transform:
+            translateY(30vh)
+            translateX(18px)
+            rotate(130deg);
+    }
+
+    60% {
+        transform:
+            translateY(65vh)
+            translateX(-15px)
+            rotate(270deg);
+    }
+
+    85% {
+        opacity: 0.9;
+    }
+
+    100% {
+        transform:
+            translateY(115vh)
+            translateX(25px)
+            rotate(480deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================
    虎嘯孤月
    鏡花水月・水面の月明かり
 ========================= */
@@ -3604,6 +3788,380 @@
             scaleY(1);
 
         opacity: 1;
+    }
+}
+
+
+/* =========================
+   ムゲン宇宙速度
+   宇宙高速移動エフェクト
+========================= */
+
+#space-speed-effect {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 1000;
+
+    opacity: 0;
+    transition: opacity 0.7s ease;
+}
+
+
+/* 光の1本 */
+
+.space-speed-line {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: var(--line-length);
+    height: var(--line-thickness);
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            to right,
+            rgba(255,255,255,0),
+            rgba(210,235,255,0.45),
+            rgba(240,250,255,0.95),
+            rgba(255,255,255,1)
+        );
+
+    box-shadow:
+        0 0 5px rgba(190,225,255,0.8),
+        0 0 10px rgba(150,200,255,0.35);
+
+    transform-origin:
+        left center;
+
+    opacity: 0;
+
+    animation:
+        spaceSpeedRush
+        var(--speed-duration)
+        linear
+        infinite;
+
+    animation-delay:
+        var(--speed-delay);
+}
+
+
+/* =========================
+   中心から手前へ急加速
+========================= */
+
+@keyframes spaceSpeedRush {
+
+    0% {
+        transform:
+            rotate(var(--line-angle))
+            translateX(15px)
+            scaleX(0.05);
+
+        opacity: 0;
+    }
+
+
+    10% {
+        opacity: 0.35;
+    }
+
+
+    25% {
+        transform:
+            rotate(var(--line-angle))
+            translateX(45px)
+            scaleX(0.15);
+
+        opacity: 0.65;
+    }
+
+
+    55% {
+        transform:
+            rotate(var(--line-angle))
+            translateX(180px)
+            scaleX(0.65);
+
+        opacity: 1;
+    }
+
+
+    100% {
+        transform:
+            rotate(var(--line-angle))
+            translateX(85vmax)
+            scaleX(2.8);
+
+        opacity: 0;
+    }
+}
+
+#space-speed-effect::before {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 140px;
+    height: 140px;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(210,235,255,0.20) 0%,
+            rgba(150,200,255,0.08) 35%,
+            rgba(100,150,255,0) 72%
+        );
+
+    filter:
+        blur(10px);
+
+    animation:
+        spaceCorePulse
+        2.5s
+        ease-in-out
+        infinite alternate;
+}
+
+
+@keyframes spaceCorePulse {
+
+    from {
+        transform:
+            translate(-50%, -50%)
+            scale(0.8);
+
+        opacity: 0.4;
+    }
+
+    to {
+        transform:
+            translate(-50%, -50%)
+            scale(1.25);
+
+        opacity: 0.8;
+    }
+}
+
+/* =========================
+   presents
+   Pink Light × White Feather
+========================= */
+
+#presents-effect {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 1000;
+
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+
+/* =========================
+   柔らかなピンクの光
+========================= */
+
+.present-light {
+    position: absolute;
+
+    width: var(--light-size);
+    height: var(--light-size);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 245, 250, 0.95) 0%,
+            rgba(255, 205, 225, 0.85) 12%,
+            rgba(255, 145, 195, 0.60) 30%,
+            rgba(255, 115, 180, 0.32) 50%,
+            rgba(255, 120, 185, 0.12) 68%,
+            rgba(255, 120, 185, 0) 82%
+        );
+
+    filter:
+        blur(5px);
+
+    box-shadow:
+        0 0 18px rgba(255, 160, 205, 0.30);
+
+    animation:
+        presentLightFloat
+        var(--light-duration)
+        ease-in-out
+        infinite alternate;
+}
+
+
+@keyframes presentLightFloat {
+
+    0% {
+        transform:
+            translate(-25px, 20px)
+            scale(0.75);
+
+        opacity: 0.45;
+    }
+
+    35% {
+        transform:
+            translate(5px, -10px)
+            scale(1.05);
+
+        opacity: 0.85;
+    }
+
+    65% {
+        transform:
+            translate(20px, -20px)
+            scale(1.18);
+
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translate(35px, 10px)
+            scale(0.9);
+
+        opacity: 0.55;
+    }
+}
+
+
+/* =========================
+   白い羽根
+========================= */
+
+.present-feather {
+    position: absolute;
+
+    top: -50px;
+
+    width: var(--feather-width);
+    height: var(--feather-height);
+
+    border-radius:
+        80% 15%
+        80% 15%;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.98),
+            rgba(245,245,255,0.75) 45%,
+            rgba(220,230,255,0.25)
+        );
+
+    box-shadow:
+        0 0 6px
+        rgba(255,255,255,0.65);
+
+    transform-origin:
+        center center;
+
+    animation:
+        presentFeatherFall
+        var(--feather-duration)
+        linear
+        infinite;
+
+    animation-delay:
+        var(--feather-delay);
+}
+
+
+/* 羽根の軸 */
+
+.present-feather::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 15%;
+
+    width: 1px;
+    height: 78%;
+
+    background:
+        rgba(210,220,235,0.65);
+
+    transform:
+        rotate(15deg);
+}
+
+
+@keyframes presentFeatherFall {
+
+    0% {
+        transform:
+            translate(0, -10vh)
+            rotate(-20deg)
+            rotateY(0deg);
+
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 0.95;
+    }
+
+    25% {
+        transform:
+            translate(55px, 25vh)
+            rotate(80deg)
+            rotateY(100deg);
+
+        opacity: 0.95;
+    }
+
+    50% {
+        transform:
+            translate(-45px, 55vh)
+            rotate(170deg)
+            rotateY(200deg);
+
+        opacity: 0.95;
+    }
+
+    75% {
+        transform:
+            translate(60px, 85vh)
+            rotate(260deg)
+            rotateY(300deg);
+
+        opacity: 0.9;
+    }
+
+    100% {
+        transform:
+            translate(-35px, 115vh)
+            rotate(360deg)
+            rotateY(400deg);
+
+        opacity: 0;
     }
 }
 
@@ -4126,6 +4684,12 @@
 
 <body>
 
+    <div id="presents-effect"></div>
+
+    <div id="space-speed-effect"></div>
+
+    <div id="magnet-rain-effect"></div>
+
     <div id="moon-water-effect"></div>
 
     <div id="aurora-effect"></div>
@@ -4219,6 +4783,34 @@
 
         <div class="song-index-grid update-index-grid">
 
+            <a href="#presents" class="song-index-item">
+                <span class="index-song">presents</span>
+                <span class="index-artist">夏野華火 × 天使るるあ</span>
+            </a>
+
+            <a href="#mugen-uchuu-sokudo" class="song-index-item">
+                <span class="index-song">ムゲン宇宙速度 feat. 夜明けの明星</span>
+                <span class="index-artist">月城セシル</span>
+            </a>
+
+            <a href="#kyuuseishu-chan" class="song-index-item">
+                <span class="index-song">救世主ちゃん！</span>
+                <span class="index-artist">天ノ咲ねん</span>
+            </a>
+
+        </div>
+
+    </section>
+
+
+        <section class="song-index">
+
+         <h2 class="song-index-title">
+                掲載楽曲
+         </h2>
+
+         <div class="song-index-grid" id="song-index">
+
             <a href="#koshou-kogetsu" class="song-index-item">
                 <span class="index-song">虎嘯孤月</span>
                 <span class="index-artist">寅田ぱんだ</span>
@@ -4238,19 +4830,6 @@
                 <span class="index-song">ハウっちゃう</span>
                 <span class="index-artist">天ノ譜ステラ</span>
             </a>
-
-        </div>
-
-    </section>
-
-
-        <section class="song-index">
-
-         <h2 class="song-index-title">
-                掲載楽曲
-         </h2>
-
-         <div class="song-index-grid" id="song-index">
 
             <a href="#ame-to-oborozuki" class="song-index-item">
                 <span class="index-song">雨とおぼろ月</span>
@@ -4389,6 +4968,230 @@
          </div>
 
         </section>
+
+<section class="song-article" id="presents">
+
+    <div class="pickup-label">
+        TODAY'S PICKUP
+    </div>
+
+    <h2 class="pickup-title">
+        presents
+    </h2>
+
+    <div class="artist">
+        夏野華火 × 天使るるあ
+    </div>
+
+    <p class="lead">
+        夏野華火×天使るるあ<br>
+        女神と天使からリスナーたちへの歌の「贈り物」<br>
+        きっと、歌以外にも多くのものをもらえる一曲
+    </p>
+
+    <div class="youtube">
+        <iframe
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/BsUQVBLk5EY?si=ccR7-f-Rw-NRnHhN" 
+            title="YouTube video player" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+        <p>
+             チャンネル名：
+            <a href="https://www.youtube.com/@hanabinatsuno8723" target="_blank" rel="noopener noreferrer">
+                夏野華火Vsinger 【Hanabi Natsuno】
+            </a>
+        </p>
+
+        <p>
+             チャンネル名：
+            <a href="https://www.youtube.com/@rururua.runrun" target="_blank" rel="noopener noreferrer">
+                天使るるあ
+            </a>
+        </p>
+
+    <div class="youtube-action">
+        <a
+            href="https://youtu.be/BsUQVBLk5EY"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-action-button"
+        >
+            ▶ YouTubeで聴く・感想を届ける
+        </a>
+
+        <div class="youtube-action-message">
+            気に入った楽曲があれば、
+            あなたの「好き」を届けてみてください♪
+        </div>
+    </div>
+
+    <div class="comment">
+        <h3>好きポイント</h3>
+
+        <ul>
+            <li>「花火」と「天使」が含まれる歌詞</li>
+            <li>ラスサビ前「高く」の綺麗で真っ直ぐな高音</li>
+            <li>夏野華火さんの柔らかく包み込むような歌声</li>
+            <li>天使るるあさんの明るく晴れ渡るような歌声</li>
+        </ul>
+    </div>
+
+</section>
+
+
+<section class="song-article" id="mugen-uchuu-sokudo">
+
+    <div class="pickup-label">
+        TODAY'S PICKUP
+    </div>
+
+    <h2 class="pickup-title">
+        ムゲン宇宙速度 feat. 夜明けの明星
+    </h2>
+
+    <div class="artist">
+        月城セシル
+    </div>
+
+    <p class="lead">
+        この曲を聴くと月城セシルさんの<br>
+        「アニソンシンガーになる」という夢を<br>
+        もっともっと近くで応援したくなる！
+    </p>
+
+    <div class="youtube">
+        <iframe
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/pYWTVeDQ2Nc?si=pX8IYUoRsRRX1wwL" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+        <p>
+             チャンネル名：
+            <a href="https://www.youtube.com/@CecilTsukishiro" target="_blank" rel="noopener noreferrer">
+             Cecil Ch.月城セシル【セシんもーZ】
+            </a>
+        </p>
+
+    <div class="youtube-action">
+        <a
+            href="https://youtu.be/pYWTVeDQ2Nc"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-action-button"
+        >
+            ▶ YouTubeで聴く・感想を届ける
+        </a>
+
+        <div class="youtube-action-message">
+            気に入った楽曲があれば、
+            あなたの「好き」を届けてみてください♪
+        </div>
+    </div>
+
+    <div class="comment">
+        <h3>好きポイント</h3>
+
+        <ul>
+            <li>
+                夢を叶えたその先もずっと応援したくなる
+            </li>
+        </ul>
+    </div>
+
+</section>
+
+
+<section class="song-article" id="kyuuseishu-chan">
+
+    <div class="pickup-label">
+        TODAY'S PICKUP
+    </div>
+
+    <h2 class="pickup-title">
+        救世主ちゃん！
+    </h2>
+
+    <div class="artist">
+        天ノ咲ねん
+    </div>
+
+    <p class="lead">
+        一度聴いたらクセになる<br>
+        キャッチーでノリの良い楽曲
+    </p>
+
+    <div class="youtube">
+        <iframe
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/4iw6u_c9rDM?si=8aqfcqssJifJd9Vz" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+        <p>
+             チャンネル名：
+            <a href="https://www.youtube.com/@Anoe_Nen" target="_blank" rel="noopener noreferrer">
+             天ノ咲ねん / Anoe Nen ch.
+            </a>
+        </p>
+
+    <div class="youtube-action">
+        <a
+            href="https://youtu.be/4iw6u_c9rDM"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-action-button"
+        >
+            ▶ YouTubeで聴く・感想を届ける
+        </a>
+
+        <div class="youtube-action-message">
+            気に入った楽曲があれば、
+            あなたの「好き」を届けてみてください♪
+        </div>
+    </div>
+
+    <div class="comment">
+        <h3>好きポイント</h3>
+
+        <ul>
+            <li>
+                明るく楽しいサウンドが全体を包み、
+                自然と体が動きたくなるアップテンポさ
+            </li>
+
+            <li>
+                歌詞の親しみやすい部分が、
+                天ノ咲ねんさんのぽんこつ感とマッチして
+                とっても微笑ましい
+            </li>
+
+            <li>
+                可愛い歌声が生き生きと輝いて、
+                フレッシュでポジティブなエネルギーが満載！
+            </li>
+        </ul>
+    </div>
+
+</section>
 
 <section class="song-article" id="koshou-kogetsu">
 
@@ -8773,6 +9576,329 @@ for (
 
 <script>
 
+const magnetRainEffect =
+    document.getElementById(
+        "magnet-rain-effect"
+    );
+
+
+const magnetCount = 36;
+
+
+for (
+    let i = 0;
+    i < magnetCount;
+    i++
+) {
+
+    const magnet =
+        document.createElement("div");
+
+
+    magnet.classList.add(
+        "magnet-item"
+    );
+
+
+    /*
+       U字とI字をランダム生成
+    */
+
+    if (Math.random() < 0.6) {
+
+        magnet.classList.add(
+            "magnet-u"
+        );
+
+    } else {
+
+        magnet.classList.add(
+            "magnet-i"
+        );
+    }
+
+
+    /*
+       横位置
+    */
+
+    magnet.style.left =
+        Math.random() * 100 + "%";
+
+
+    /*
+       大きさをランダムに
+    */
+
+    const scale =
+        0.7 + Math.random() * 0.8;
+
+    magnet.style.scale =
+        scale;
+
+
+    /*
+       落下速度
+    */
+
+    const duration =
+        4 + Math.random() * 5;
+
+    magnet.style.setProperty(
+        "--magnet-duration",
+        duration + "s"
+    );
+
+
+    /*
+       最初から画面内に
+       バラけて存在させる
+    */
+
+    magnet.style.setProperty(
+        "--magnet-delay",
+        -(Math.random() * duration) + "s"
+    );
+
+
+    magnetRainEffect.appendChild(
+        magnet
+    );
+}
+
+</script>
+
+<script>
+
+const spaceSpeedEffect =
+    document.getElementById(
+        "space-speed-effect"
+    );
+
+
+const spaceSpeedLineCount = 70;
+
+
+for (
+    let i = 0;
+    i < spaceSpeedLineCount;
+    i++
+) {
+
+    const line =
+        document.createElement("div");
+
+
+    line.classList.add(
+        "space-speed-line"
+    );
+
+
+    /* =====================
+       飛び出す方向
+    ===================== */
+
+    const angle =
+        Math.random() * 360;
+
+    line.style.setProperty(
+        "--line-angle",
+        angle + "deg"
+    );
+
+
+    /* =====================
+       光線の長さ
+    ===================== */
+
+    const length =
+        50 + Math.random() * 150;
+
+    line.style.setProperty(
+        "--line-length",
+        length + "px"
+    );
+
+
+    /* =====================
+       光線の太さ
+    ===================== */
+
+    const thickness =
+        1 + Math.random() * 2.5;
+
+    line.style.setProperty(
+        "--line-thickness",
+        thickness + "px"
+    );
+
+
+    /* =====================
+       移動速度
+    ===================== */
+
+    const duration =
+        0.8 + Math.random() * 1.2;
+
+    line.style.setProperty(
+        "--speed-duration",
+        duration + "s"
+    );
+
+
+    /* 最初から画面全体に散らす */
+
+    line.style.setProperty(
+        "--speed-delay",
+        -(Math.random() * duration) + "s"
+    );
+
+
+    spaceSpeedEffect.appendChild(
+        line
+    );
+}
+
+</script>
+
+<script>
+
+const presentsEffect =
+    document.getElementById(
+        "presents-effect"
+    );
+
+
+/* =========================
+   ピンクの光
+========================= */
+
+const presentLightCount = 14;
+
+for (
+    let i = 0;
+    i < presentLightCount;
+    i++
+) {
+
+    const light =
+        document.createElement("div");
+
+    light.classList.add(
+        "present-light"
+    );
+
+
+    light.style.left =
+        Math.random() * 100 + "%";
+
+    light.style.top =
+        Math.random() * 100 + "%";
+
+
+    const size =
+        30 + Math.random() * 80;
+
+    light.style.setProperty(
+        "--light-size",
+        size + "px"
+    );
+
+
+    const duration =
+        6 + Math.random() * 7;
+
+    light.style.setProperty(
+        "--light-duration",
+        duration + "s"
+    );
+
+
+    light.style.animationDelay =
+        -(Math.random() * duration) + "s";
+
+
+    presentsEffect.appendChild(
+        light
+    );
+}
+
+</script>
+
+<script>
+
+/* =========================
+   白い羽根
+========================= */
+
+const presentFeatherCount = 18;
+
+for (
+    let i = 0;
+    i < presentFeatherCount;
+    i++
+) {
+
+    const feather =
+        document.createElement("div");
+
+    feather.classList.add(
+        "present-feather"
+    );
+
+
+    feather.style.left =
+        Math.random() * 100 + "%";
+
+
+    const scale =
+        0.65 + Math.random() * 0.9;
+
+
+    feather.style.setProperty(
+        "--feather-width",
+        12 * scale + "px"
+    );
+
+    feather.style.setProperty(
+        "--feather-height",
+        32 * scale + "px"
+    );
+
+
+    const duration =
+        3.5 + Math.random() * 3;
+
+    feather.style.setProperty(
+        "--feather-duration",
+        duration + "s"
+    );
+
+
+    feather.style.setProperty(
+        "--feather-delay",
+        -(Math.random() * duration) + "s"
+    );
+
+
+    presentsEffect.appendChild(
+        feather
+    );
+}
+
+</script>
+
+<script>
+
+    const presentsSection =
+        document.getElementById("presents");
+
+    const mugenUchuuSokudoSection =
+        document.getElementById("mugen-uchuu-sokudo");
+
+    const kyuuseishuChanSection =
+        document.getElementById("kyuuseishu-chan");
+
     const koshouKogetsuSection =
         document.getElementById("koshou-kogetsu");
 
@@ -8874,6 +10000,12 @@ for (
 
         /* まず全部非表示 */
 
+        presentsEffect.style.opacity = "0";
+
+        spaceSpeedEffect.style.opacity = "0";
+
+        magnetRainEffect.style.opacity = "0";
+
         moonWaterEffect.style.opacity = "0";
 
         auroraEffect.style.opacity = "0";
@@ -8933,6 +10065,34 @@ for (
         flowerEffect.style.opacity = "0";
 
         heavenLightEffect.style.opacity = "0";
+
+        /* presents */
+
+        const presentsTop =
+                presentsSection.offsetTop;
+
+        const presentsBottom =
+                presentsTop +
+                presentsSection.offsetHeight;
+
+        /* mugenUchuuSokudo */
+
+        const mugenUchuuSokudoTop =
+                mugenUchuuSokudoSection.offsetTop;
+
+        const mugenUchuuSokudoBottom =
+                mugenUchuuSokudoTop +
+                mugenUchuuSokudoSection.offsetHeight;
+
+        /* kyuuseishuChan */
+
+        const kyuuseishuChanTop =
+                kyuuseishuChanSection.offsetTop;
+
+        const kyuuseishuChanBottom =
+                kyuuseishuChanTop +
+                kyuuseishuChanSection.offsetHeight;
+
 
         /* koshoukogetsu */
 
@@ -9212,6 +10372,27 @@ for (
 
 
         /* 現在位置に合わせて表示 */   
+
+        if (
+            scrollPosition >= presentsTop &&
+            scrollPosition < presentsBottom
+        ) {
+            presentsEffect.style.opacity = "1";
+        }
+
+        if (
+            scrollPosition >= mugenUchuuSokudoTop &&
+            scrollPosition < mugenUchuuSokudoBottom
+        ) {
+            spaceSpeedEffect.style.opacity = "1";
+        }
+
+        if (
+            scrollPosition >= kyuuseishuChanTop &&
+            scrollPosition < kyuuseishuChanBottom
+        ) {
+            magnetRainEffect.style.opacity = "1";
+        }
 
         if (
             scrollPosition >= koshouKogetsuTop &&
