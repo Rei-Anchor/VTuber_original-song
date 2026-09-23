@@ -4165,6 +4165,362 @@
     }
 }
 
+/* =========================
+   はじまりの物語
+   Primula Petal Effect
+========================= */
+
+#primula-petal-effect {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 1000;
+
+    opacity: 0;
+    transition: opacity 0.9s ease;
+}
+
+
+/* 花びら */
+
+.primula-petal {
+    position: absolute;
+
+    left: var(--start-x);
+    bottom: -40px;
+
+    width: var(--petal-width);
+    height: var(--petal-height);
+
+    border-radius:
+        65% 35% 65% 35% /
+        55% 45% 55% 45%;
+
+    transform-origin:
+        center center;
+
+    filter:
+        drop-shadow(
+            0 1px 2px
+            rgba(120, 80, 120, 0.12)
+        );
+
+    animation:
+        primulaPetalRise
+        var(--petal-duration)
+        linear
+        infinite;
+
+    animation-delay:
+        var(--petal-delay);
+}
+
+/* 淡いピンク */
+
+.primula-petal.soft-pink {
+    background:
+        linear-gradient(
+            135deg,
+            #fff0f7,
+            #f6a8cf 55%,
+            #e984b7
+        );
+}
+
+
+/* ローズピンク */
+
+.primula-petal.rose {
+    background:
+        linear-gradient(
+            135deg,
+            #ffb1d1,
+            #e84f98 55%,
+            #c93d83
+        );
+}
+
+
+/* 白 */
+
+.primula-petal.white {
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #fff8fc 55%,
+            #f1dfea
+        );
+}
+
+
+/* 薄紫 */
+
+.primula-petal.lavender {
+    background:
+        linear-gradient(
+            135deg,
+            #f2dcff,
+            #c99be6 55%,
+            #ad7dce
+        );
+}
+
+@keyframes primulaPetalRise {
+
+    0% {
+        transform:
+            translate(0, 10vh)
+            rotate(0deg)
+            rotateY(0deg);
+
+        opacity: 0;
+    }
+
+
+    8% {
+        opacity: 0.9;
+    }
+
+
+    20% {
+        transform:
+            translate(
+                var(--drift-one),
+                -15vh
+            )
+            rotate(100deg)
+            rotateY(70deg);
+    }
+
+
+    40% {
+        transform:
+            translate(
+                var(--drift-two),
+                -40vh
+            )
+            rotate(210deg)
+            rotateY(150deg);
+    }
+
+
+    60% {
+        transform:
+            translate(
+                var(--drift-three),
+                -65vh
+            )
+            rotate(330deg)
+            rotateY(240deg);
+    }
+
+
+    80% {
+        transform:
+            translate(
+                var(--drift-four),
+                -90vh
+            )
+            rotate(470deg)
+            rotateY(310deg);
+
+        opacity: 0.8;
+    }
+
+
+    100% {
+        transform:
+            translate(
+                var(--drift-end),
+                -125vh
+            )
+            rotate(620deg)
+            rotateY(400deg);
+
+        opacity: 0;
+    }
+}
+
+
+
+
+/* =========================
+   苺一会
+   Strawberry Effect
+========================= */
+
+#strawberry-effect {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 1000;
+
+    opacity: 0;
+    transition: opacity 0.7s ease;
+}
+
+
+/* イチゴ全体 */
+
+.strawberry {
+    position: absolute;
+
+    top: -70px;
+
+    width: var(--strawberry-size);
+    height: calc(
+        var(--strawberry-size) * 1.15
+    );
+
+    animation:
+        strawberryFall
+        var(--strawberry-duration)
+        linear
+        infinite;
+
+    animation-delay:
+        var(--strawberry-delay);
+}
+
+
+/* =========================
+   赤い実
+========================= */
+
+.strawberry-body {
+    position: absolute;
+
+    left: 50%;
+    top: 18%;
+
+    width: 82%;
+    height: 78%;
+
+    transform:
+        translateX(-50%)
+        rotate(45deg);
+
+    border-radius:
+        55% 45%
+        60% 40%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff7180 0%,
+            #f84259 45%,
+            #d92843 100%
+        );
+
+    box-shadow:
+        0 2px 5px
+        rgba(120, 20, 40, 0.18);
+}
+
+
+/* =========================
+   緑のヘタ
+========================= */
+
+.strawberry-leaf {
+    position: absolute;
+
+    left: 50%;
+    top: 7%;
+
+    width: 65%;
+    height: 30%;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        #55a95d;
+
+    clip-path:
+        polygon(
+            50% 0%,
+            61% 35%,
+            92% 22%,
+            72% 52%,
+            100% 65%,
+            62% 67%,
+            50% 100%,
+            38% 67%,
+            0% 65%,
+            28% 52%,
+            8% 22%,
+            39% 35%
+        );
+
+    z-index: 2;
+}
+
+.strawberry-seed {
+    position: absolute;
+
+    width: 2px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 235, 165, 0.9);
+
+    z-index: 1;
+}
+
+@keyframes strawberryFall {
+
+    0% {
+        transform:
+            translate(0, -10vh)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 0.95;
+    }
+
+    25% {
+        transform:
+            translate(30px, 25vh)
+            rotate(140deg);
+    }
+
+    50% {
+        transform:
+            translate(-25px, 55vh)
+            rotate(300deg);
+    }
+
+    75% {
+        transform:
+            translate(35px, 85vh)
+            rotate(470deg);
+
+        opacity: 0.95;
+    }
+
+    100% {
+        transform:
+            translate(-20px, 115vh)
+            rotate(650deg);
+
+        opacity: 0;
+    }
+}
+
+
 
 /* On your side ピンクの光エフェクト */
 
@@ -4684,6 +5040,10 @@
 
 <body>
 
+    <div id="primula-petal-effect"></div>
+
+    <div id="strawberry-effect"></div>
+
     <div id="presents-effect"></div>
 
     <div id="space-speed-effect"></div>
@@ -4783,6 +5143,29 @@
 
         <div class="song-index-grid update-index-grid">
 
+            <a href="#hajimari-no-monogatari" class="song-index-item">
+                <span class="index-song">はじまりの物語</span>
+                <span class="index-artist">綺栖ちの</span>
+            </a>
+
+            <a href="#ichigo-ichie" class="song-index-item">
+                <span class="index-song">いちごいちえ（苺一会）～Strawberry Lifetime Meeting～</span>
+                <span class="index-artist">苺トキ</span>
+            </a>
+            
+        </div>
+
+    </section>
+
+
+        <section class="song-index">
+
+         <h2 class="song-index-title">
+                掲載楽曲
+         </h2>
+
+         <div class="song-index-grid" id="song-index">
+
             <a href="#presents" class="song-index-item">
                 <span class="index-song">presents</span>
                 <span class="index-artist">夏野華火 × 天使るるあ</span>
@@ -4797,19 +5180,6 @@
                 <span class="index-song">救世主ちゃん！</span>
                 <span class="index-artist">天ノ咲ねん</span>
             </a>
-
-        </div>
-
-    </section>
-
-
-        <section class="song-index">
-
-         <h2 class="song-index-title">
-                掲載楽曲
-         </h2>
-
-         <div class="song-index-grid" id="song-index">
 
             <a href="#koshou-kogetsu" class="song-index-item">
                 <span class="index-song">虎嘯孤月</span>
@@ -4968,6 +5338,152 @@
          </div>
 
         </section>
+
+<section class="song-article" id="hajimari-no-monogatari">
+
+    <div class="pickup-label">
+        TODAY'S PICKUP
+    </div>
+
+    <h2 class="pickup-title">
+        はじまりの物語
+    </h2>
+
+    <div class="artist">
+        綺栖ちの
+    </div>
+
+    <p class="lead">
+        癒し系の歌声が心を包んでくれる。<br>
+        MVの花畑と大空、ちのさんの笑顔が輝く。<br>
+        観て、聴いて心が軽やかになれる一曲。
+    </p>
+
+    <div class="youtube">
+        <iframe
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/A06PN1cPblE?si=OXD-8T8NbUqGJT2Y" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+        <p>
+             チャンネル名：
+            <a href="https://www.youtube.com/@AyaseChino" target="_blank" rel="noopener noreferrer">
+                綺栖ちの / Ayase Chino
+            </a>
+        </p>
+
+    <div class="youtube-action">
+        <a
+            href="https://youtu.be/A06PN1cPblE"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-action-button"
+        >
+            ▶ YouTubeで聴く・感想を届ける
+        </a>
+
+        <div class="youtube-action-message">
+            気に入った楽曲があれば、
+            あなたの「好き」を届けてみてください♪
+        </div>
+    </div>
+
+    <div class="comment">
+        <h3>好きポイント</h3>
+
+        <ul>
+            <li>
+                「はじまり」と「プリムラの花」の関係性が素敵
+            </li>
+            <li>
+                希望を感じさせる曲調
+            </li>
+            <li>
+                ラスサビの変調からパッと花開くような歌声
+            </li>
+        </ul>
+    </div>
+
+</section>
+
+
+<section class="song-article" id="ichigo-ichie">
+
+    <div class="pickup-label">
+        TODAY'S PICKUP
+    </div>
+
+    <h2 class="pickup-title">
+        いちごいちえ（苺一会）<br>
+        ～Strawberry Lifetime Meeting～
+    </h2>
+
+    <div class="artist">
+        苺トキ
+    </div>
+
+    <p class="lead">
+        親しみやすく楽しいダンスミュージック！
+    </p>
+
+    <div class="youtube">
+        <iframe
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/fmNf8UVQRCI?si=Sk0oUFJm-3vPly0B" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+        <p>
+             チャンネル名：
+            <a href="https://www.youtube.com/@magstd10ki" target="_blank" rel="noopener noreferrer">
+                苺トキ - Ichigo Toki
+            </a>
+        </p>
+
+    <div class="youtube-action">
+        <a
+            href="https://youtu.be/fmNf8UVQRCI"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-action-button"
+        >
+            ▶ YouTubeで聴く・感想を届ける
+        </a>
+
+        <div class="youtube-action-message">
+            気に入った楽曲があれば、
+            あなたの「好き」を届けてみてください♪
+        </div>
+    </div>
+
+    <div class="comment">
+        <h3>好きポイント</h3>
+
+        <ul>
+            <li>
+                可愛いだけじゃない！？個性的な歌詞
+            </li>
+
+            <li>
+                可愛く魅せる素敵な歌声
+            </li>
+        </ul>
+    </div>
+
+</section>
 
 <section class="song-article" id="presents">
 
@@ -9888,7 +10404,293 @@ for (
 
 </script>
 
+
 <script>
+
+const strawberryEffect =
+    document.getElementById(
+        "strawberry-effect"
+    );
+
+
+const strawberryCount = 24;
+
+
+for (
+    let i = 0;
+    i < strawberryCount;
+    i++
+) {
+
+    const strawberry =
+        document.createElement("div");
+
+    strawberry.classList.add(
+        "strawberry"
+    );
+
+
+    /* =====================
+       赤い実
+    ===================== */
+
+    const body =
+        document.createElement("div");
+
+    body.classList.add(
+        "strawberry-body"
+    );
+
+    strawberry.appendChild(
+        body
+    );
+
+
+    /* =====================
+       種
+    ===================== */
+
+    const seedPositions = [
+        [38, 38],
+        [58, 36],
+        [30, 52],
+        [50, 51],
+        [67, 53],
+        [40, 66],
+        [59, 67]
+    ];
+
+
+    seedPositions.forEach(
+        ([x, y]) => {
+
+            const seed =
+                document.createElement("div");
+
+            seed.classList.add(
+                "strawberry-seed"
+            );
+
+            seed.style.left =
+                x + "%";
+
+            seed.style.top =
+                y + "%";
+
+            strawberry.appendChild(
+                seed
+            );
+        }
+    );
+
+
+    /* =====================
+       ヘタ
+    ===================== */
+
+    const leaf =
+        document.createElement("div");
+
+    leaf.classList.add(
+        "strawberry-leaf"
+    );
+
+    strawberry.appendChild(
+        leaf
+    );
+
+
+    /* =====================
+       横位置
+    ===================== */
+
+    strawberry.style.left =
+        Math.random() * 100 + "%";
+
+
+    /* =====================
+       大きさ
+    ===================== */
+
+    const size =
+        24 + Math.random() * 25;
+
+    strawberry.style.setProperty(
+        "--strawberry-size",
+        size + "px"
+    );
+
+
+    /* =====================
+       落下速度
+    ===================== */
+
+    const duration =
+        4 + Math.random() * 4;
+
+    strawberry.style.setProperty(
+        "--strawberry-duration",
+        duration + "s"
+    );
+
+
+    strawberry.style.setProperty(
+        "--strawberry-delay",
+        -(Math.random() * duration) + "s"
+    );
+
+
+    strawberryEffect.appendChild(
+        strawberry
+    );
+}
+
+</script>
+
+<script>
+
+const primulaPetalEffect =
+    document.getElementById(
+        "primula-petal-effect"
+    );
+
+
+const primulaPetalCount = 38;
+
+
+const primulaColors = [
+    "soft-pink",
+    "soft-pink",
+    "soft-pink",
+    "rose",
+    "rose",
+    "white",
+    "lavender"
+];
+
+
+for (
+    let i = 0;
+    i < primulaPetalCount;
+    i++
+) {
+
+    const petal =
+        document.createElement("div");
+
+    petal.classList.add(
+        "primula-petal"
+    );
+
+
+    /* =====================
+       色
+    ===================== */
+
+    const color =
+        primulaColors[
+            Math.floor(
+                Math.random() *
+                primulaColors.length
+            )
+        ];
+
+    petal.classList.add(
+        color
+    );
+
+
+    /* =====================
+       出現位置
+    ===================== */
+
+    petal.style.setProperty(
+        "--start-x",
+        Math.random() * 100 + "%"
+    );
+
+
+    /* =====================
+       大きさ
+    ===================== */
+
+    const scale =
+        0.65 + Math.random() * 0.9;
+
+    petal.style.setProperty(
+        "--petal-width",
+        15 * scale + "px"
+    );
+
+    petal.style.setProperty(
+        "--petal-height",
+        22 * scale + "px"
+    );
+
+
+    /* =====================
+       風による横移動
+    ===================== */
+
+    petal.style.setProperty(
+        "--drift-one",
+        (-40 + Math.random() * 80) + "px"
+    );
+
+    petal.style.setProperty(
+        "--drift-two",
+        (-90 + Math.random() * 180) + "px"
+    );
+
+    petal.style.setProperty(
+        "--drift-three",
+        (-60 + Math.random() * 120) + "px"
+    );
+
+    petal.style.setProperty(
+        "--drift-four",
+        (-110 + Math.random() * 220) + "px"
+    );
+
+    petal.style.setProperty(
+        "--drift-end",
+        (-70 + Math.random() * 140) + "px"
+    );
+
+
+    /* =====================
+       上昇速度
+    ===================== */
+
+    const duration =
+        5 + Math.random() * 5;
+
+    petal.style.setProperty(
+        "--petal-duration",
+        duration + "s"
+    );
+
+
+    petal.style.setProperty(
+        "--petal-delay",
+        -(Math.random() * duration) + "s"
+    );
+
+
+    primulaPetalEffect.appendChild(
+        petal
+    );
+}
+
+</script>
+
+<script>
+
+    const hajimariNoMonogatariSection =
+        document.getElementById("hajimari-no-monogatari");
+
+    const ichigoIchieSection =
+        document.getElementById("ichigo-ichie");
 
     const presentsSection =
         document.getElementById("presents");
@@ -10000,6 +10802,10 @@ for (
 
         /* まず全部非表示 */
 
+        primulaPetalEffect.style.opacity = "0";
+
+        strawberryEffect.style.opacity = "0";
+
         presentsEffect.style.opacity = "0";
 
         spaceSpeedEffect.style.opacity = "0";
@@ -10065,6 +10871,25 @@ for (
         flowerEffect.style.opacity = "0";
 
         heavenLightEffect.style.opacity = "0";
+
+        /* hajimarinoMonogatari */
+
+        const hajimariNoMonogatariTop =
+                hajimariNoMonogatariSection.offsetTop;
+
+        const hajimariNoMonogatariBottom =
+                hajimariNoMonogatariTop +
+                hajimariNoMonogatariSection.offsetHeight;
+
+
+        /* ichigoIchie */
+
+        const ichigoIchieTop =
+                ichigoIchieSection.offsetTop;
+
+        const ichigoIchieBottom =
+                ichigoIchieTop +
+                ichigoIchieSection.offsetHeight;
 
         /* presents */
 
@@ -10372,6 +11197,20 @@ for (
 
 
         /* 現在位置に合わせて表示 */   
+
+        if (
+            scrollPosition >= hajimariNoMonogatariTop &&
+            scrollPosition < hajimariNoMonogatariBottom
+        ) {
+            primulaPetalEffect.style.opacity = "1";
+        }
+
+        if (
+            scrollPosition >= ichigoIchieTop &&
+            scrollPosition < ichigoIchieBottom
+        ) {
+            strawberryEffect.style.opacity = "1";
+        }
 
         if (
             scrollPosition >= presentsTop &&
