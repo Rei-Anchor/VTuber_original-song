@@ -4346,6 +4346,123 @@
 }
 
 
+/* =========================
+   Love♡Craft
+   Bead Meteor Shower
+========================= */
+
+#bead-shower-effect {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 1000;
+
+    opacity: 0;
+    transition: opacity 0.7s ease;
+}
+
+.bead-meteor {
+    position: absolute;
+
+    left: var(--bead-x);
+    top: var(--bead-y);
+
+    width: var(--bead-size);
+    height: var(--bead-size);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            rgba(255,255,255,0.95) 0%,
+            var(--bead-light) 18%,
+            var(--bead-color) 55%,
+            var(--bead-dark) 100%
+        );
+
+    box-shadow:
+        0 0 5px var(--bead-glow),
+        0 0 10px var(--bead-glow);
+
+    animation:
+        beadMeteorFall
+        var(--bead-duration)
+        linear
+        infinite;
+
+    animation-delay:
+        var(--bead-delay);
+}
+
+.bead-meteor::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: var(--tail-length);
+    height: 2px;
+
+    transform-origin:
+        left center;
+
+    transform:
+        rotate(-45deg);
+
+    background:
+        linear-gradient(
+            to right,
+            var(--bead-glow),
+            rgba(255, 180, 215, 0)
+        );
+
+    border-radius: 999px;
+
+    filter: blur(1px);
+
+    opacity: 0.75;
+
+    z-index: -1;
+}   
+
+@keyframes beadMeteorFall {
+
+    0% {
+        transform:
+            translate(
+                15vw,
+                -15vh
+            )
+            scale(0.75);
+
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translate(
+                -125vw,
+                125vh
+            )
+            scale(1);
+
+        opacity: 0;
+    }
+}
 
 
 /* =========================
@@ -5040,6 +5157,8 @@
 
 <body>
 
+    <div id="bead-shower-effect"></div>
+
     <div id="primula-petal-effect"></div>
 
     <div id="strawberry-effect"></div>
@@ -5143,16 +5262,11 @@
 
         <div class="song-index-grid update-index-grid">
 
-            <a href="#hajimari-no-monogatari" class="song-index-item">
-                <span class="index-song">はじまりの物語</span>
-                <span class="index-artist">綺栖ちの</span>
+            <a href="#love-craft" class="song-index-item">
+                <span class="index-song">Love♡Craft</span>
+                <span class="index-artist">華崎びいず</span>
             </a>
-
-            <a href="#ichigo-ichie" class="song-index-item">
-                <span class="index-song">いちごいちえ（苺一会）～Strawberry Lifetime Meeting～</span>
-                <span class="index-artist">苺トキ</span>
-            </a>
-            
+                       
         </div>
 
     </section>
@@ -5165,6 +5279,16 @@
          </h2>
 
          <div class="song-index-grid" id="song-index">
+
+            <a href="#hajimari-no-monogatari" class="song-index-item">
+                <span class="index-song">はじまりの物語</span>
+                <span class="index-artist">綺栖ちの</span>
+            </a>
+
+            <a href="#ichigo-ichie" class="song-index-item">
+                <span class="index-song">いちごいちえ（苺一会）～Strawberry Lifetime Meeting～</span>
+                <span class="index-artist">苺トキ</span>
+            </a>
 
             <a href="#presents" class="song-index-item">
                 <span class="index-song">presents</span>
@@ -5339,10 +5463,88 @@
 
         </section>
 
-<section class="song-article" id="hajimari-no-monogatari">
+<section class="song-article" id="love-craft">
 
     <div class="pickup-label">
         TODAY'S PICKUP
+    </div>
+
+    <h2 class="pickup-title">
+        Love♡Craft
+    </h2>
+
+    <div class="artist">
+        華崎びいず
+    </div>
+
+    <p class="lead">
+        緩急のついた曲調が特徴！<br>
+        ポップでキュートなメロディラインと<br>
+        びいずさんの可愛く弾むような歌声が<br>
+        相性抜群な一曲！
+    </p>
+
+    <div class="youtube">
+        <iframe
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/fDU5Lyk-dJw?si=a4C2ZkT-IC4Y16DL" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+        <p>
+             チャンネル名：
+            <a href="https://www.youtube.com/@HANASAKI_BIIZU" target="_blank" rel="noopener noreferrer">
+                Biizu Ch. 華崎びいず
+            </a>
+        </p>
+
+    <div class="youtube-action">
+        <a
+            href="https://youtu.be/fDU5Lyk-dJw"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-action-button"
+        >
+            ▶ YouTubeで聴く・感想を届ける
+        </a>
+
+        <div class="youtube-action-message">
+            気に入った楽曲があれば、
+            あなたの「好き」を届けてみてください♪
+        </div>
+    </div>
+
+    <div class="comment">
+        <h3>好きポイント</h3>
+
+        <ul>
+            <li>
+                思わずコールしたくなるようなアイドルソング
+            </li>
+
+            <li>
+                サビがBメロとの緩急差で、
+                より明るくワクワクになるところ
+            </li>
+
+            <li>
+                サビ前の徐々に楽しみが増えていくような歌声
+            </li>
+        </ul>
+    </div>
+
+</section>
+
+<section class="song-article" id="hajimari-no-monogatari">
+
+    <div class="pickup-label">
+        2026.9.24 UPDATE
     </div>
 
     <h2 class="pickup-title">
@@ -5417,7 +5619,7 @@
 <section class="song-article" id="ichigo-ichie">
 
     <div class="pickup-label">
-        TODAY'S PICKUP
+        2026.9.24 UPDATE
     </div>
 
     <h2 class="pickup-title">
@@ -10686,6 +10888,170 @@ for (
 
 <script>
 
+const beadShowerEffect =
+    document.getElementById(
+        "bead-shower-effect"
+    );
+
+
+const beadCount = 34;
+
+
+const beadColors = [
+
+    {
+        color: "#ff5577",
+        light: "#ffb2c3",
+        dark: "#cf3155",
+        glow: "rgba(255,85,119,0.65)"
+    },
+
+    {
+        color: "#ff78b5",
+        light: "#ffd0e5",
+        dark: "#dc4d91",
+        glow: "rgba(255,120,181,0.65)"
+    },
+
+    {
+        color: "#e94c8b",
+        light: "#ffb4d2",
+        dark: "#b92f69",
+        glow: "rgba(233,76,139,0.65)"
+    },
+
+    {
+        color: "#ff9fc7",
+        light: "#ffe1ee",
+        dark: "#e56e9f",
+        glow: "rgba(255,159,199,0.65)"
+    }
+
+];
+
+for (
+    let i = 0;
+    i < beadCount;
+    i++
+) {
+
+    const bead =
+        document.createElement("div");
+
+    bead.classList.add(
+        "bead-meteor"
+    );
+
+
+    /* =====================
+       色
+    ===================== */
+
+    const beadColor =
+        beadColors[
+            Math.floor(
+                Math.random() *
+                beadColors.length
+            )
+        ];
+
+
+    bead.style.setProperty(
+        "--bead-color",
+        beadColor.color
+    );
+
+    bead.style.setProperty(
+        "--bead-light",
+        beadColor.light
+    );
+
+    bead.style.setProperty(
+        "--bead-dark",
+        beadColor.dark
+    );
+
+    bead.style.setProperty(
+        "--bead-glow",
+        beadColor.glow
+    );
+
+
+    /* =====================
+       出現位置
+
+       画面上～右側から
+       ランダムにスタート
+    ===================== */
+
+    bead.style.setProperty(
+        "--bead-x",
+        20 + Math.random() * 100 + "%"
+    );
+
+    bead.style.setProperty(
+        "--bead-y",
+        -30 + Math.random() * 65 + "%"
+    );
+
+
+    /* =====================
+       ビーズサイズ
+    ===================== */
+
+    const size =
+        6 + Math.random() * 11;
+
+    bead.style.setProperty(
+        "--bead-size",
+        size + "px"
+    );
+
+
+    /* =====================
+       光の尾
+    ===================== */
+
+    const tail =
+        25 + Math.random() * 55;
+
+    bead.style.setProperty(
+        "--tail-length",
+        tail + "px"
+    );
+
+
+    /* =====================
+       移動速度
+    ===================== */
+
+    const duration =
+        4 + Math.random() * 3;
+
+    bead.style.setProperty(
+        "--bead-duration",
+        duration + "s"
+    );
+
+
+    bead.style.setProperty(
+        "--bead-delay",
+        -(Math.random() * duration) + "s"
+    );
+
+
+    beadShowerEffect.appendChild(
+        bead
+    );
+}
+
+</script>
+
+<script>
+
+    const loveCraftSection =
+        document.getElementById("love-craft");
+
     const hajimariNoMonogatariSection =
         document.getElementById("hajimari-no-monogatari");
 
@@ -10802,6 +11168,8 @@ for (
 
         /* まず全部非表示 */
 
+        beadShowerEffect.style.opacity = "0";
+
         primulaPetalEffect.style.opacity = "0";
 
         strawberryEffect.style.opacity = "0";
@@ -10871,6 +11239,15 @@ for (
         flowerEffect.style.opacity = "0";
 
         heavenLightEffect.style.opacity = "0";
+
+        /* loveCraft */
+
+        const loveCraftTop =
+                loveCraftSection.offsetTop;
+
+        const loveCraftBottom =
+                loveCraftTop +
+                loveCraftSection.offsetHeight;
 
         /* hajimarinoMonogatari */
 
@@ -11197,6 +11574,13 @@ for (
 
 
         /* 現在位置に合わせて表示 */   
+
+        if (
+            scrollPosition >= loveCraftTop &&
+            scrollPosition < loveCraftBottom
+        ) {
+            beadShowerEffect.style.opacity = "1";
+        }
 
         if (
             scrollPosition >= hajimariNoMonogatariTop &&
