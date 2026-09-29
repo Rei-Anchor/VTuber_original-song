@@ -4638,6 +4638,170 @@
 }
 
 
+/* =========================
+   ひまわりの一歩
+   Sunflower Rain Effect
+========================= */
+
+#sunflower-rain-effect {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 1000;
+
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+
+.sunflower {
+    position: absolute;
+
+    top: -80px;
+
+    width: var(--sunflower-size);
+    height: var(--sunflower-size);
+
+    animation:
+        sunflowerFall
+        var(--sunflower-duration)
+        linear
+        infinite;
+
+    animation-delay:
+        var(--sunflower-delay);
+}
+
+.sunflower-petals {
+    position: absolute;
+
+    inset: 0;
+
+    animation:
+        sunflowerSpin
+        var(--spin-duration)
+        linear
+        infinite;
+}
+
+.sunflower-petal {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 28%;
+    height: 45%;
+
+    transform-origin:
+        50% 100%;
+
+    border-radius:
+        55% 55% 45% 45%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #ffe66d 0%,
+            #ffc928 55%,
+            #f3a900 100%
+        );
+
+    box-shadow:
+        0 1px 2px
+        rgba(180, 120, 0, 0.15);
+}
+
+.sunflower-center {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 38%;
+    height: 38%;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 35%,
+            #8d5a2b 0%,
+            #6f431f 50%,
+            #4d2e17 100%
+        );
+
+    box-shadow:
+        inset 0 0 4px
+        rgba(255,255,255,0.15),
+        0 1px 3px
+        rgba(90, 50, 20, 0.25);
+
+    z-index: 2;
+}
+
+@keyframes sunflowerFall {
+
+    0% {
+        transform:
+            translate(0, -10vh)
+            rotate(-10deg);
+
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 0.95;
+    }
+
+    25% {
+        transform:
+            translate(25px, 25vh)
+            rotate(15deg);
+    }
+
+    50% {
+        transform:
+            translate(-20px, 55vh)
+            rotate(-10deg);
+    }
+
+    75% {
+        transform:
+            translate(30px, 85vh)
+            rotate(12deg);
+
+        opacity: 0.95;
+    }
+
+    100% {
+        transform:
+            translate(-15px, 115vh)
+            rotate(-8deg);
+
+        opacity: 0;
+    }
+}
+
+@keyframes sunflowerSpin {
+
+    from {
+        transform:
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            rotate(360deg);
+    }
+}
+
 
 /* On your side ピンクの光エフェクト */
 
@@ -5157,6 +5321,8 @@
 
 <body>
 
+    <div id="sunflower-rain-effect"></div>
+
     <div id="bead-shower-effect"></div>
 
     <div id="primula-petal-effect"></div>
@@ -5262,9 +5428,9 @@
 
         <div class="song-index-grid update-index-grid">
 
-            <a href="#love-craft" class="song-index-item">
-                <span class="index-song">Love♡Craft</span>
-                <span class="index-artist">華崎びいず</span>
+            <a href="#himawari-no-ippo" class="song-index-item">
+                <span class="index-song">ひまわりの一歩</span>
+                <span class="index-artist">手毬はなん</span>
             </a>
                        
         </div>
@@ -5279,6 +5445,11 @@
          </h2>
 
          <div class="song-index-grid" id="song-index">
+
+            <a href="#love-craft" class="song-index-item">
+                <span class="index-song">Love♡Craft</span>
+                <span class="index-artist">華崎びいず</span>
+            </a>
 
             <a href="#hajimari-no-monogatari" class="song-index-item">
                 <span class="index-song">はじまりの物語</span>
@@ -5463,10 +5634,81 @@
 
         </section>
 
-<section class="song-article" id="love-craft">
+<section class="song-article" id="himawari-no-ippo">
 
     <div class="pickup-label">
         TODAY'S PICKUP
+    </div>
+
+    <h2 class="pickup-title">
+        ひまわりの一歩
+    </h2>
+
+    <div class="artist">
+        手毬はなん
+    </div>
+
+    <p class="lead">
+        ひまわりのように明るくて、<br>
+        どこかワクワクさを感じさせる一曲。<br>
+        歌を聴くと、はなんちゃんの満面の笑顔が浮かんで<br>
+        心のモヤモヤを晴らしてくれる！
+    </p>
+
+    <div class="youtube">
+        <iframe
+            src="https://www.youtube.com/embed/xHPs8Rhi15E"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+        </iframe>
+    </div>
+
+        <p>
+             チャンネル名：
+            <a href="https://www.youtube.com/@temari_hanan" target="_blank" rel="noopener noreferrer">
+                手毬はなんTemari Hanan-声で楽しむVtuber-
+            </a>
+        </p>
+
+    <div class="youtube-action">
+        <a
+            href="https://youtu.be/xHPs8Rhi15E"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-action-button"
+        >
+            ▶ YouTubeで聴く・感想を届ける
+        </a>
+
+        <div class="youtube-action-message">
+            気に入った楽曲があれば、
+            あなたの「好き」を届けてみてください♪
+        </div>
+    </div>
+
+    <div class="comment">
+        <h3>好きポイント</h3>
+
+        <ul>
+            <li>ワクワクを感じる前奏</li>
+            <li>Aメロのはなんちゃんの弾むような歌声が魅力的</li>
+            <li>Bメロの少しずつ走り始めるような高揚感</li>
+            <li>
+                クルクルとはなんちゃんがひまわり畑を回っている光景が浮かぶ
+                楽しいサビ
+            </li>
+        </ul>
+    </div>
+
+</section>
+
+<section class="song-article" id="love-craft">
+
+    <div class="pickup-label">
+        2026.9.28 UPDATE
     </div>
 
     <h2 class="pickup-title">
@@ -11049,6 +11291,162 @@ for (
 
 <script>
 
+const sunflowerRainEffect =
+    document.getElementById(
+        "sunflower-rain-effect"
+    );
+
+
+const sunflowerCount = 22;
+
+
+for (
+    let i = 0;
+    i < sunflowerCount;
+    i++
+) {
+
+    const sunflower =
+        document.createElement("div");
+
+    sunflower.classList.add(
+        "sunflower"
+    );
+
+
+    /* =====================
+       花びら全体
+    ===================== */
+
+    const petals =
+        document.createElement("div");
+
+    petals.classList.add(
+        "sunflower-petals"
+    );
+
+
+    const petalCount = 12;
+
+
+    for (
+        let p = 0;
+        p < petalCount;
+        p++
+    ) {
+
+        const petal =
+            document.createElement("div");
+
+        petal.classList.add(
+            "sunflower-petal"
+        );
+
+
+        const angle =
+            (360 / petalCount) * p;
+
+
+        petal.style.transform =
+            `
+            translate(-50%, -100%)
+            rotate(${angle}deg)
+            translateY(-30%)
+            `;
+
+
+        petals.appendChild(
+            petal
+        );
+    }
+
+
+    sunflower.appendChild(
+        petals
+    );
+
+
+    /* =====================
+       花芯
+    ===================== */
+
+    const center =
+        document.createElement("div");
+
+    center.classList.add(
+        "sunflower-center"
+    );
+
+    sunflower.appendChild(
+        center
+    );
+
+
+    /* =====================
+       横位置
+    ===================== */
+
+    sunflower.style.left =
+        Math.random() * 100 + "%";
+
+
+    /* =====================
+       大きさ
+    ===================== */
+
+    const size =
+        28 + Math.random() * 32;
+
+    sunflower.style.setProperty(
+        "--sunflower-size",
+        size + "px"
+    );
+
+
+    /* =====================
+       落下速度
+    ===================== */
+
+    const duration =
+        5 + Math.random() * 4;
+
+    sunflower.style.setProperty(
+        "--sunflower-duration",
+        duration + "s"
+    );
+
+
+    /* =====================
+       花の回転速度
+    ===================== */
+
+    const spinDuration =
+        2 + Math.random() * 3;
+
+    petals.style.setProperty(
+        "--spin-duration",
+        spinDuration + "s"
+    );
+
+
+    sunflower.style.setProperty(
+        "--sunflower-delay",
+        -(Math.random() * duration) + "s"
+    );
+
+
+    sunflowerRainEffect.appendChild(
+        sunflower
+    );
+}
+
+</script>
+
+<script>
+
+    const himawariNoIppoSection =
+        document.getElementById("himawari-no-ippo");
+
     const loveCraftSection =
         document.getElementById("love-craft");
 
@@ -11168,6 +11566,8 @@ for (
 
         /* まず全部非表示 */
 
+        sunflowerRainEffect.style.opacity = "0";
+
         beadShowerEffect.style.opacity = "0";
 
         primulaPetalEffect.style.opacity = "0";
@@ -11239,6 +11639,15 @@ for (
         flowerEffect.style.opacity = "0";
 
         heavenLightEffect.style.opacity = "0";
+
+        /* himawariNoIppo */
+
+        const himawariNoIppoTop =
+                himawariNoIppoSection.offsetTop;
+
+        const himawariNoIppoBottom =
+                himawariNoIppoTop +
+                himawariNoIppoSection.offsetHeight;
 
         /* loveCraft */
 
@@ -11574,6 +11983,13 @@ for (
 
 
         /* 現在位置に合わせて表示 */   
+
+        if (
+            scrollPosition >= himawariNoIppoTop &&
+            scrollPosition < himawariNoIppoBottom
+        ) {
+            sunflowerRainEffect.style.opacity = "1";
+        }
 
         if (
             scrollPosition >= loveCraftTop &&
