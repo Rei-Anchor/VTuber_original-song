@@ -4639,6 +4639,82 @@
 
 
 /* =========================
+   Voracious Knowledge
+   Thorn Vine Effect
+========================= */
+
+#thorn-vine-effect {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1000;
+
+    opacity: 0;
+    transition: opacity 0.7s ease;
+}
+
+.thorn-vine {
+    position: absolute;
+    overflow: visible;
+
+    width: 100%;
+    height: 100%;
+}
+
+.thorn-vine-path {
+    fill: none;
+
+    stroke: #278b32;
+    stroke-width: 5;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+
+    filter:
+        drop-shadow(0 0 3px rgba(20, 100, 30, 0.45));
+
+    animation: thornGrow 0.3s ease-out forwards;
+}
+
+.thorn-vine-spike {
+    fill: #1d7028;
+    opacity: 0;
+
+    animation: thornSpikeAppear 0.12s ease-out forwards;
+}
+
+/* 鞭のように素早く伸びる */
+@keyframes thornGrow {
+
+    0% {
+        stroke-dashoffset: 1;
+        opacity: 1;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+}
+
+/* トゲの出現 */
+@keyframes thornSpikeAppear {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* =========================
    ひまわりの一歩
    Sunflower Rain Effect
 ========================= */
@@ -4801,6 +4877,158 @@
             rotate(360deg);
     }
 }
+
+
+
+/* =========================
+   夜明け前の琥珀色
+   Rose Breeze Effect
+========================= */
+
+#rose-breeze-effect {
+    position: fixed;
+    inset: 0;
+
+    overflow: hidden;
+    pointer-events: none;
+
+    z-index: 1000;
+
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+/* 左から右への移動 */
+.rose-breeze {
+    position: absolute;
+
+    left: -80px;
+    top: var(--rose-y);
+
+    width: var(--rose-size);
+    height: var(--rose-size);
+
+    animation:
+        roseBreezeFlow
+        var(--rose-duration)
+        linear
+        infinite;
+
+    animation-delay: var(--rose-delay);
+}
+
+/* 上下に揺れる */
+.rose-breeze-sway {
+    width: 100%;
+    height: 100%;
+
+    animation:
+        roseBreezeSway
+        var(--rose-sway-duration)
+        ease-in-out
+        infinite alternate;
+}
+
+/* 花びら本体 */
+.rose-breeze-petal {
+    width: 100%;
+    height: 100%;
+
+    background:
+        radial-gradient(
+            ellipse at 35% 30%,
+            var(--rose-light) 0%,
+            var(--rose-color) 55%,
+            var(--rose-dark) 100%
+        );
+
+    border-radius:
+        75% 15% 75% 20%;
+
+    clip-path:
+        polygon(
+            50% 0%,
+            85% 8%,
+            100% 40%,
+            88% 72%,
+            55% 100%,
+            18% 85%,
+            0% 45%,
+            18% 15%
+        );
+
+    box-shadow:
+        0 0 5px rgba(255, 140, 170, 0.15);
+
+    opacity: 0.85;
+
+    animation:
+        roseBreezeRotate
+        var(--rose-spin-duration)
+        ease-in-out
+        infinite alternate;
+}
+
+/* 左から右へゆっくり流れる */
+@keyframes roseBreezeFlow {
+
+    0% {
+        transform: translateX(-5vw);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    85% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(115vw);
+        opacity: 0;
+    }
+}
+
+/* 風に揺られるような上下運動 */
+@keyframes roseBreezeSway {
+
+    0% {
+        transform: translateY(-22px);
+    }
+
+    100% {
+        transform: translateY(22px);
+    }
+}
+
+/* ゆっくりと回転 */
+@keyframes roseBreezeRotate {
+
+    0% {
+        transform:
+            rotate(-35deg)
+            rotateY(0deg)
+            scale(0.85);
+    }
+
+    50% {
+        transform:
+            rotate(25deg)
+            rotateY(90deg)
+            scale(1);
+    }
+
+    100% {
+        transform:
+            rotate(110deg)
+            rotateY(180deg)
+            scale(0.9);
+    }
+}
+
+
 
 
 /* On your side ピンクの光エフェクト */
@@ -5321,6 +5549,10 @@
 
 <body>
 
+    <div id="rose-breeze-effect"></div>
+
+    <div id="thorn-vine-effect"></div>
+
     <div id="sunflower-rain-effect"></div>
 
     <div id="bead-shower-effect"></div>
@@ -5428,11 +5660,16 @@
 
         <div class="song-index-grid update-index-grid">
 
-            <a href="#himawari-no-ippo" class="song-index-item">
-                <span class="index-song">ひまわりの一歩</span>
-                <span class="index-artist">手毬はなん</span>
+            <a href="#yoakemae-no-kohakuiro" class="song-index-item">
+                <span class="index-song">夜明け前の琥珀色</span>
+                <span class="index-artist">珠々宮けい</span>
             </a>
-                       
+
+            <a href="#voracious-knowledge" class="song-index-item">
+                <span class="index-song">Voracious Knowledge</span>
+                <span class="index-artist">錦なか</span>
+            </a>
+
         </div>
 
     </section>
@@ -5445,6 +5682,11 @@
          </h2>
 
          <div class="song-index-grid" id="song-index">
+
+            <a href="#himawari-no-ippo" class="song-index-item">
+                <span class="index-song">ひまわりの一歩</span>
+                <span class="index-artist">手毬はなん</span>
+            </a>
 
             <a href="#love-craft" class="song-index-item">
                 <span class="index-song">Love♡Craft</span>
@@ -5634,10 +5876,144 @@
 
         </section>
 
-<section class="song-article" id="himawari-no-ippo">
+
+<section class="song-article" id="yoakemae-no-kohakuiro">
 
     <div class="pickup-label">
         TODAY'S PICKUP
+    </div>
+
+    <h2 class="pickup-title">
+        夜明け前の琥珀色
+    </h2>
+
+    <div class="artist">
+        珠々宮けい
+    </div>
+
+    <p class="lead">
+        穏やかな曲調と歌声で<br>
+        世界観に浸れる一曲。
+    </p>
+
+    <div class="youtube">
+        <iframe
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/uIzkUysJCdE?si=Ne5_hNk1CQixQ0Xo" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <div class="youtube-action">
+        <a
+            href="https://youtu.be/uIzkUysJCdE"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-action-button"
+        >
+            ▶ YouTubeで聴く・感想を届ける
+        </a>
+
+        <div class="youtube-action-message">
+            気に入った楽曲があれば、
+            あなたの「好き」を届けてみてください♪
+        </div>
+    </div>
+
+    <div class="comment">
+        <h3>好きポイント</h3>
+
+        <ul>
+            <li>
+                穏やかに流れるようなけいさんの歌声
+            </li>
+
+            <li>
+                ギターの幻想的な音と、
+                曲を支えるベースの音
+            </li>
+        </ul>
+    </div>
+
+</section>
+
+
+
+<section class="song-article" id="voracious-knowledge">
+
+    <div class="pickup-label">
+        TODAY'S PICKUP
+    </div>
+
+    <h2 class="pickup-title">
+        Voracious Knowledge
+    </h2>
+
+    <div class="artist">
+        錦なか
+    </div>
+
+    <p class="lead">
+        どこかで聴いたことのあるような、<br>
+        心が熱くなる力強い<br>
+        アニソン風のロックナンバー。
+    </p>
+
+    <div class="youtube">
+        <iframe
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/ha_UOWIgFCk?si=a6a8vcs58q9BZ1GG" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <div class="youtube-action">
+        <a
+            href="https://youtu.be/ha_UOWIgFCk"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="youtube-action-button"
+        >
+            ▶ YouTubeで聴く・感想を届ける
+        </a>
+
+        <div class="youtube-action-message">
+            気に入った楽曲があれば、
+            あなたの「好き」を届けてみてください♪
+        </div>
+    </div>
+
+    <div class="comment">
+        <h3>好きポイント</h3>
+
+        <ul>
+            <li>
+                曲の疾走感と重厚感に世界観を意識させる歌唱力
+            </li>
+
+            <li>
+                かっこよさの中に見える可愛らしさを感じる歌声
+            </li>
+        </ul>
+    </div>
+
+</section>
+
+
+<section class="song-article" id="himawari-no-ippo">
+
+    <div class="pickup-label">
+        2026.9.29 UPDATE
     </div>
 
     <h2 class="pickup-title">
@@ -11442,7 +11818,392 @@ for (
 
 </script>
 
+
+/* =========================
+   Voracious Knowledge
+   Thorn Vine Generator
+========================= */
+
 <script>
+
+const thornVineEffect =
+    document.getElementById("thorn-vine-effect");
+
+const SVG_NS = "http://www.w3.org/2000/svg";
+
+const thornSvg = document.createElementNS(
+    SVG_NS,
+    "svg"
+);
+
+thornSvg.setAttribute("class", "thorn-vine");
+thornSvg.setAttribute("viewBox", "0 0 1000 1000");
+thornSvg.setAttribute("preserveAspectRatio", "none");
+
+thornVineEffect.appendChild(thornSvg);
+
+
+/* 枝の生成 */
+
+function createThornVine(startX, startY, endX, endY, delay = 0) {
+
+    const group = document.createElementNS(
+        SVG_NS,
+        "g"
+    );
+
+    const path = document.createElementNS(
+        SVG_NS,
+        "path"
+    );
+
+    const dx = endX - startX;
+    const dy = endY - startY;
+
+    /* 曲線を少し揺らす */
+    const bend = 35 + Math.random() * 60;
+
+    const midX = (startX + endX) / 2;
+    const midY = (startY + endY) / 2;
+
+    const controlX = midX + (Math.random() - 0.5) * bend;
+    const controlY = midY + (Math.random() - 0.5) * bend;
+
+    const pathData = `
+        M ${startX} ${startY}
+        Q ${controlX} ${controlY}
+          ${endX} ${endY}
+    `;
+
+    path.setAttribute("d", pathData);
+    path.setAttribute("class", "thorn-vine-path");
+    path.setAttribute("pathLength", "1");
+
+    path.style.animationDelay = `${delay}s`;
+
+    group.appendChild(path);
+
+
+    /* トゲを枝に配置 */
+
+    const spikeCount = 10;
+
+    for (let i = 1; i <= spikeCount; i++) {
+
+        const t = i / (spikeCount + 1);
+
+        const x =
+            (1 - t) * (1 - t) * startX +
+            2 * (1 - t) * t * controlX +
+            t * t * endX;
+
+        const y =
+            (1 - t) * (1 - t) * startY +
+            2 * (1 - t) * t * controlY +
+            t * t * endY;
+
+        const tangentX =
+            2 * (1 - t) * (controlX - startX) +
+            2 * t * (endX - controlX);
+
+        const tangentY =
+            2 * (1 - t) * (controlY - startY) +
+            2 * t * (endY - controlY);
+
+        const length = Math.hypot(
+            tangentX,
+            tangentY
+        ) || 1;
+
+        const side = i % 2 === 0 ? 1 : -1;
+
+        const normalX = -tangentY / length * side;
+        const normalY = tangentX / length * side;
+
+        const spikeLength = 14 + Math.random() * 12;
+
+        const tipX = x + normalX * spikeLength;
+        const tipY = y + normalY * spikeLength;
+
+        const spike = document.createElementNS(
+            SVG_NS,
+            "path"
+        );
+
+        spike.setAttribute(
+            "d",
+            `M ${x - tangentX / length * 6}
+               ${y - tangentY / length * 6}
+             L ${tipX} ${tipY}
+             L ${x + tangentX / length * 6}
+               ${y + tangentY / length * 6}
+             Z`
+        );
+
+        spike.setAttribute(
+            "class",
+            "thorn-vine-spike"
+        );
+
+        spike.style.animationDelay = `${delay}s`;
+
+        group.appendChild(spike);
+    }
+
+    thornSvg.appendChild(group);
+}
+
+/* =========================
+   鞭のような茨
+   ランダム出現制御
+========================= */
+
+const thornSlots = 4;
+const thornTimers = [];
+
+function createRandomThorn(slot) {
+
+    // 上下左右からランダムに選択
+    const direction = Math.floor(Math.random() * 4);
+
+    let startX, startY;
+    let endX, endY;
+
+    switch (direction) {
+
+        case 0: // 上
+            startX = Math.random() * 1000;
+            startY = -30;
+            endX = startX + (Math.random() - 0.5) * 300;
+            endY = 200 + Math.random() * 200;
+            break;
+
+        case 1: // 下
+            startX = Math.random() * 1000;
+            startY = 1030;
+            endX = startX + (Math.random() - 0.5) * 300;
+            endY = 600 + Math.random() * 200;
+            break;
+
+        case 2: // 左
+            startX = -30;
+            startY = Math.random() * 1000;
+            endX = 200 + Math.random() * 200;
+            endY = startY + (Math.random() - 0.5) * 300;
+            break;
+
+        case 3: // 右
+            startX = 1030;
+            startY = Math.random() * 1000;
+            endX = 600 + Math.random() * 200;
+            endY = startY + (Math.random() - 0.5) * 300;
+            break;
+    }
+
+    // 既存の関数を使って茨を生成
+    const previousCount = thornSvg.children.length;
+
+    createThornVine(
+        startX,
+        startY,
+        endX,
+        endY,
+        0
+    );
+
+    const group = thornSvg.children[previousCount];
+
+    if (!group) return;
+
+    const path = group.querySelector(".thorn-vine-path");
+    const spikes = group.querySelectorAll(".thorn-vine-spike");
+
+    // 成長時間をランダム化
+    const growTime = 0.2 + Math.random() * 0.2;
+
+    path.style.animationDuration = `${growTime}s`;
+    path.style.animationDelay = "0s";
+
+    spikes.forEach(spike => {
+        spike.style.animationDelay = `${growTime * 0.7}s`;
+    });
+
+    // 成長完了後、約3秒表示して消す
+    const visibleTime = growTime * 1000 + 3000;
+
+    setTimeout(() => {
+
+        group.style.transition = "opacity 0.3s ease-out";
+        group.style.opacity = "0";
+
+        setTimeout(() => {
+            group.remove();
+        }, 300);
+
+    }, visibleTime);
+}
+
+
+/* =========================
+   4つの独立した出現ループ
+========================= */
+
+function startThornSlot(slot) {
+
+    function nextThorn() {
+
+        createRandomThorn(slot);
+
+        // 次の出現までの時間もランダム
+        const nextDelay = 4500 + Math.random() * 3000;
+
+        thornTimers[slot] = setTimeout(
+            nextThorn,
+            nextDelay
+        );
+    }
+
+    // 初回の出現時間をずらす
+    const initialDelay = Math.random() * 3500;
+
+    thornTimers[slot] = setTimeout(
+        nextThorn,
+        initialDelay
+    );
+}
+
+for (let i = 0; i < thornSlots; i++) {
+    startThornSlot(i);
+}
+
+</script>
+
+
+<script>
+    /* =========================
+   夜明け前の琥珀色
+   Rose Breeze Generator
+========================= */
+
+const roseBreezeEffect =
+    document.getElementById("rose-breeze-effect");
+
+const roseBreezeColors = [
+
+    {
+        color: "#d94a62",
+        light: "#ff9caa",
+        dark: "#9e2942"
+    },
+
+    {
+        color: "#f27c9a",
+        light: "#ffd0dc",
+        dark: "#cb4f73"
+    },
+
+    {
+        color: "#e95b83",
+        light: "#ffb3c9",
+        dark: "#b6365b"
+    },
+
+    {
+        color: "#ffafc5",
+        light: "#ffe0e9",
+        dark: "#e47798"
+    }
+
+];
+
+const roseBreezeCount = 28;
+
+for (let i = 0; i < roseBreezeCount; i++) {
+
+    const rose = document.createElement("div");
+    rose.classList.add("rose-breeze");
+
+    const sway = document.createElement("div");
+    sway.classList.add("rose-breeze-sway");
+
+    const petal = document.createElement("div");
+    petal.classList.add("rose-breeze-petal");
+
+    const color = roseBreezeColors[
+        Math.floor(Math.random() * roseBreezeColors.length)
+    ];
+
+    petal.style.setProperty(
+        "--rose-color",
+        color.color
+    );
+
+    petal.style.setProperty(
+        "--rose-light",
+        color.light
+    );
+
+    petal.style.setProperty(
+        "--rose-dark",
+        color.dark
+    );
+
+    /* 出現する高さ */
+    rose.style.setProperty(
+        "--rose-y",
+        Math.random() * 100 + "vh"
+    );
+
+    /* 花びらの大きさ：12〜30px */
+    const size = 12 + Math.random() * 18;
+
+    rose.style.setProperty(
+        "--rose-size",
+        size + "px"
+    );
+
+    /* 横移動：10〜18秒 */
+    const duration = 10 + Math.random() * 8;
+
+    rose.style.setProperty(
+        "--rose-duration",
+        duration + "s"
+    );
+
+    /* 上下の揺れ：2.5〜5秒 */
+    rose.style.setProperty(
+        "--rose-sway-duration",
+        (2.5 + Math.random() * 2.5) + "s"
+    );
+
+    /* 回転：3〜7秒 */
+    rose.style.setProperty(
+        "--rose-spin-duration",
+        (3 + Math.random() * 4) + "s"
+    );
+
+    /* 最初から画面内に散らばらせる */
+    rose.style.setProperty(
+        "--rose-delay",
+        -(Math.random() * duration) + "s"
+    );
+
+    sway.appendChild(petal);
+    rose.appendChild(sway);
+
+    roseBreezeEffect.appendChild(rose);
+}
+</script>
+
+
+
+<script>
+
+    const yoakemaeNoKohakuiroSection =
+        document.getElementById("yoakemae-no-kohakuiro");
+
+    const voraciousKnowledgeSection =
+        document.getElementById("voracious-knowledge");
 
     const himawariNoIppoSection =
         document.getElementById("himawari-no-ippo");
@@ -11566,6 +12327,10 @@ for (
 
         /* まず全部非表示 */
 
+        roseBreezeEffect.style.opacity = "0";
+
+        thornVineEffect.style.opacity = "0";
+
         sunflowerRainEffect.style.opacity = "0";
 
         beadShowerEffect.style.opacity = "0";
@@ -11639,6 +12404,24 @@ for (
         flowerEffect.style.opacity = "0";
 
         heavenLightEffect.style.opacity = "0";
+
+        /* yoakemae-no-kohakuiro */
+
+        const yoakemaeNoKohakuiroTop =
+                yoakemaeNoKohakuiroSection.offsetTop;
+
+        const yoakemaeNoKohakuiroBottom =
+                yoakemaeNoKohakuiroTop +
+                yoakemaeNoKohakuiroSection.offsetHeight;
+
+        /* voraciousKnowledge */
+
+        const voraciousKnowledgeTop =
+                voraciousKnowledgeSection.offsetTop;
+
+        const voraciousKnowledgeBottom =
+                voraciousKnowledgeTop +
+                voraciousKnowledgeSection.offsetHeight;
 
         /* himawariNoIppo */
 
@@ -11983,6 +12766,20 @@ for (
 
 
         /* 現在位置に合わせて表示 */   
+
+        if (
+            scrollPosition >= yoakemaeNoKohakuiroTop &&
+            scrollPosition < yoakemaeNoKohakuiroBottom
+        ) {
+            roseBreezeEffect.style.opacity = "1";
+        }
+
+        if (
+            scrollPosition >= voraciousKnowledgeTop &&
+            scrollPosition < voraciousKnowledgeBottom
+        ) {
+            thornVineEffect.style.opacity = "1";
+        }
 
         if (
             scrollPosition >= himawariNoIppoTop &&
